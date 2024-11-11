@@ -378,100 +378,100 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // ),
 
-// void render_layer_status(void) {
-//   switch (get_highest_layer(layer_state)){
-//     case _COLEMAK_FR :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       if (game_mode) {
-//         // -------|"-----00000-----00000-----00000-----00000-----"
-//         oled_write("COLE-  MAK       FR      (GAME  BG)          ", false);
-//       } else {
-//         oled_write("COLE-  MAK       FR                        ", false);
-//       }
-//       break;
-//     case _GAME :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write(" GAME                                        ", false);
-//       break;
-//     case _AUX_GAME :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write(" AUX  GAME                                   ", false);
-//       break;
-//     case _LATEX :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("LATEX                                        ", false);
-//       break;
-//     // case _SFT_COLEMAK_FR :
-//     //   // -------|"-----00000-----00000-----00000-----00000-----"
-//     //   //         "                                             "
-//     //   oled_write(" SFT                                         ", false);
-//     //   break;
-//     case _CAPS_LOCK :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write(" CAPS_LOCK                                   ", false);
-//       break;
-//     // case _OSL_SHIFT :
-//     //   // -------|"-----00000-----00000-----00000-----00000-----"
-//     //   //         "                                             "
-//     //   oled_write(" OSL_SHIFT                                   ", false);
-//     //   break;
-//     case _F_KEYS :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("  F_  KEYS                                   ", false);
-//       break;
-//     case _WEB_BROWSER :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write(" WEB_                                        ", false);
-//       break;
-//     case _NAV :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("  NAV                                        ", false);
-//       break;
-//     case _OP_NAV :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("OPERA TEUR                                   ", false);
-//       break;
-//     case _ACCENTS :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("ACCE-  NTS                                   ", false);
-//       break;
-//     case _REG_SPE :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("  REG _SPE                                   ", false);
-//       break;
-//     case _MULTIMEDIA :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("MULTIMEDIA                                   ", false);
-//       break;
-//     case _RGB :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write(" RGB                                         ", false);
-//       break;
-//     case _NAV_LEFT :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("  NAV_LEFT                                   ", false);
-//       break;
-//     case _MOUSE_LAYER :
-//       // -------|"-----00000-----00000-----00000-----00000-----"
-//       //         "                                             "
-//       oled_write("MOUSELAYER                                   ", false);
-//       break;
-//   }
-// }
+void render_layer_status(void) {
+  switch (get_highest_layer(layer_state)){
+    case _COLEMAK_FR :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      if (game_mode) {
+        // -------|"-----00000-----00000-----00000-----00000-----"
+        oled_write("COLE-  MAK       FR      (GAME  BG)          ", false);
+      } else {
+        oled_write("COLE-  MAK       FR                        ", false);
+      }
+      break;
+    case _GAME :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" GAME                                        ", false);
+      break;
+    case _AUX_GAME :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" AUX  GAME                                   ", false);
+      break;
+    case _LATEX :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("LATEX                                        ", false);
+      break;
+    // case _SFT_COLEMAK_FR :
+    //   // -------|"-----00000-----00000-----00000-----00000-----"
+    //   //         "                                             "
+    //   oled_write(" SFT                                         ", false);
+    //   break;
+    case _CAPS_LOCK :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" CAPS_LOCK                                   ", false);
+      break;
+    // case _OSL_SHIFT :
+    //   // -------|"-----00000-----00000-----00000-----00000-----"
+    //   //         "                                             "
+    //   oled_write(" OSL_SHIFT                                   ", false);
+    //   break;
+    case _F_KEYS :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("  F_  KEYS                                   ", false);
+      break;
+    case _WEB_BROWSER :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" WEB_                                        ", false);
+      break;
+    case _NAV :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("  NAV                                        ", false);
+      break;
+    case _OP_NAV :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("OPERA TEUR                                   ", false);
+      break;
+    case _ACCENTS :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("ACCE-  NTS                                   ", false);
+      break;
+    case _REG_SPE :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("  REG _SPE                                   ", false);
+      break;
+    case _MULTIMEDIA :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("MULTIMEDIA                                   ", false);
+      break;
+    case _RGB :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" RGB                                         ", false);
+      break;
+    case _NAV_LEFT :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("  NAV_LEFT                                   ", false);
+      break;
+    case _MOUSE_LAYER :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("MOUSELAYER                                   ", false);
+      break;
+  }
+}
 
 // void render_logo(void) {
 //   static const char PROGMEM logo[] = {
