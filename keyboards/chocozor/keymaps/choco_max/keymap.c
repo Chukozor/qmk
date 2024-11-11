@@ -524,51 +524,51 @@ bool shutdown_user(bool jump_to_bootloader) {
 }
 
 // // ==============================================
-// // MOUSE AUTO-LAYER
-// void pointing_device_init_user(void) {
-//     set_auto_mouse_layer(_MOUSE_LAYER); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
-//     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
-// }
+// MOUSE AUTO-LAYER
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MOUSE_LAYER); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+}
 
 // // #include "custom_files/trackpad/scrolling.h"
 
-// report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-//   // Check if _REG_SPE layer is active (for volume control)
-//   if (IS_LAYER_ON(_REG_SPE)) {
-//     // Accumulate vertical movement, scaled by VOLUME_DIVISOR for volume control
-//     volume_accumulated_v += (float)mouse_report.y / VOLUME_DIVISOR;
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+  // Check if _REG_SPE layer is active (for volume control)
+  if (IS_LAYER_ON(_REG_SPE)) {
+    // Accumulate vertical movement, scaled by VOLUME_DIVISOR for volume control
+    volume_accumulated_v += (float)mouse_report.y / VOLUME_DIVISOR;
 
-//     // If accumulated vertical movement reaches the threshold, adjust the volume
-//     if (volume_accumulated_v >= VOLUME_THRESHOLD) {
-//         tap_code(KC_VOLD);  // Decrease volume
-//         volume_accumulated_v = 0;  // Reset accumulator after triggering
-//     } else if (volume_accumulated_v <= -VOLUME_THRESHOLD) {
-//         tap_code(KC_VOLU);  // Increase volume
-//         volume_accumulated_v = 0;  // Reset accumulator after triggering
-//     }
+    // If accumulated vertical movement reaches the threshold, adjust the volume
+    if (volume_accumulated_v >= VOLUME_THRESHOLD) {
+        tap_code(KC_VOLD);  // Decrease volume
+        volume_accumulated_v = 0;  // Reset accumulator after triggering
+    } else if (volume_accumulated_v <= -VOLUME_THRESHOLD) {
+        tap_code(KC_VOLU);  // Increase volume
+        volume_accumulated_v = 0;  // Reset accumulator after triggering
+    }
 
-//     // Prevent any cursor movement while controlling volume
-//     mouse_report.x = 0;
-//     mouse_report.y = 0;
+    // Prevent any cursor movement while controlling volume
+    mouse_report.x = 0;
+    mouse_report.y = 0;
 
-//   } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-//     // SCROLLING FUNCTIONALITY
-//     // Accumulate scroll values based on mouse movement and divisors
-//     scroll_accumulated_h += (float)mouse_report.x / scroll_divisor_h;
-//     scroll_accumulated_v += (float)mouse_report.y / scroll_divisor_v;
+  } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+    // SCROLLING FUNCTIONALITY
+    // Accumulate scroll values based on mouse movement and divisors
+    scroll_accumulated_h += (float)mouse_report.x / scroll_divisor_h;
+    scroll_accumulated_v += (float)mouse_report.y / scroll_divisor_v;
 
-//     // Assign integer parts of accumulated scroll values to the mouse report
-//     mouse_report.h = (int8_t)scroll_accumulated_h;  // Horizontal scroll
-//     mouse_report.v = -(int8_t)scroll_accumulated_v; // Vertical scroll (negated for natural scroll)
+    // Assign integer parts of accumulated scroll values to the mouse report
+    mouse_report.h = (int8_t)scroll_accumulated_h;  // Horizontal scroll
+    mouse_report.v = -(int8_t)scroll_accumulated_v; // Vertical scroll (negated for natural scroll)
 
-//     // Update accumulated scroll values by subtracting the integer parts
-//     scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
-//     scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+    // Update accumulated scroll values by subtracting the integer parts
+    scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+    scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
 
-//     // Prevent cursor movement while scrolling
-//     mouse_report.x = 0;
-//     mouse_report.y = 0;
-//   }
+    // Prevent cursor movement while scrolling
+    mouse_report.x = 0;
+    mouse_report.y = 0;
+  }
   
 //   // else {
 //   //   if (abs(mouse_report.x) < 2 && abs(mouse_report.y) < 2) {
@@ -579,8 +579,8 @@ bool shutdown_user(bool jump_to_bootloader) {
 //   // }
 
 //   // Return the modified or unmodified mouse report
-//   return mouse_report;
-// }
+  return mouse_report;
+}
 // // ==============================================
 // // ==============================================
 // ENCODERS :
