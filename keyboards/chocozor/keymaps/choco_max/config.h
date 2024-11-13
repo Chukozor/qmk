@@ -101,9 +101,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
 
 // Enables support for extended i16 mouse reports (instead of i8).
-#define MOUSE_EXTENDED_REPORT
+// #define MOUSE_EXTENDED_REPORT
 // Limits the frequency that the sensor is polled for motion.
-#define POINTING_DEVICE_TASK_THROTTLE_MS 10
+// #define POINTING_DEVICE_TASK_THROTTLE_MS 10
 
 // MOUSE AUTO-LAYER
 // in config.h:
