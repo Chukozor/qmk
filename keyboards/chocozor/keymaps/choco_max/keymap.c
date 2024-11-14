@@ -528,6 +528,7 @@ bool shutdown_user(bool jump_to_bootloader) {
 void pointing_device_init_user(void) {
     set_auto_mouse_layer(_MOUSE_LAYER); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+    pointing_device_set_cpi(TRACKPAD_DEFAULT_DPI);
 }
 
 // // #include "custom_files/trackpad/scrolling.h"
