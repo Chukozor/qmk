@@ -89,7 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CIRQUE_PINNACLE_DIAMETER_MM 40
 #define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_4X
 // #define POINTING_DEVICE_CIRQUE_PINNACLE_DPI 4500
-#define TRACKPAD_DEFAULT_DPI 1100
+#define TRACKPAD_DEFAULT_DPI 1000
 #define POINTING_DEVICE_ROTATION_180
 #define AUTO_MOUSE_DEBOUNCE 15
 // ---------------------------------------------------
