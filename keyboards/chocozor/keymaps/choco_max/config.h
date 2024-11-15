@@ -72,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // TRACKPAD
 #define SPLIT_POINTING_ENABLE
 #define POINTING_DEVICE_RIGHT
-#define CIRQUE_PINNACLE_CURVED_OVERLAY
+// #define CIRQUE_PINNACLE_CURVED_OVERLAY
 // #define DEBOUNCE 5
 // #define F_SCL 100000L
 
