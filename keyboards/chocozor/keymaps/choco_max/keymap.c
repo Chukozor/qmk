@@ -197,7 +197,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_TAB,     FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
   //|--------------------------------------------------------------|   |-------------------------------------------------------------|
-                        XXXXXXX,          MO_OX_G,    KC_I,  KC_SPC,    KC_LALT,  KC_ENT, XXXXXXX,          XXXXXXX
+                        XXXXXXX,          MO_OX_G,    KC_I,  KC_SPC,    XXXXXXX,  KC_ENT, KC_LALT,          XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
   ),
     // _AUX_GAME for gaming
@@ -244,7 +244,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, S(FR_Q), S(KC_X), S(KC_C), S(KC_V), S(KC_B),                      S(KC_K), S(FR_M), FR_COMM,  FR_DOT, FR_QUES, KC_RSFT,
   //|--------------------------------------------------------------|   |-------------------------------------------------------------|
-                        S(FR_Z),          KC_LGUI,  MY_NAV,  HT_SPC,    KC_LALT,CSTM_ENT, NAV_LFT,           XXXXXXX
+                        S(FR_Z),          KC_LGUI,  MY_NAV,  HT_SPC,    XXXXXXX,CSTM_ENT, KC_LALT,           XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
   ),
     [_F_KEYS] = LAYOUT_split_3x6_4(
@@ -255,7 +255,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, XXXXXXX,   KC_F1,   KC_F2,   KC_F3,  KC_F10,                      XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, XXXXXXX,
   //|--------------------------------------------------------------|  |--------------------------------------------------------------|
-                        XXXXXXX,          XXXXXXX, KC_LCTL, XXXXXXX,    KC_LALT, KC_LCTL, XXXXXXX,          XXXXXXX
+                        XXXXXXX,          XXXXXXX, KC_LCTL, XXXXXXX,    XXXXXXX, KC_LCTL, KC_LALT,          XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
   ),
     [_NAV_LEFT] = LAYOUT_split_3x6_4(
@@ -277,7 +277,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+-  --------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,   MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                      XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, KC_RSFT,
   //|-----------------------------------------------------------------|   |-------------------------------------------------------------|
-                             KC_P0,          _______, _______, _______,    KC_LALT, KC_LCTL,  MY_NAV,           XXXXXXX
+                             KC_P0,          _______, _______, _______,    KC_LGUI, KC_LCTL, KC_LALT,           XXXXXXX
                         //`-------------------------------------------'   `-------------------------------------------'
   ),
     [_WEB_BROWSER] = LAYOUT_split_3x6_4(
