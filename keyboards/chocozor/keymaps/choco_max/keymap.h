@@ -13,9 +13,13 @@
 // #define HT_T     TT(22)
 // #define HT_SLSH  TT(22)
 // #define HT_BSLSH TT(23)
-#define MY_ESC  TT(24)
-#define MY_BNAV TT(25)
-#define WEB_TAB TT(26)
+#define MY_ESC  TT(23)
+#define MY_BNAV TT(24)
+#define WEB_TAB TT(25)
+#define FF_FENE TT(26)
+#define TABTO_L RCS(KC_PGUP)
+#define TABTO_R RCS(KC_PGDN)
+
 
 // #define COMBO_SHIFT  TT(25)
 // #define CUSTOM_OSL_WITH_MOD  TT(26)

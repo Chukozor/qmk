@@ -320,6 +320,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       return false;
+    
+    case FF_FENE:
+      if (record->tap.count) { // tapped
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LCTL));
+          SEND_STRING(SS_DELAY(1));
+          SEND_STRING(SS_TAP(X_N));// CTRL + W, ici Z pcq langue francaise KC_Z = FR_W
+          SEND_STRING(SS_UP(X_LCTL));
+        }
+      } else { // held
+        if (record->event.pressed) {
+          // if (record->tap.interrupted) {
+          // } else {
+          //   layer_on(_ACCENTS);
+          // }
+          SEND_STRING(SS_DOWN(X_LCTL));
+          SEND_STRING(SS_DOWN(X_LSFT));
+          SEND_STRING(SS_DELAY(1));
+          SEND_STRING(SS_TAP(X_N));
+          SEND_STRING(SS_UP(X_LSFT));
+          SEND_STRING(SS_UP(X_LCTL));
+        }
+      }
+      return false;
 
     case SEL_ALL:
       if (record->event.pressed) {

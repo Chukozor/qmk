@@ -282,11 +282,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
     [_WEB_BROWSER] = LAYOUT_split_3x6_4(
   //,----------------------------------------------------------.                    ,--------------------------------------------------------.
-       MY_ESC,  XXXXXXX, XXXXXXX, WEB_TAB,  C(KC_T), RCS(KC_P),                    RCS(KC_P), C(KC_T), WEB_TAB, XXXXXXX,   XXXXXXX, XXXXXXX,
+       MY_ESC,  XXXXXXX, XXXXXXX, WEB_TAB,  C(KC_T), RCS(KC_P),                    RCS(KC_P), TABTO_L, WEB_TAB, TABTO_R,   XXXXXXX, XXXXXXX,
   //|--------+---------+--------+--------+---------+----------|                    |--------+--------+--------+--------+----------+--------|
-      MY_LCTL,RCS(KC_O),   WEB_G, XXXXXXX,    WEB_D,  C(KC_N),                       C(KC_N),   WEB_G, KC_WHOM,   WEB_D, RCS(KC_O), MY_RCTL,
+      MY_LCTL,RCS(KC_O),   WEB_G, XXXXXXX,    WEB_D,  C(KC_N),                       FF_FENE,   WEB_G, KC_WHOM,   WEB_D, RCS(KC_O), MY_RCTL,
   //|--------+---------+--------+--------+---------+----------|                    |--------+--------+--------+--------+----------+--------|
-      KC_LSFT,  XXXXXXX, XXXXXXX, C(KC_D),  XXXXXXX, RCS(KC_N),                    RCS(KC_N), XXXXXXX, C(KC_D), XXXXXXX,   XXXXXXX, XXXXXXX,
+      KC_LSFT,  XXXXXXX, XXXXXXX, C(KC_D),  XXXXXXX, RCS(KC_N),                      XXXXXXX, XXXXXXX, C(KC_D), XXXXXXX,   XXXXXXX, XXXXXXX,
   //|------------------------------------------------------------------|   |---------------------------------------------------------------|
                          XXXXXXX,           KC_LGUI,    MY_NAV,  HT_SPC,    KC_LALT, AUX_WEB, XXXXXXX,          XXXXXXX
                       //`----------------------------------------------'   `-------------------------------------------'
