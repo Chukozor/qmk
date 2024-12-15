@@ -286,7 +286,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+---------+--------+--------+---------+----------|                    |--------+--------+--------+--------+----------+--------|
       MY_LCTL,RCS(KC_O),   WEB_G, XXXXXXX,    WEB_D,  C(KC_N),                       FF_FENE,   WEB_G, KC_WHOM,   WEB_D, RCS(KC_O), MY_RCTL,
   //|--------+---------+--------+--------+---------+----------|                    |--------+--------+--------+--------+----------+--------|
-      KC_LSFT,  XXXXXXX, XXXXXXX, C(KC_D),  XXXXXXX, RCS(KC_N),                      XXXXXXX, XXXXXXX, C(KC_D), XXXXXXX,   XXXXXXX, XXXXXXX,
+      KC_LSFT,  XXXXXXX, XXXXXXX, C(KC_D),  XXXXXXX, RCS(KC_N),                      XXXXXXX, C(KC_T), C(KC_D), XXXXXXX,   XXXXXXX, XXXXXXX,
   //|------------------------------------------------------------------|   |---------------------------------------------------------------|
                          XXXXXXX,           KC_LGUI,    MY_NAV,  HT_SPC,    KC_LALT, AUX_WEB, XXXXXXX,          XXXXXXX
                       //`----------------------------------------------'   `-------------------------------------------'
