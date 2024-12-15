@@ -19,6 +19,9 @@
 #define FF_FENE TT(26)
 #define TABTO_L RCS(KC_PGUP)
 #define TABTO_R RCS(KC_PGDN)
+#define BOOKMAR C(KC_D)
+#define THEBOOK RCS(KC_O)
+#define PRIVATE RCS(KC_P)
 
 
 // #define COMBO_SHIFT  TT(25)
