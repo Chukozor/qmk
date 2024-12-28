@@ -917,6 +917,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         //   return 30;
         case COMBO_PRINT_SCREEN:
           return 25;
+        case COMBO_REG_QWERTY:
+        case COMBO_REG_QWERTY2:
+          return 25;
         default:
           return COMBO_TERM;
     }
@@ -931,6 +934,10 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
     return COMBO_TERM;
 }
+
+// When the user holds a key after tapping it, the tapping function is repeated by default, rather than activating the hold function. This allows keeping the ability to auto-repeat the tapping function of a dual-role key. QUICK_TAP_TERM enables fine tuning of that ability. If set to 0, it will remove the auto-repeat ability and activate the hold function instead.
+
+// QUICK_TAP_TERM is set to TAPPING_TERM by default, which is the maximum allowed value for QUICK_TAP_TERM. To override its value (in milliseconds) add the following to your config.h: #define QUICK_TAP_TERM 120
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
