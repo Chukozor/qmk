@@ -396,6 +396,11 @@ void render_layer_status(void) {
         oled_write("COLE-  MAK       FR                        ", false);
       }
       break;
+    case _REG_QWERTY :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" REG_ KEYB                                   ", false);
+      break;
     case _GAME :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
@@ -431,20 +436,25 @@ void render_layer_status(void) {
       //         "                                             "
       oled_write("  F_  KEYS                                   ", false);
       break;
-    case _WEB_BROWSER :
-      // -------|"-----00000-----00000-----00000-----00000-----"
-      //         "                                             "
-      oled_write(" WEB_                                        ", false);
-      break;
     case _NAV :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
       oled_write("  NAV                                        ", false);
       break;
+    case _WEB_BROWSER :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" WEB_                                        ", false);
+      break;
     case _OP_NAV :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
       oled_write("OPERA TEUR                                   ", false);
+      break;
+    case _MOUSE_LAYER :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("MOUSELAYER                                   ", false);
       break;
     case _ACCENTS :
       // -------|"-----00000-----00000-----00000-----00000-----"
@@ -465,16 +475,6 @@ void render_layer_status(void) {
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
       oled_write(" RGB                                         ", false);
-      break;
-    case _REG_QWERTY :
-      // -------|"-----00000-----00000-----00000-----00000-----"
-      //         "                                             "
-      oled_write("  NAV_LEFT                                   ", false);
-      break;
-    case _MOUSE_LAYER :
-      // -------|"-----00000-----00000-----00000-----00000-----"
-      //         "                                             "
-      oled_write("MOUSELAYER                                   ", false);
       break;
   }
 }
