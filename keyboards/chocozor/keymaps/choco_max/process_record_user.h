@@ -768,13 +768,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
           // logic when pressed
           web_aux = true;
-          SEND_STRING(SS_DOWN(X_WFWD));
+          // SEND_STRING(SS_DOWN(X_WSTP));
         } else {
           web_aux = false;
-          SEND_STRING(SS_UP(X_WFWD));
+          // SEND_STRING(SS_UP(X_WSTP));
         }
         return false;
-        
+    
+    case FF_T_ST:
+      if (record->tap.count) { // Tap
+        if (record->event.pressed) {
+            // logic when pressed
+            SEND_STRING(SS_DOWN(X_LCTL));
+            // SEND_STRING(SS_DOWN(X_LSFT));
+            SEND_STRING(SS_DELAY(1));
+            SEND_STRING(SS_TAP(X_T));
+            SEND_STRING(SS_DELAY(1));
+            // SEND_STRING(SS_UP(X_LSFT));
+            SEND_STRING(SS_UP(X_LCTL));
+          } else {
+          }
+      } else { // Hold
+        if (record->event.pressed) {
+          // logic when pressed
+          // if (record->tap.interrupted) {
+          //   // logic when interrupted
+          // } else {
+          //   // logic when not interrupted
+          // }
+          SEND_STRING(SS_DOWN(X_WSTP));
+
+        } else {
+          // logic when released
+          SEND_STRING(SS_UP(X_WSTP));
+        }
+      }
+        return false;
+
     case TG_SCROL:
       if (record->event.pressed) {
           // logic when pressed
@@ -862,6 +892,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case MY_BNAV:
             return 230;
         case WEB_TAB:
+            return 230;
+        case FF_T_ST:
             return 230;
         default:
             return g_tapping_term;

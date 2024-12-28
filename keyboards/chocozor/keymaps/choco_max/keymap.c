@@ -290,7 +290,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,------------------------------------------------------.                    ,-----------------------------------------------------.
        MY_ESC,  XXXXXXX, TABTO_L, WEB_TAB, TABTO_R, PRIVATE,                      PRIVATE, TABTO_L, WEB_TAB, TABTO_R, XXXXXXX, XXXXXXX,
   //|--------+---------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      MY_LCTL,RCS(KC_O),   WEB_G, C(KC_T),   WEB_D, FF_FENE,                      FF_FENE,   WEB_G, C(KC_T),   WEB_D, XXXXXXX, MY_RCTL,
+      MY_LCTL,RCS(KC_O),   WEB_G, FF_T_ST,   WEB_D, FF_FENE,                      FF_FENE,   WEB_G, FF_T_ST,   WEB_D, XXXXXXX, MY_RCTL,
   //|--------+---------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,  XXXXXXX, XXXXXXX, THEBOOK, BOOKMAR, XXXXXXX,                      XXXXXXX, BOOKMAR, THEBOOK, XXXXXXX, XXXXXXX, XXXXXXX,
   //|---------------------------------------------------------------|   |------------------------------------------------------------|

@@ -17,6 +17,7 @@
 #define MY_BNAV TT(24)
 #define WEB_TAB TT(25)
 #define FF_FENE TT(26)
+#define FF_T_ST TT(27)
 #define TABTO_L RCS(KC_PGUP)
 #define TABTO_R RCS(KC_PGDN)
 #define BOOKMAR C(KC_D)
