@@ -47,7 +47,7 @@
 
 #define MY_LCTL KC_LCTL
 #define MY_RCTL KC_RCTL
-// #define NAV_LFT TG(_NAV_LEFT)
+// #define NAV_LFT TG(_REG_QWERTY)
 #define NAV_LFT KC_LCTL
 #define MOFKEYS MO(_F_KEYS)
 #define MOWEBBR MO(_WEB_BROWSER)
@@ -89,12 +89,12 @@ void toggle_game_mode(bool);
 
 enum layers{
     _COLEMAK_FR,
+    _REG_QWERTY,
     _GAME,
     _AUX_GAME,
     _LATEX,
     _CAPS_LOCK,
     _F_KEYS,
-    _NAV_LEFT,
     _NAV,
     _WEB_BROWSER,
     _OP_NAV,

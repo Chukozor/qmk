@@ -58,6 +58,8 @@ enum combos {
   COMBO_CLEAR_EEPROM,
   COMBO_WEB,
   COMBO_PRINT_SCREEN,
+  COMBO_REG_QWERTY,
+  COMBO_REG_QWERTY2,
   // ...,
   // COMBO_E_AIGU
 };
@@ -85,6 +87,8 @@ const uint16_t PROGMEM toggle_RGB[] = {MOFKEYS, CSTM_ENT,KC_LALT, COMBO_END};
 const uint16_t PROGMEM combo_clear_eeprom[] = {RGB_TOG, ____MOD, _I_COUL, __I_LUM, __I_SAT, COMBO_END};
 const uint16_t PROGMEM combo_web[] = {MY_LCTL, MY_RCTL, COMBO_END};
 const uint16_t PROGMEM combo_print_screen[] = {KC_R, KC_S, KC_T, COMBO_END};
+const uint16_t PROGMEM combo_reg_qwerty[] = {KC_LCTL,KC_ESC,KC_BSPC,KC_RCTL, COMBO_END};
+const uint16_t PROGMEM combo_reg_qwerty2[] = {MY_ESC,KC_LSFT,KC_TAB,KC_RSFT, COMBO_END};
 // const uint16_t PROGMEM ...[] = {..., ..., COMBO_END};
 // const uint16_t PROGMEM toggle_gaming_2[] = {FR_Q, KC_R, KC_C, KC_F, KC_T, COMBO_END};
 // const uint16_t PROGMEM temp_active_e_aigu[] = {HT_SPC, HT_E, COMBO_END};
@@ -110,6 +114,8 @@ combo_t key_combos[] = {
     [COMBO_CLEAR_EEPROM]=COMBO(combo_clear_eeprom, QK_CLEAR_EEPROM),
     [COMBO_WEB]=COMBO(combo_web, TG(_WEB_BROWSER)),
     [COMBO_PRINT_SCREEN]=COMBO(combo_print_screen, KC_PSCR),
+    [COMBO_REG_QWERTY]=COMBO(combo_reg_qwerty, TG(_REG_QWERTY)),
+    [COMBO_REG_QWERTY2]=COMBO(combo_reg_qwerty2, TG(_REG_QWERTY)),
     // [...]=COMBO(combo_my_bquote2, ...),
     // [COMBO_OSL_RGB]=COMBO(temp_active_RGB, OSL(_RGB)),
     // [TOGGLE_GAMING_2]=COMBO(toggle_gaming_2, TG(_GAMING)),
@@ -188,6 +194,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            FR_Z,          KC_LGUI,  MY_NAV,  HT_SPC,      MOFKEYS, CSTM_ENT,KC_LALT,          KC_LSFT
                      //`-------------------------------------------'     `-------------------------------------------'
   ),
+    [_REG_QWERTY] = LAYOUT_split_3x6_4(
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+       KC_TAB,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RCTL,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                        KC_BSPC,          KC_LSFT,  MO_NAV,  KC_SPC,    TL_UPPR,  KC_ENT, KC_RSFT,           KC_DEL
+                                      //`--------------------------'  `--------------------------'
+  ),
     // OTHER_GAMING for gaming
     [_GAME] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -257,17 +274,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------------------------------------------------------------|  |--------------------------------------------------------------|
                          KC_F13,          XXXXXXX, KC_LCTL, XXXXXXX,    XXXXXXX, KC_LCTL, KC_LALT,          XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
-  ),
-    [_NAV_LEFT] = LAYOUT_split_3x6_4(
-  //,--------------------------------------------------------.                    ,-----------------------------------------------------.
-       MY_ESC,  XXXXXXX,  XXXXXXX,  WEB_TAB, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+---------+---------+---------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,  XXXXXXX,  KY_LEFT,KY_WEBNAV,KY_RIGHT, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+---------+---------+---------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,  XXXXXXX,  XXXXXXX,  C(KC_D), XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-----------------------------------------------------------------|  |--------------------------------------------------------------|
-                          XXXXXXX,           XXXXXXX, XXXXXXX,  KY_SPC,    XXXXXXX, XXXXXXX, NAV_LFT,          XXXXXXX
-                      //`---------------------------------------------'  `--------------------------------------------'
   ),
     [_NAV] = LAYOUT_split_3x6_4(
   //,--------------------------------------------------------.                    ,-----------------------------------------------------.
@@ -460,7 +466,7 @@ void render_layer_status(void) {
       //         "                                             "
       oled_write(" RGB                                         ", false);
       break;
-    case _NAV_LEFT :
+    case _REG_QWERTY :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
       oled_write("  NAV_LEFT                                   ", false);
@@ -585,6 +591,35 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 // // ==============================================
 // // ==============================================
 // ENCODERS :
+
+
+// bool encoder_update_user(uint8_t index, bool clockwise) {
+//     switch (get_highest_layer(layer_state)) {
+//         case _MOUSE_LAYER:
+//             if (index == 0) { (clockwise ? DPI_DEC() : DPI_INC()); }
+//             else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
+//             break;
+//         // case _NAV:
+//         // case _NUM:
+//         // case _ADJUST:
+//         // case _G0:
+//         // case _G1:
+//         //     if (index == 0) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); } 
+//         //     else if (index == 1) {
+//         //         /* - Hold Alt, it will be released at next layer switch in `layer_state_set_user()` */
+//         //         SEND_STRING(SS_DOWN(X_LALT));
+//         //         if (clockwise) { tap_code(KC_TAB); }
+//         //         else { SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_TAB) SS_UP(X_LSFT)); }
+//         //     }
+//         default:
+//           if (index == 0) { tap_code((clockwise ? KC_WH_D : KC_WH_U)); }
+//           else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
+//           break;
+//     }
+//     return false;
+// }
+
+// ==============================================
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
         // Mappings for 1st Encoder          // Mappings for 2nd Encoder
   [0]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
