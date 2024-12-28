@@ -596,21 +596,9 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 // bool encoder_update_user(uint8_t index, bool clockwise) {
 //     switch (get_highest_layer(layer_state)) {
 //         case _MOUSE_LAYER:
-//             if (index == 0) { (clockwise ? DPI_DEC() : DPI_INC()); }
+//             if (index == 0) {(clockwise ? DPI_DEC : DPI_INC); }
 //             else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
 //             break;
-//         // case _NAV:
-//         // case _NUM:
-//         // case _ADJUST:
-//         // case _G0:
-//         // case _G1:
-//         //     if (index == 0) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); } 
-//         //     else if (index == 1) {
-//         //         /* - Hold Alt, it will be released at next layer switch in `layer_state_set_user()` */
-//         //         SEND_STRING(SS_DOWN(X_LALT));
-//         //         if (clockwise) { tap_code(KC_TAB); }
-//         //         else { SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_TAB) SS_UP(X_LSFT)); }
-//         //     }
 //         default:
 //           if (index == 0) { tap_code((clockwise ? KC_WH_D : KC_WH_U)); }
 //           else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
@@ -622,22 +610,21 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 // ==============================================
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
         // Mappings for 1st Encoder          // Mappings for 2nd Encoder
-  [0]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [1]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [2]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [3]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [4]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [5]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [6]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [7]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [8]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [9]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [10] = { ENCODER_CCW_CW(DPI_DEC, DPI_INC),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [11] = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [12] = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [13] = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Layer ...
-  [14] = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Layer ...
-  // [3] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD), ENCODER_CCW_CW(KC_LEFT, KC_RIGHT) }, // Mapping for Layer ...
+  [_COLEMAK_FR]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_REG_QWERTY]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_GAME]         = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_AUX_GAME]     = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_LATEX]        = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_CAPS_LOCK]    = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_F_KEYS]       = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_NAV]          = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_WEB_BROWSER]  = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_OP_NAV]       = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_MOUSE_LAYER]  = { ENCODER_CCW_CW(DPI_DEC, DPI_INC),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_ACCENTS]      = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_REG_SPE]      = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_MULTIMEDIA]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Layer ...
+  [_RGB]          = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Layer ...
 };
 
 
