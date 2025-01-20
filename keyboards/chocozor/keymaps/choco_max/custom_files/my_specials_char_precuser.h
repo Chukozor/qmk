@@ -121,15 +121,40 @@
             return true;
           }
 
+        // case MY_BQUOT2:
+        //   if (record->event.pressed) {
+        //     add_mods(MOD_BIT_LALT);
+        //     tap_code(KC_KP_0);
+        //     tap_code(KC_KP_9);
+        //     tap_code(KC_KP_6);
+        //     unregister_mods(MOD_BIT_LALT);
+        //   }
+        //   return false;
+        
         case MY_BQUOT2:
           if (record->event.pressed) {
-            add_mods(MOD_BIT_LALT);
-            tap_code(KC_KP_0);
-            tap_code(KC_KP_9);
-            tap_code(KC_KP_6);
-            unregister_mods(MOD_BIT_LALT);
+            switch(detected_host_os()){
+              case OS_LINUX:
+                register_mods(MOD_MASK_SHIFT | MOD_MASK_CTRL);
+                tap_code(KC_U);
+                unregister_mods(MOD_MASK_SHIFT | MOD_MASK_CTRL);
+                tap_code(KC_P6);
+                tap_code(KC_P0);
+                tap_code(KC_SPC);
+                return false;
+
+              case OS_WINDOWS:
+                  add_mods(MOD_BIT_LALT);
+                  tap_code(KC_P0);
+                  tap_code(KC_P9);
+                  tap_code(KC_P6);
+                  unregister_mods(MOD_BIT_LALT);
+                  return false;
+              default:
+                return false;
+              }
+              return false;
           }
-          return false;
 
         // case MY_BQUOT3:
         //     if (record->event.pressed) {
