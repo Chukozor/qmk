@@ -80,8 +80,8 @@ const uint16_t PROGMEM temp_active_boot2[] = {KC_LGUI,MY_NAV,HT_SPC,MOFKEYS, CST
 // const uint16_t PROGMEM toggle_gaming[] = {FR_Q,FR_W,KC_F,KC_P,KC_G, COMBO_END};
 const uint16_t PROGMEM toggle_game[] = {FR_A,KC_R,KC_S,KC_T,KC_D, COMBO_END};
 const uint16_t PROGMEM toggle_game2[] = {KC_LSFT,FR_A,FR_W,KC_D,KC_T, COMBO_END};
-const uint16_t PROGMEM fast_switch_game_colemak_combo[] = {MY_LCTL,KC_LSFT, COMBO_END};
-const uint16_t PROGMEM fast_switch_game_colemak_combo2[] = {KC_TAB, KC_LCTL, COMBO_END};
+const uint16_t PROGMEM fast_switch_game_colemak_combo[] = {MY_ESC,MY_LCTL,KC_LSFT, COMBO_END};
+const uint16_t PROGMEM fast_switch_game_colemak_combo2[] = {KC_ESC,KC_TAB, KC_LCTL, COMBO_END};
 // const uint16_t PROGMEM combo_toggle_web[] = {KC_LGUI,MY_NAV, COMBO_END};
 const uint16_t PROGMEM toggle_RGB[] = {MOFKEYS, CSTM_ENT,KC_LALT, COMBO_END};
 const uint16_t PROGMEM combo_clear_eeprom[] = {RGB_TOG, ____MOD, _I_COUL, __I_LUM, __I_SAT, COMBO_END};
@@ -208,7 +208,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // OTHER_GAMING for gaming
     [_GAME] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       MY_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
+       KC_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
