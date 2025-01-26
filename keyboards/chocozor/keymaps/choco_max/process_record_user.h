@@ -824,26 +824,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else { // Hold
         if (record->event.pressed) {
-          clear_mods();
-          layer_clear();
-          nav_already_activated = false;
-          capslock_was_activated = false;
-          alt_tab_menu = false;
-          ky_webnav = false;
-          caps_lock_activated = false;
-          shift_activated = false;
-          trace_op_nav = false;
-          game_mode = false;
-          set_scrolling = false;
-          nav_verrouillee = false;
-          combo_nav_activated = false;
-          web_aux = false;
-          // spc_is_held = false;
-          layer_move(_COLEMAK_FR);
-          if (record->tap.interrupted) {
-            // logic when interrupted
-          } else {
-            // logic when not interrupted
+          if (game_mode == false) {
+            clear_mods();
+            layer_clear();
+            nav_already_activated = false;
+            capslock_was_activated = false;
+            alt_tab_menu = false;
+            ky_webnav = false;
+            caps_lock_activated = false;
+            shift_activated = false;
+            trace_op_nav = false;
+            game_mode = false;
+            set_scrolling = false;
+            nav_verrouillee = false;
+            combo_nav_activated = false;
+            web_aux = false;
+            // spc_is_held = false;
+            layer_move(_COLEMAK_FR);
+            if (record->tap.interrupted) {
+              // logic when interrupted
+            } else {
+              // logic when not interrupted
+            }
           }
         } else {
           // logic when released
