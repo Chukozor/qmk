@@ -815,24 +815,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case APEX_I:
       if (record->event.pressed) {
         SEND_STRING(SS_DOWN(X_I));
-        wait_ms(1);
+        wait_ms(3);
         SEND_STRING(SS_UP(X_I));
       } else {
         SEND_STRING(SS_DOWN(X_I));
-        wait_ms(1);
+        wait_ms(3);
         SEND_STRING(SS_UP(X_I));
+        wait_ms(3);
       }
       return false;
 
     case APEX_CTL:
       if (record->event.pressed) {
         SEND_STRING(SS_DOWN(X_LCTL));
-        wait_ms(1);
+        wait_ms(3);
         SEND_STRING(SS_UP(X_LCTL));
       } else {
         SEND_STRING(SS_DOWN(X_LCTL));
-        wait_ms(1);
+        wait_ms(3);
         SEND_STRING(SS_UP(X_LCTL));
+        wait_ms(3);
       }
       return false;
 
