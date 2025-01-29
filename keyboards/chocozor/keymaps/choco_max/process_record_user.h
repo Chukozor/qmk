@@ -567,10 +567,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
           // logic when pressed
           if (game_mode == false) {
-            game_mode = true;
             layer_on(_GAME);
+            game_mode = true;
           } else if (IS_LAYER_ON(_COLEMAK_FR)) {
             layer_on(_GAME);
+            game_mode = true;
           } else {
             game_mode = false;
             layer_off(_GAME);

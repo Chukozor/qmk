@@ -50,9 +50,9 @@ enum combos {
   COMBO_BOOT2,
   // TOGGLE_GAMING,
   TOGGLE_GAME,
-  TOGGLE_GAME2,
-  FAST_SWITCH_GAME_COLEMAK_COMBO,
-  FAST_SWITCH_GAME_COLEMAK_COMBO2,
+  // TOGGLE_GAME2,
+  // FAST_SWITCH_GAME_COLEMAK_COMBO,
+  // FAST_SWITCH_GAME_COLEMAK_COMBO2,
   TOGGLE_WEB,
   TOGGLE_RGB,
   COMBO_CLEAR_EEPROM,
@@ -79,7 +79,7 @@ const uint16_t PROGMEM temp_active_boot[] = {MY_NAV,HT_SPC,KC_LGUI,KC_LALT,CSTM_
 const uint16_t PROGMEM temp_active_boot2[] = {KC_LGUI,MY_NAV,HT_SPC,MOFKEYS, CSTM_ENT,KC_LALT, COMBO_END};
 // const uint16_t PROGMEM toggle_gaming[] = {FR_Q,FR_W,KC_F,KC_P,KC_G, COMBO_END};
 const uint16_t PROGMEM toggle_game[] = {FR_A,KC_R,KC_S,KC_T,KC_D, COMBO_END};
-const uint16_t PROGMEM toggle_game2[] = {KC_LSFT,FR_A,FR_W,KC_D,KC_T, COMBO_END};
+// const uint16_t PROGMEM toggle_game2[] = {KC_LSFT,FR_A,FR_W,KC_D,KC_T, COMBO_END};
 // const uint16_t PROGMEM fast_switch_game_colemak_combo[] = {MY_ESC,MY_LCTL,KC_LSFT, COMBO_END};
 // const uint16_t PROGMEM fast_switch_game_colemak_combo2[] = {KC_ESC,KC_TAB, APEX_CTL, COMBO_END};
 // const uint16_t PROGMEM combo_toggle_web[] = {KC_LGUI,MY_NAV, COMBO_END};
@@ -101,7 +101,7 @@ combo_t key_combos[] = {
     [COMBO_MULTIMEDIA]=COMBO(temp_active_MULTIMEDIA, MO(_MULTIMEDIA)),
     // [TOGGLE_GAMING]=COMBO(toggle_gaming, TG(_AUX_GAME)),
     [TOGGLE_GAME]=COMBO(toggle_game, TG_GAME),
-    [TOGGLE_GAME2]=COMBO(toggle_game2, TG_GAME),
+    // [TOGGLE_GAME2]=COMBO(toggle_game2, TG_GAME),
     [COMBO_OSM_SHIFT]=COMBO(temp_active_SHIFT, OSM(MOD_LSFT)),
     // [COMBO_OSM_SHIFT2]=COMBO(temp_active_SHIFT2, OSM(MOD_LSFT)),
     [COMBO_CAPSLOCK]=COMBO(combo_capslock, DBL_SHIFT),
@@ -135,10 +135,10 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
         //   }
         case COMBO_ACTIVE_NUMPAD:
         case COMBO_ACTIVE_NUMPAD2:
-        case FAST_SWITCH_GAME_COLEMAK_COMBO:
-          if (layer_state_is(_GAME)) {
-            return false;
-          }
+        // case FAST_SWITCH_GAME_COLEMAK_COMBO:
+        //   if (layer_state_is(_GAME)) {
+        //     return false;
+        //   }
         case TOGGLE_GAME:
           if (layer_state_is(_GAME)) {
             return true;
