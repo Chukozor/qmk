@@ -208,7 +208,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // OTHER_GAMING for gaming
     [_GAME] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
+       KC_ESC,    FR_Q,  MY_W_H,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      APEX_CTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -389,12 +389,8 @@ void render_layer_status(void) {
     case _COLEMAK_FR :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
-      if (game_mode) {
-        // -------|"-----00000-----00000-----00000-----00000-----"
-        oled_write("COLE-  MAK       FR      (GAME  BG)          ", false);
-      } else {
-        oled_write("COLE-  MAK       FR                        ", false);
-      }
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      oled_write("COLE-  MAK       FR                          ", false);
       break;
     case _REG_QWERTY :
       // -------|"-----00000-----00000-----00000-----00000-----"
