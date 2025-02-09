@@ -19,7 +19,9 @@
 #define FF_FENE TT(26)
 // #define FF_FENE LT(_RGB,KC_A) // fonctionne aussi pour le mod tap hold !
 // #define WEB_TAB LT(_RGB,KC_B) // fonctionne aussi pour le mod tap hold !
-#define FF_T_ST TT(27)
+#define FF_T_ST  TT(27)
+#define APEX_I   TT(28)
+#define APEX_CTL TT(29)
 #define TABTO_L RCS(KC_PGUP)
 #define TABTO_R RCS(KC_PGDN)
 #define BOOKMAR C(KC_D)
@@ -181,6 +183,4 @@ enum custom_keycodes {
     ZOOM_TR,
     TG_SCROL,
     AUX_WEB,
-    APEX_I,
-    APEX_CTL,
 };

@@ -814,28 +814,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
 
     case APEX_I:
-      if (record->event.pressed) {
-        SEND_STRING(SS_DOWN(X_I));
-        wait_ms(3);
-        SEND_STRING(SS_UP(X_I));
-      } else {
-        SEND_STRING(SS_DOWN(X_I));
-        wait_ms(3);
-        SEND_STRING(SS_UP(X_I));
-        wait_ms(3);
+      if (record->tap.count) { // Tap
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_I));
+          wait_ms(3);
+        } else {
+          SEND_STRING(SS_UP(X_I));
+        }
+      } else { // Hold
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_I));
+          wait_ms(3);
+          SEND_STRING(SS_UP(X_I));
+        } else {
+          SEND_STRING(SS_DOWN(X_I));
+          wait_ms(3);
+          SEND_STRING(SS_UP(X_I));
+          wait_ms(3);
+        }
       }
       return false;
 
     case APEX_CTL:
-      if (record->event.pressed) {
-        SEND_STRING(SS_DOWN(X_LCTL));
-        wait_ms(3);
-        SEND_STRING(SS_UP(X_LCTL));
-      } else {
-        SEND_STRING(SS_DOWN(X_LCTL));
-        wait_ms(3);
-        SEND_STRING(SS_UP(X_LCTL));
-        wait_ms(3);
+      if (record->tap.count) { // Tap
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LCTL));
+          wait_ms(3);
+        } else {
+          SEND_STRING(SS_UP(X_LCTL));
+        }
+      } else { // Hold
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LCTL));
+          wait_ms(3);
+          SEND_STRING(SS_UP(X_LCTL));
+        } else {
+          SEND_STRING(SS_DOWN(X_LCTL));
+          wait_ms(3);
+          SEND_STRING(SS_UP(X_LCTL));
+          wait_ms(3);
+        }
       }
       return false;
 
@@ -926,6 +944,10 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return 230;
         case MY_W_H:
             return 140;
+        case APEX_I:
+            return 100;
+        case APEX_CTL:
+            return 100;
         default:
             return g_tapping_term;
     }
