@@ -220,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // _AUX_GAME for gaming
     [_AUX_GAME] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC,    XXXXXXX, XXXXXXX,      KC_F5, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2,
+       KC_ESC,    XXXXXXX, XXXXXXX,      KC_F8, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2,
   //|--------+-----------+--------+-----------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    XXXXXXX,   KC_P4,LALT(KC_P5),   KC_P6, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+-----------+--------+-----------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
