@@ -212,7 +212,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      APEX_CTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_TAB,    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
+      XXXXXXX,    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
   //|--------------------------------------------------------------|   |-------------------------------------------------------------|
                         KC_O,          MO_OX_G,    APEX_I,  KC_SPC,       XXXXXXX,  KC_ENT, KC_LALT,          XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
@@ -220,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // _AUX_GAME for gaming
     [_AUX_GAME] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC,    XXXXXXX, XXXXXXX,      KC_F8, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2,
+       KC_ESC,    XXXXXXX, XXXXXXX,      KC_F8, XXXXXXX,  KC_TAB,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2,
   //|--------+-----------+--------+-----------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,    XXXXXXX,   KC_P4,LALT(KC_P5),   KC_P6, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+-----------+--------+-----------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
