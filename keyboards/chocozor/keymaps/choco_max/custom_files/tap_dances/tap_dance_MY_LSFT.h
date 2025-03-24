@@ -20,12 +20,12 @@ void sft_finished (tap_dance_state_t *state, void *user_data) {
         //if already set, then switch it off
         layer_off(_CAPS_LOCK);
         caps_lock_activated = false;
-      } else if (game_mode == false) {
+      } else if (IS_LAYER_ON(_GAME)) {
+        // on fait rien si on est en "game mode"
         //if not already set, then switch the layer on
+      } else {
         layer_on(_CAPS_LOCK);
         caps_lock_activated = true;
-      } else {
-        // on fait rien si on est en "game mode"
       }
       break;    
     case SINGLE_HOLD: 

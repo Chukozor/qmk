@@ -26,14 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "pointing_device.h"
 
 // -----------------------------------
-bool game_mode = 0;
-bool test_game_mode(void){
- return game_mode;
-}
-
-void toggle_game_mode(bool value){
- game_mode = value;
-}
 // -----------------------------------
 #include "custom_files/tap_dances/tap_dance.h"
 

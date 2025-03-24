@@ -14,7 +14,7 @@ void ctrl_finished (tap_dance_state_t *state, void *user_data) {
   ctrl_tap_state.state = ma_cur_dance(state);
   switch (ctrl_tap_state.state) {
     case SINGLE_TAP:
-      if (game_mode == false) {
+      if (!IS_LAYER_ON(_GAME)) {
         layer_invert(_WEB_BROWSER);
       }
       break;   

@@ -565,43 +565,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case TG_GAME:
       if (record->event.pressed) {
-          // logic when pressed
-          if (game_mode == false) {
-            layer_on(_GAME);
-            game_mode = true;
-          } else if (IS_LAYER_ON(_COLEMAK_FR)) {
-            layer_on(_GAME);
-            game_mode = true;
-          } else {
-            game_mode = false;
-            layer_off(_GAME);
-          }
-        } else {
-          // logic when released
+        // logic when pressed
+        layer_invert(_GAME);
         }
       return false;
-
-    case FAST_SWITCH_GAME_COLEMAK:
-      if (game_mode == true) {
-        if (record->event.pressed) {
-          layer_invert(_GAME);
-        }
-        return false;
-      } else {
-        if (record->event.pressed) {
-          // logic when pressed
-          SEND_STRING(SS_DOWN(X_LCTL));
-          SEND_STRING(SS_DOWN(X_LSFT));
-          // SEND_STRING(SS_DELAY(1));
-          // SEND_STRING(SS_TAP(X_T));
-        } else {
-          SEND_STRING(SS_UP(X_LCTL));
-          SEND_STRING(SS_UP(X_LSFT));
-          // logic when released
-        }
-        // press(MY_LCTL AND MY_LSFT)
-        return false;
-      }
 
     case HALF_PAGE_DOWN:
       if (IS_LAYER_ON(_WEB_BROWSER)) {
@@ -740,7 +707,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           //if already set, then switch it off
           layer_off(_CAPS_LOCK);
           caps_lock_activated = false;
-        } else if (game_mode == false) {
+        } else {
           //if not already set, then switch the layer on
           layer_on(_CAPS_LOCK);
           caps_lock_activated = true;
@@ -869,7 +836,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else { // Hold
         if (record->event.pressed) {
-          if (game_mode == false) {
+          if (IS_LAYER_ON(_GAME)) {
+          } else { // si la layer gaming n'est pas active
             clear_mods();
             layer_clear();
             nav_already_activated = false;
@@ -879,7 +847,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             caps_lock_activated = false;
             shift_activated = false;
             trace_op_nav = false;
-            game_mode = false;
             set_scrolling = false;
             nav_verrouillee = false;
             combo_nav_activated = false;
@@ -992,8 +959,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     // or with combo index, i.e. its name from enum.
     switch (index) {
         case COMBO_OSM_SHIFT:
-          return 50;
-        case FAST_SWITCH_GAME_COLEMAK:
           return 50;
         case COMBO_ACTIVE_NUMPAD:
         case COMBO_ACTIVE_NUMPAD2:

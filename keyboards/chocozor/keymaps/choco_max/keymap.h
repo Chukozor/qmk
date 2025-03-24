@@ -61,10 +61,6 @@
 // #define MS_ACL1 QK_MOUSE_ACCELERATION_1
 // #define MS_ACL2 QK_MOUSE_ACCELERATION_2
 
-
-bool test_game_mode(void);
-void toggle_game_mode(bool);
-
 #define IMGLASS_CP LCTL(LSFT(KC_C))
 #define ____MOD RGB_MOD
 #define _I_RMOD RGB_RMOD
@@ -169,7 +165,6 @@ enum custom_keycodes {
     MY_VIRG,
     MY_NAV_FROM_OP,
     TG_GAME,
-    FAST_SWITCH_GAME_COLEMAK,
     HALF_PAGE_DOWN,
     HALF_PAGE_UP,
     WEB_OFF,
