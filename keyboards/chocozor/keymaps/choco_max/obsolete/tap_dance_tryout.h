@@ -16,8 +16,8 @@ enum {
 };
 
 enum {
-  TD_CAPS_LCK = 0,     //Our custom tap dance key; add any other tap dance keys to this enum
-  TD_NAV_KEYS,
+  TD_NAV_KEYS = 0,  //Our custom tap dance key; add any other tap dance keys to this enum
+  // TD_CAPS_LCK,
   TD_ENT
 };
 
@@ -93,12 +93,12 @@ void nav_reset (tap_dance_state_t *state, void *user_data) {
 
 //Associate our tap dance key with its functionality
 tap_dance_action_t tap_dance_actions[] = {
-  [TD_CAPS_LCK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sft_finished, sft_reset)
-  ,[TD_NAV_KEYS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, nav_finished, nav_reset)
+  // [TD_CAPS_LCK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sft_finished, sft_reset)
+  [TD_NAV_KEYS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, nav_finished, nav_reset)
   ,[TD_ENT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ent_finished, ent_reset)
 };
 // --------------------------END OF TAP DANCE FEATURES------------------------------
 
 #define MY_NAV TD(TD_NAV_KEYS)
-#define MY_LSFT TD(TD_CAPS_LCK)
+// #define MY_LSFT TD(TD_CAPS_LCK)
 #define MY_ENT TD(TD_ENT)
