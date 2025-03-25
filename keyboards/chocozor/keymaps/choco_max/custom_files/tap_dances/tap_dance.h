@@ -36,32 +36,32 @@ int ma_cur_dance (tap_dance_state_t *state) {
 // -------------------------------------------------------
 // #include "tap_dance_MY_LSFT.h"
 #include "tap_dance_MY_NAV.h"
-#include "tap_dance_MY_ENT.h"
+// #include "tap_dance_MY_ENT.h"
 #include "tap_dance_MY_CTRL.h"
-#include "tap_dance_MY_SPC.h"
+// #include "tap_dance_MY_SPC.h"
 // -------------------------------------------------------
 enum {
   TD_NAV_KEYS = 0,  //Our custom tap dance key; add any other tap dance keys to this enum
   // TD_CAPS_LCK,     
-  TD_SPC,
-  TD_ENT,
-  TD_LCTL,
+  // TD_SPC,
+  // TD_ENT,
+  // TD_LCTL,
   TD_W_H
 };
 //Associate our tap dance key with its functionality
 tap_dance_action_t tap_dance_actions[] = {
   // [TD_CAPS_LCK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sft_finished, sft_reset)
   [TD_NAV_KEYS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, nav_finished, nav_reset)
-  ,[TD_SPC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, spc_finished, spc_reset)
-  ,[TD_ENT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ent_finished, ent_reset)
-  ,[TD_LCTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ctrl_finished, ctrl_reset)
+  // ,[TD_SPC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, spc_finished, spc_reset)
+  // ,[TD_ENT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ent_finished, ent_reset)
+  // ,[TD_LCTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ctrl_finished, ctrl_reset)
   ,[TD_W_H]  = ACTION_TAP_DANCE_DOUBLE(FR_W, KC_H)
 };
 // -------------------------------------------------------
 // #define MY_LSFT TD(TD_CAPS_LCK)
 #define MY_NAV TD(TD_NAV_KEYS)
-#define MY_SPC TD(TD_SPC)
-#define MY_ENT TD(TD_ENT)
+// #define MY_SPC TD(TD_SPC)
+// #define MY_ENT TD(TD_ENT)
 #define MY_W_H TD(TD_W_H)
 // #define MY_LCTL TD(TD_LCTL)
 
