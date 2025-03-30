@@ -137,6 +137,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define COMBO_TERM 50
 #define COMBO_TERM_PER_COMBO
+#define COMBO_SHOULD_TRIGGER
 
 // =====================================================================
 // #define UNICODE_ENABLE

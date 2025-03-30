@@ -78,7 +78,7 @@ const uint16_t PROGMEM toggle_game[] = {FR_A,KC_R,KC_S,KC_T,KC_D, COMBO_END};
 const uint16_t PROGMEM toggle_RGB[] = {MOFKEYS, CSTM_ENT,KC_LALT, COMBO_END};
 const uint16_t PROGMEM combo_clear_eeprom[] = {RGB_TOG, ____MOD, _I_COUL, __I_LUM, __I_SAT, COMBO_END};
 const uint16_t PROGMEM combo_web[] = {MY_LCTL, MY_RCTL, COMBO_END};
-const uint16_t PROGMEM combo_print_screen[] = {FR_W,KC_F,KC_P, COMBO_END};
+const uint16_t PROGMEM combo_print_screen[] = {KC_R, KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM combo_reg_qwerty[] = {KC_LCTL,MY_ESC,KC_BSPC,KC_RCTL, COMBO_END};
 const uint16_t PROGMEM combo_reg_qwerty2[] = {MY_ESC,KC_LSFT,KC_TAB,KC_RSFT, COMBO_END};
 // const uint16_t PROGMEM ...[] = {..., ..., COMBO_END};
@@ -118,15 +118,15 @@ combo_t key_combos[] = {
 //     COMBO(bis_x_temp_active_RGB, OSL(_RGB)),
 };
 
-// bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-//   if (combo_index == TOGGLE_GAME) {
-//       return true;
-//   }
-//   if (layer_state_is(_GAME)) {
-//       return false;
-//   }
-//   return true;
-// }
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+  if (combo_index == TOGGLE_GAME) {
+      return true;
+  }
+  if (layer_state_is(_GAME)) {
+      return false;
+  }
+  return true;
+}
 
 // ------------- END COMBO ---------------
 
