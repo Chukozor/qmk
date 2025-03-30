@@ -120,27 +120,32 @@ combo_t key_combos[] = {
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     /* Disable combo `SOME_COMBO` on layer `_LAYER_A` */
-    switch (combo_index) {
-        // case SOME_COMBO:
-        //   if (layer_state_is(_LAYER_A)) {
-        //     return false;
-        //   }
-        case COMBO_ACTIVE_NUMPAD:
-        case COMBO_ACTIVE_NUMPAD2:
-        // case FAST_SWITCH_GAME_COLEMAK_COMBO:
-        //   if (layer_state_is(_GAME)) {
-        //     return false;
-        //   }
-        case TOGGLE_GAME:
-          if (layer_state_is(_GAME)) {
-            return true;
-          }
-        default:
-          if (layer_state_is(_GAME)) {
-            return false;
-          }
+    // switch (combo_index) {
+    //     // case SOME_COMBO:
+    //     //   if (layer_state_is(_LAYER_A)) {
+    //     //     return false;
+    //     //   }
+    //     // case COMBO_ACTIVE_NUMPAD:
+    //     // case COMBO_ACTIVE_NUMPAD2:
+    //     // case FAST_SWITCH_GAME_COLEMAK_COMBO:
+    //     //   if (layer_state_is(_GAME)) {
+    //     //     return false;
+    //     //   }
+    //     case TOGGLE_GAME:
+    //       if (layer_state_is(_GAME)) {
+    //         return true;
+    //       }
+    //     default:
+    //       if (layer_state_is(_GAME)) {
+    //         return false;
+    //       }
+    // }
+    if (layer_state_is(_GAME)) {
+      if (combo_index == TOGGLE_GAME) {
+        return true;
+      }
+    return false;
     }
-
     return true;
 }
 
