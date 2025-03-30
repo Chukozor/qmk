@@ -909,8 +909,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return 230;
         case FF_T_ST:
             return 230;
-        case MY_W_H:
-            return 140;
+        // case MY_W_H:
+        //     return 140;
         case APEX_I:
             return 80;
         case APEX_CTL:
