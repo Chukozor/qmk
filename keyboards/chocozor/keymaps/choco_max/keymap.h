@@ -103,7 +103,8 @@ enum layers{
     _ACCENTS,
     _REG_SPE,
     _MULTIMEDIA,
-    _RGB
+    _RGB,
+    _NUMBERS
 };
 
 enum custom_keycodes {

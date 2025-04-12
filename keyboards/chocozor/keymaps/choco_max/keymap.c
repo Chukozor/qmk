@@ -211,7 +211,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
   //|--------------------------------------------------------------|   |-------------------------------------------------------------|
-                        KC_O,          MO_OX_G,   MO(_NAV),  KC_SPC,       XXXXXXX,  KC_ENT, KC_LALT,          XXXXXXX
+                        KC_O,    MO_OX_G, MO(_NUMBERS),  KC_SPC,         XXXXXXX,  KC_ENT, KC_LALT,          XXXXXXX
                     //`-------------------------------------------'   `-------------------------------------------'
   ),
     // _AUX_GAME for gaming
@@ -361,6 +361,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------------------------------------------------------------|  |--------------------------------------------------------------|
                         XXXXXXX,           XXXXXXX, XXXXXXX,  XXXXXXX,    XXXXXXX, KC_LSFT, TG(_RGB),        XXXXXXX
                                       //`---------------------------'  `--------------------------'
+  ),
+    [_NUMBERS] = LAYOUT_split_3x6_4(
+  //,--------------------------------------------------------.                    ,-----------------------------------------------------.
+       MY_ESC, IMGLASS_CP,   KC_7,   KC_8,   KC_9, KC_BSPC,                      XXXXXXX, KC_PGUP,   KC_UP, KC_PGDN, XXXXXXX, KC_TAB,
+  //|--------+-----------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      MY_LCTL,    MOWEBBR,   KC_4,   KC_5,   KC_6, KC_PDOT,                      KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL, MY_RCTL,
+  //|--------+-  --------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,   MY_ALT_T,   KC_1,   KC_2,   KC_3,  KC_ENT,                      XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, KC_RSFT,
+  //|-----------------------------------------------------------------|   |-------------------------------------------------------------|
+                             KC_0,          _______, _______, _______,    KC_LGUI, KC_LCTL, KC_LALT,           XXXXXXX
+                        //`-------------------------------------------'   `-------------------------------------------'
   )
 };
 
@@ -468,9 +479,13 @@ void render_layer_status(void) {
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
       oled_write(" RGB                                         ", false);
+    case _NUMBERS :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write("NUMB-ERS                                     ", false);
       break;
+    }
   }
-}
 
 // void render_logo(void) {
 //   static const char PROGMEM logo[] = {
@@ -618,6 +633,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
   [_REG_SPE]      = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
   [_MULTIMEDIA]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Layer ...
   [_RGB]          = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Layer ...
+  [_NUMBERS]      = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Layer ...
 };
 
 
