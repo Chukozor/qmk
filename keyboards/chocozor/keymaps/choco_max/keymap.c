@@ -42,6 +42,7 @@ enum combos {
   COMBO_BOOT2,
   // TOGGLE_GAMING,
   TOGGLE_GAME,
+  TOGGLE_TF2,
   // TOGGLE_GAME2,
   // FAST_SWITCH_GAME_COLEMAK_COMBO,
   // FAST_SWITCH_GAME_COLEMAK_COMBO2,
@@ -71,6 +72,7 @@ const uint16_t PROGMEM temp_active_boot[] = {MY_NAV,HT_SPC,KC_LGUI,KC_LALT,CSTM_
 const uint16_t PROGMEM temp_active_boot2[] = {KC_LGUI,MY_NAV,HT_SPC,MOFKEYS, CSTM_ENT,KC_LALT, COMBO_END};
 // const uint16_t PROGMEM toggle_gaming[] = {FR_Q,FR_W,KC_F,KC_P,KC_G, COMBO_END};
 const uint16_t PROGMEM toggle_game[] = {FR_A,KC_R,KC_S,KC_T,KC_D, COMBO_END};
+const uint16_t PROGMEM toggle_tf2[] = {FR_Q,FR_W,KC_F,KC_P,KC_G,COMBO_END};
 // const uint16_t PROGMEM toggle_game2[] = {KC_LSFT,FR_A,FR_W,KC_D,KC_T, COMBO_END};
 // const uint16_t PROGMEM fast_switch_game_colemak_combo[] = {MY_ESC,MY_LCTL,KC_LSFT, COMBO_END};
 // const uint16_t PROGMEM fast_switch_game_colemak_combo2[] = {KC_ESC,KC_TAB, APEX_CTL, COMBO_END};
@@ -93,6 +95,7 @@ combo_t key_combos[] = {
     [COMBO_MULTIMEDIA]=COMBO(temp_active_MULTIMEDIA, MO(_MULTIMEDIA)),
     // [TOGGLE_GAMING]=COMBO(toggle_gaming, TG(_AUX_GAME)),
     [TOGGLE_GAME]=COMBO(toggle_game, TG_GAME),
+    [TOGGLE_TF2]=COMBO(toggle_tf2, TG(_TF2)),
     // [TOGGLE_GAME2]=COMBO(toggle_game2, TG_GAME),
     [COMBO_OSM_SHIFT]=COMBO(temp_active_SHIFT, OSM(MOD_LSFT)),
     // [COMBO_OSM_SHIFT2]=COMBO(temp_active_SHIFT2, OSM(MOD_LSFT)),
@@ -122,9 +125,15 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
   if (combo_index == TOGGLE_GAME) {
       return true;
   }
-  if (layer_state_is(_GAME)) {
+  if (combo_index == TOGGLE_TF2) {
+    return true;
+}
+  if (layer_state_is(_TF2)) {
       return false;
   }
+  if (layer_state_is(_GAME)) {
+    return false;
+}
   return true;
 }
 
@@ -193,6 +202,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         KC_O,          MO_OX_G,    APEX_I,  KC_SPC,       XXXXXXX,  KC_ENT, KC_LALT,          XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
   ),
+    // Layer TF2
+    [_TF2] = LAYOUT_split_3x6_4(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
+  //|--------------------------------------------------------------|   |-------------------------------------------------------------|
+                        KC_O,          MO_OX_G,   MO(_NAV),  KC_SPC,       XXXXXXX,  KC_ENT, KC_LALT,          XXXXXXX
+                    //`-------------------------------------------'   `-------------------------------------------'
+  ),
     // _AUX_GAME for gaming
     [_AUX_GAME] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------------.                    ,-----------------------------------------------------.
@@ -217,17 +238,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                       XXXXXXX,  KC_LGUI,MO(_NAV),  KC_SPC,             KC_LALT,  KC_ENT, XXXXXXX,  XXXXXXX
                         //`-------------------------------------------'   `-------------------------------------------'
   // ),
-    [_LATEX] = LAYOUT_split_3x6_4(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------------------------------------------------------------|   |-------------------------------------------------------------|
-                        XXXXXXX,          XXXXXXX,  MY_NAV, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX
-                     //`-------------------------------------------'   `-------------------------------------------'
-  ),
+  //   [_LATEX] = LAYOUT_split_3x6_4(
+  // //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+  //      MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // //|--------------------------------------------------------------|   |-------------------------------------------------------------|
+  //                       XXXXXXX,          XXXXXXX,  MY_NAV, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX
+  //                    //`-------------------------------------------'   `-------------------------------------------'
+  // ),
    // _CAPS_LOCK
     [_CAPS_LOCK] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -383,10 +404,10 @@ void render_layer_status(void) {
       //         "                                             "
       oled_write(" AUX  GAME                                   ", false);
       break;
-    case _LATEX :
+    case _TF2 :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
-      oled_write("LATEX                                        ", false);
+      oled_write("TF2                                          ", false);
       break;
     // case _SFT_COLEMAK_FR :
     //   // -------|"-----00000-----00000-----00000-----00000-----"
@@ -586,7 +607,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
   [_REG_QWERTY]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
   [_GAME]         = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
   [_AUX_GAME]     = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
-  [_LATEX]        = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
+  [_TF2]          = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
   [_CAPS_LOCK]    = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
   [_F_KEYS]       = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
   [_NAV]          = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer

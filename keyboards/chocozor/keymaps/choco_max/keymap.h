@@ -93,7 +93,7 @@ enum layers{
     _REG_QWERTY,
     _GAME,
     _AUX_GAME,
-    _LATEX,
+    _TF2,
     _CAPS_LOCK,
     _F_KEYS,
     _NAV,
