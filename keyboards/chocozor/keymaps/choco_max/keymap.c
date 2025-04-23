@@ -302,7 +302,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
     [_OPERATIONS] = LAYOUT_split_3x6_4(
   //,------------------------------------------------------------.                    ,--------------------------------------------------------.
-       MY_ESC,     KC_NUM, KC_NUBS,S(KC_NUBS),   XXXXXXX, XXXXXXX,                      XXXXXXX, KC_PSLS, KC_NUBS, S(KC_NUBS), XXXXXXX, XXXXXXX,
+       MY_ESC,     KC_NUM, KC_NUBS,S(KC_NUBS),   XXXXXXX, XXXXXXX,                      XXXXXXX,  KC_EQL, KC_NUBS, S(KC_NUBS), XXXXXXX, XXXXXXX,
   //|--------+-----------+--------+----------+----------+--------|                    |--------+--------+--------+-----------+--------+--------|
       MY_LCTL,    XXXXXXX, KC_PMNS,    KC_EQL,   KC_PPLS, XXXXXXX,                      MY_PIPE, KC_PPLS, KC_PMNS,    KC_PAST, KC_PSLS, XXXXXXX,
   //|--------+-  --------+--------+----------+----------+--------|                    |--------+--------+--------+-----------+--------+--------|
