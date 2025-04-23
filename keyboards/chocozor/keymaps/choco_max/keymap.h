@@ -36,7 +36,7 @@
 
 #define MO_ACC MO(_ACCENTS)
 #define MO_NUM MO(_NUMPAD)
-#define MO_RGB MO(_RGB)
+// #define MO_RGB MO(_RGB)
 #define MO_NAV MO(_NAV)
 #define MO_FN MO(_F_KEYS)
 #define MO_OX_G MO(_AUX_GAME)
@@ -45,6 +45,7 @@
 // #define MO_SPE MO(_SPE)
 #define HT_ENT LT(_REG_SPE, KC_ENT)
 #define HT_SPC LT(_ACCENTS, KC_SPC)
+#define NUM_ENT LT(_OPERATIONS, KC_ENT)
 // #define MY_LCTL KC_LCTL
 // #define MY_LSFT LM(_SFT_COLEMAK_FR, MOD_LSFT)
 // #define MO_COLFR TO(_COLEMAK_FR)
@@ -96,15 +97,16 @@ enum layers{
     _TF2,
     _CAPS_LOCK,
     _F_KEYS,
+    _NUMPAD_RIGHT,
     _NAV,
+    _OPERATIONS,
     _WEB_BROWSER,
-    _OP_NAV,
     _MOUSE_LAYER,
     _ACCENTS,
     _REG_SPE,
     _MULTIMEDIA,
-    _RGB,
-    _NUMBERS
+    // _RGB,
+    _GAME_NUMBERS,
 };
 
 enum custom_keycodes {

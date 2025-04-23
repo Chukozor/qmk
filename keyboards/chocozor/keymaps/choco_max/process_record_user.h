@@ -234,7 +234,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     //     ky_webnav = false;
     //     caps_lock_activated = false;
     //     shift_activated = false;
-    //     trace_op_nav = false;
+    //     trace_operations = false;
     //     // spc_is_held = false;
     //     layer_move(_COLEMAK_FR);
     //   } else {
@@ -555,7 +555,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MY_NAV_FROM_OP:
       if (record->event.pressed) {
         layer_on(_NAV);
-        trace_op_nav = true;
+        trace_operations = true;
       } else {
         layer_off(_NAV);
       }
@@ -846,7 +846,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             ky_webnav = false;
             caps_lock_activated = false;
             shift_activated = false;
-            trace_op_nav = false;
+            trace_operations = false;
             set_scrolling = false;
             nav_verrouillee = false;
             combo_nav_activated = false;
@@ -962,6 +962,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
           return 50;
         case COMBO_ACTIVE_NUMPAD:
         case COMBO_ACTIVE_NUMPAD2:
+        case COMBO_NUMPAD_RIGHT:
+        case COMBO_NUMPAD_RIGHT2:
           return 25;
         // case COMBO_OSM_SHIFT2:
         //   return 30;

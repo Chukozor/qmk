@@ -28,7 +28,7 @@ void ent_finished (tap_dance_state_t *state, void *user_data) {
       break;
     case SINGLE_HOLD:
       if (IS_LAYER_ON(_ACCENTS)) {
-        layer_on(_RGB);
+        // layer_on(_RGB);
       } else {
         layer_on(_REG_SPE);
       }
@@ -57,7 +57,7 @@ void ent_reset (tap_dance_state_t *state, void *user_data) {
   //if the key was held down and now is released then switch off the layer
   if (ent_tap_state.state==SINGLE_HOLD) {
     layer_off(_REG_SPE);
-    layer_off(_RGB);
+    // layer_off(_RGB);
   }
   ent_tap_state.state = 0;
 }

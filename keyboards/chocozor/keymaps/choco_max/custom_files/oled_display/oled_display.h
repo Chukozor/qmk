@@ -45,7 +45,7 @@ bool oled_task_user() {
     case _NAV :
       oled_write("NAV          ", false);
       break;
-    case _OP_NAV :
+    case _OPERATIONS :
       oled_write("OP_NAV       ", false);
       break;
     case _ACCENTS :
@@ -57,9 +57,9 @@ bool oled_task_user() {
     case _MULTIMEDIA :
       oled_write("_MULTIMEDIA  ", false);
       break;
-    case _RGB :
-      oled_write("RGB          ", false);
-      break;
+    // case _RGB :
+    //   oled_write("RGB          ", false);
+    //   break;
     case _RIEN :
       oled_write("RIEN          ", false);
       break;
