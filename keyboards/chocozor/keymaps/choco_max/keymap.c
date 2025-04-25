@@ -232,29 +232,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
   ),
-  //   // QWERTY
-  //   [_QWERTY] = LAYOUT_split_3x6_4(
-  // //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  //      MY_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,   KC_TAB,
-  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //     KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_LCTL,
-  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //     KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_LSFT,
-  // //|--------------------------------------------------------------|  |--------------------------------------------------------------|
-  //                       XXXXXXX,  KC_LGUI,MO(_NAV),  KC_SPC,             KC_LALT,  KC_ENT, XXXXXXX,  XXXXXXX
-                        //`-------------------------------------------'   `-------------------------------------------'
-  // ),
-  //   [_LATEX] = LAYOUT_split_3x6_4(
-  // //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  //      MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|--------------------------------------------------------------|   |-------------------------------------------------------------|
-  //                       XXXXXXX,          XXXXXXX,  MY_NAV, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX
-  //                    //`-------------------------------------------'   `-------------------------------------------'
-  // ),
    // _CAPS_LOCK
     [_CAPS_LOCK] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -368,17 +345,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_MPLY, XXXXXXX,           XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
-  //   // [_RGB] = LAYOUT_split_3x6_4(
-  // //,------------------------------------------------------.                    ,-----------------------------------------------------.
-  //    MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|--------+--------+--------+--------+---------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,                      RGB_TOG, ____MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
-  // //|--------+--------+--------+--------+---------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // //|---------------------------------------------------------------|  |--------------------------------------------------------------|
-  //                     XXXXXXX,           XXXXXXX, XXXXXXX,  XXXXXXX,    XXXXXXX, KC_LSFT, TG(_RGB),        XXXXXXX
-  //                                     //`---------------------------'  `--------------------------'
-  // // ),
     [_GAME_NUMBERS] = LAYOUT_split_3x6_4(
   //,--------------------------------------------------------.                    ,-----------------------------------------------------.
        MY_ESC, IMGLASS_CP,   KC_7,   KC_8,   KC_9, KC_BSPC,                      XXXXXXX, KC_PGUP,   KC_UP, KC_PGDN, XXXXXXX, KC_TAB,
@@ -392,22 +358,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-// |--------+--------+--------+--------+--------+--------|
-//   RGB_TOG, ____MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
-// |--------+--------+--------+--------+--------+--------|
-
-  //   [_SPE] = LAYOUT_split_3x6_3(
-  // //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  //      MY_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //     KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
-  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //     KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
-  // //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-  //                                         XXXXXXX, XXXXXXX,  MO_RGB,    XXXXXXX, _______, XXXXXXX
-  //                                     //`--------------------------'  `--------------------------'
-
-  // ),
 
 void render_layer_status(void) {
   switch (get_highest_layer(layer_state)){
@@ -457,20 +407,25 @@ void render_layer_status(void) {
       //         "                                             "
       oled_write("  F_  KEYS                                   ", false);
       break;
+    case _NUMPAD_RIGHT :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" NUM-PAD  RIGHT                              ", false);
+      break;
     case _NAV :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
       oled_write("  NAV                                        ", false);
       break;
-    case _WEB_BROWSER :
-      // -------|"-----00000-----00000-----00000-----00000-----"
-      //         "                                             "
-      oled_write(" WEB_                                        ", false);
-      break;
     case _OPERATIONS :
       // -------|"-----00000-----00000-----00000-----00000-----"
       //         "                                             "
       oled_write("OPERATEURS                                   ", false);
+      break;
+    case _WEB_BROWSER :
+      // -------|"-----00000-----00000-----00000-----00000-----"
+      //         "                                             "
+      oled_write(" WEB_                                        ", false);
       break;
     case _MOUSE_LAYER :
       // -------|"-----00000-----00000-----00000-----00000-----"
@@ -501,28 +456,9 @@ void render_layer_status(void) {
       //         "                                             "
       oled_write("G_NUMBERS                                    ", false);
        break;
-    case _NUMPAD_RIGHT :
-      // -------|"-----00000-----00000-----00000-----00000-----"
-      //         "                                             "
-      oled_write(" NUM-PAD  RIGHT                              ", false);
-      break;
     }
   }
 
-// void render_logo(void) {
-//   static const char PROGMEM logo[] = {
-//     // 'cornia', 32x32px
-    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xe0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 
-    // 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xe0, 0x00, 
-    // 0x00, 0x00, 0x00, 0x00, 0x00, 0xe0, 0xf8, 0xff, 0xff, 0xff, 0x3f, 0xff, 0xff, 0xff, 0xfd, 0xe1, 
-    // 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 
-    // 0x00, 0x00, 0xc0, 0xf8, 0xff, 0xff, 0xff, 0x3f, 0x07, 0x00, 0x00, 0x00, 0x07, 0x3f, 0xff, 0xff, 
-    // 0xff, 0xf8, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-    // 0x00, 0x1e, 0x1f, 0x1f, 0x1f, 0x07, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x07, 
-    // 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x0e, 0x00
-//   };
-//   oled_write_raw_P(logo, sizeof(logo));
-// }
 
 void render_logo(void) {
   static const char PROGMEM logo[] = {
@@ -619,25 +555,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
   return mouse_report;
 }
 // // ==============================================
-// // ==============================================
 // ENCODERS :
-
-
-// bool encoder_update_user(uint8_t index, bool clockwise) {
-//     switch (get_highest_layer(layer_state)) {
-//         case _MOUSE_LAYER:
-//             if (index == 0) {(clockwise ? DPI_DEC : DPI_INC); }
-//             else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
-//             break;
-//         default:
-//           if (index == 0) { tap_code((clockwise ? KC_WH_D : KC_WH_U)); }
-//           else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
-//           break;
-//     }
-//     return false;
-// }
-
-// ==============================================
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
         // Mappings for 1st Encoder          // Mappings for 2nd Encoder
   [_COLEMAK_FR]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
@@ -660,6 +578,39 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 };
 
 
+
+// bool encoder_update_user(uint8_t index, bool clockwise) {
+//     switch (get_highest_layer(layer_state)) {
+//         case _MOUSE_LAYER:
+//             if (index == 0) {(clockwise ? DPI_DEC : DPI_INC); }
+//             else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
+//             break;
+//         default:
+//           if (index == 0) { tap_code((clockwise ? KC_WH_D : KC_WH_U)); }
+//           else if (index == 1) { tap_code((clockwise ? KC_VOLU : KC_VOLD)); }
+//           break;
+//     }
+//     return false;
+// }
+// // ==============================================
+
+
+
+// void render_logo(void) {
+//   static const char PROGMEM logo[] = {
+//     // 'cornia', 32x32px
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xe0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 
+    // 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xf0, 0xe0, 0x00, 
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0xe0, 0xf8, 0xff, 0xff, 0xff, 0x3f, 0xff, 0xff, 0xff, 0xfd, 0xe1, 
+    // 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 
+    // 0x00, 0x00, 0xc0, 0xf8, 0xff, 0xff, 0xff, 0x3f, 0x07, 0x00, 0x00, 0x00, 0x07, 0x3f, 0xff, 0xff, 
+    // 0xff, 0xf8, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+    // 0x00, 0x1e, 0x1f, 0x1f, 0x1f, 0x07, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x07, 
+    // 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x0e, 0x00
+//   };
+//   oled_write_raw_P(logo, sizeof(logo));
+// }
+
 // // Define the behavior of the rotary encoders
 // // bool encoder_update_user(uint8_t index, bool clockwise) {
 // //     if (index == 0) { // First encoder (usually the left half)
@@ -677,3 +628,31 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 // //     }
 // //     return false;
 // // }
+
+  //   // [_RGB] = LAYOUT_split_3x6_4(
+  // //,------------------------------------------------------.                    ,-----------------------------------------------------.
+  //    MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // //|--------+--------+--------+--------+---------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,                      RGB_TOG, ____MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
+  // //|--------+--------+--------+--------+---------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // //|---------------------------------------------------------------|  |--------------------------------------------------------------|
+  //                     XXXXXXX,           XXXXXXX, XXXXXXX,  XXXXXXX,    XXXXXXX, KC_LSFT, TG(_RGB),        XXXXXXX
+  //                                     //`---------------------------'  `--------------------------'
+  // // ),
+// |--------+--------+--------+--------+--------+--------|
+//   RGB_TOG, ____MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
+// |--------+--------+--------+--------+--------+--------|
+
+  //   [_SPE] = LAYOUT_split_3x6_3(
+  // //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+  //      MY_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //     KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
+  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //     KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
+  // //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+  //                                         XXXXXXX, XXXXXXX,  MO_RGB,    XXXXXXX, _______, XXXXXXX
+  //                                     //`--------------------------'  `--------------------------'
+
+  // ),
