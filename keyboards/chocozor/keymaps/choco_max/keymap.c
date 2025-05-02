@@ -201,12 +201,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     APEX_CTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
+       KC_CTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-         KC_1,    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
+      KC_LSFT,    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
   //|--------------------------------------------------------------|   |-------------------------------------------------------------|
-                        KC_O,          MO_OX_G,    APEX_I,  KC_SPC,       XXXXXXX,  KC_ENT, KC_LALT,          XXXXXXX
+                        KC_O,             MO_OX_G,    KC_I,  KC_SPC,       XXXXXXX,  KC_ENT, KC_LALT,        XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
+// keycodes utilisables : APEX_CTL, APEX_I,                     
   ),
     // Layer TF2
     [_TF2] = LAYOUT_split_3x6_4(
@@ -347,11 +348,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
     [_GAME_NUMBERS] = LAYOUT_split_3x6_4(
   //,--------------------------------------------------------.                    ,-----------------------------------------------------.
-       MY_ESC, IMGLASS_CP,   KC_7,   KC_8,   KC_9, KC_BSPC,                      XXXXXXX, KC_PGUP,   KC_UP, KC_PGDN, XXXXXXX, KC_TAB,
+       MY_ESC, IMGLASS_CP,    KC_7,    KC_8,    KC_9, KC_BSPC,                      XXXXXXX, KC_PGUP,   KC_UP, KC_PGDN, XXXXXXX,  KC_TAB,
   //|--------+-----------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      MY_LCTL,    MOWEBBR,   KC_4,   KC_5,   KC_6, KC_PDOT,                      KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL, MY_RCTL,
-  //|--------+-  --------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,   MY_ALT_T,   KC_1,   KC_2,   KC_3,  KC_ENT,                      XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, KC_RSFT,
+      MY_LCTL,    XXXXXXX,    KC_4,    KC_5,    KC_6, KC_PDOT,                      KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL, MY_RCTL,
+  //|--------+-----------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,   MY_ALT_T,    KC_1,    KC_2,    KC_3,  KC_ENT,                      XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, KC_RSFT,
   //|-----------------------------------------------------------------|   |-------------------------------------------------------------|
                              KC_0,          _______, _______, _______,    KC_LGUI, KC_LCTL, KC_LALT,           XXXXXXX
                         //`-------------------------------------------'   `-------------------------------------------'
