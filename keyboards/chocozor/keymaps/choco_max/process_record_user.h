@@ -264,7 +264,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else {
         if (record->event.pressed) {
-          tap_code(KC_TAB);
+          SEND_STRING(SS_DOWN(X_TAB));
+          // tap_code(KC_TAB);
+          // SEND_STRING(SS_LSFT(SS_TAP(X_TAB)));
+        } else {
+          SEND_STRING(SS_UP(X_TAB));
         }
       }
       return false;
@@ -292,7 +296,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else {
         if (record->event.pressed) {
-            SEND_STRING(SS_LSFT(SS_TAP(X_TAB)));
+          // register_code(KC_LSFT);
+          register_mods(MOD_BIT_LSHIFT);
+          SEND_STRING(SS_DOWN(X_TAB));
+          // SEND_STRING(SS_DOWN(X_LSFT));
+          // SEND_STRING(SS_DOWN(X_TAB));
+          // SEND_STRING(SS_LSFT(SS_TAP(X_TAB)));
+          // SEND_STRING(SS_LSFT(SS_DOWN(X_TAB)));
+        } else {
+          SEND_STRING(SS_UP(X_TAB));
+          unregister_mods(MOD_BIT_LSHIFT);
+          // SEND_STRING(SS_LSFT(SS_UP(X_TAB)));
+          // SEND_STRING(SS_UP(X_TAB));
+          // SEND_STRING(SS_UP(X_LSFT));
         }
       }
       return false;

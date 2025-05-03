@@ -260,7 +260,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------------------------------------------------------.                    ,---------------------------------------------------.
        MY_ESC, IMGLASS_CP,   KC_P7,   KY_P8,   KC_P9, KC_BSPC,                      XXXXXXX, KC_P7,   KC_P8,   KC_P9, XXXXXXX,  KC_TAB,
   //|--------+-----------+--------+--------+--------+--------|                    |--------+------+--------+--------+--------+--------|
-      MY_LCTL,    MOWEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                      KC_PDOT, KC_P4,   KC_P5,   KC_P6, XXXXXXX, MY_RCTL,
+      MY_LCTL,    MO_WEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                      KC_PDOT, KC_P4,   KC_P5,   KC_P6, XXXXXXX, MY_RCTL,
   //|--------+-  --------+--------+--------+--------+--------|                    |--------+------+--------+--------+--------+--------|
       KC_LSFT,   MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                       KC_ENT, KC_P1,   KC_P2,   KC_P3,  KC_ENT, KC_RSFT,
   //|-----------------------------------------------------------------|   |-----------------------------------------------------------|
@@ -271,7 +271,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------------------------------------------------------.                    ,-----------------------------------------------------.
        MY_ESC, IMGLASS_CP,   KC_P7,   KY_P8,   KC_P9, KC_BSPC,                      XXXXXXX, KC_PGUP,   KC_UP, KC_PGDN, XXXXXXX,  KC_TAB,
   //|--------+-----------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      MY_LCTL,    MOWEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                      KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL, MY_RCTL,
+      MY_LCTL,   MO_WEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                      KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL, MY_RCTL,
   //|--------+-  --------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,   MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                      XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, KC_RSFT,
   //|-----------------------------------------------------------------|   |-------------------------------------------------------------|
