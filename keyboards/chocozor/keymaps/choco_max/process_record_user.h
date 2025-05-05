@@ -780,11 +780,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           // } else {
           //   // logic when not interrupted
           // }
-          SEND_STRING(SS_DOWN(X_WSTP));
+          SEND_STRING(SS_DOWN(X_WSTP)); // KC_WSTP = browser stop
 
         } else {
           // logic when released
-          SEND_STRING(SS_UP(X_WSTP));
+          SEND_STRING(SS_UP(X_WSTP)); // KC_WSTP = browser stop
         }
       }
         return false;
