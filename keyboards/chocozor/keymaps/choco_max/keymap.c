@@ -64,8 +64,8 @@ enum combos {
 
 
 // const uint16_t PROGMEM temp_active_RGB[] = {MY_ENT, HT_SPC, COMBO_END};
-const uint16_t PROGMEM temp_active_numpad[] = {KC_N, HT_E, COMBO_END};
-const uint16_t PROGMEM temp_active_numpad2[] = {S(KC_N), S(KC_E), COMBO_END};
+const uint16_t PROGMEM temp_active_numpad[] = {KC_N, HT_E, KC_I, COMBO_END};
+const uint16_t PROGMEM temp_active_numpad2[] = {S(KC_N), S(KC_E), S(KC_I), COMBO_END};
 const uint16_t PROGMEM toggle_numpad_right[] = {MOFKEYS, KC_LALT, COMBO_END};
 const uint16_t PROGMEM toggle_numpad_right2[] = {MO(_OPERATIONS), KC_LALT, COMBO_END};
 const uint16_t PROGMEM temp_active_MULTIMEDIA[] = {KC_LGUI, MY_NAV, HT_SPC, COMBO_END};
