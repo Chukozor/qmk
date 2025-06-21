@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "custom_files/french_symbols/french_symbols.h"
 #include "custom_files/french_symbols/shift_behaviours.c"
 #include "pointing_device.h"
+#include "math.h"  // for sqrtf()
 
 // -----------------------------------
 // -----------------------------------
@@ -542,6 +543,61 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     // Prevent cursor movement while scrolling
     mouse_report.x = 0;
     mouse_report.y = 0;
+  } else {
+    //     // Calculate magnitude of movement vector
+    // float dx = (float)mouse_report.x;
+    // float dy = (float)mouse_report.y;
+
+    // float magnitude = sqrtf(dx * dx + dy * dy);
+
+    // // // Don't apply acceleration if there's no movement
+    // // if (magnitude == 0) {
+    // //     return mouse_report;
+    // // }
+    
+    // // // Don't apply acceleration if there's not enough movement
+    // if (magnitude < 2.0f) {
+    //     return mouse_report;
+    // }
+
+    // // Set acceleration factor based on movement speed
+    // float accel_factor = 1.0f + 0.05f * magnitude;
+
+    // // Apply the scaling
+    // mouse_report.x = (int8_t)(dx * accel_factor);
+    // mouse_report.y = (int8_t)(dy * accel_factor);
+
+    // Calculate movement magnitude
+    int magnitude = abs(mouse_report.x) + abs(mouse_report.y);
+
+
+    // Apply a simple acceleration curve
+    float accel_factor = 1.0f;
+    if (magnitude > 2) {
+        accel_factor = 1.5f;
+    }
+    if (magnitude > 5) {
+        accel_factor = 2.0f;
+    }
+
+    // Calculate magnitude of movement vector
+    float dx = (float)mouse_report.x;
+    float dy = (float)mouse_report.y;
+    
+    int scaled_x = (int)(dx * accel_factor);
+    int scaled_y = (int)(dy * accel_factor);
+    
+    // Clamp to valid int8_t range [-127, 127]
+    if (scaled_x > 127) scaled_x = 127;
+    if (scaled_x < -127) scaled_x = -127;
+    
+    if (scaled_y > 127) scaled_y = 127;
+    if (scaled_y < -127) scaled_y = -127;
+    
+        // Apply the acceleration
+    mouse_report.x = (int8_t)scaled_x;
+    mouse_report.y = (int8_t)scaled_y;
+
   }
   
 //   // else {
