@@ -181,4 +181,6 @@ enum custom_keycodes {
     ZOOM_TR,
     TG_SCROL,
     AUX_WEB,
+    WEB_DUP,
+    ACEL_OFF,
 };

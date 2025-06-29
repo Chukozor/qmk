@@ -296,16 +296,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+---------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       MY_LCTL,RCS(KC_O),   WEB_G, FF_T_ST,   WEB_D, FF_FENE,                      FF_FENE,   WEB_G, FF_T_ST,   WEB_D, XXXXXXX, MY_RCTL,
   //|--------+---------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,  XXXXXXX, XXXXXXX, THEBOOK, BOOKMAR, XXXXXXX,                      XXXXXXX, BOOKMAR, THEBOOK, XXXXXXX, XXXXXXX, XXXXXXX,
+      KC_LSFT,  XXXXXXX, WEB_DUP, THEBOOK, BOOKMAR, XXXXXXX,                      XXXXXXX, BOOKMAR, THEBOOK, XXXXXXX, XXXXXXX, XXXXXXX,
   //|---------------------------------------------------------------|   |-------------------------------------------------------------|
                          XXXXXXX,           KC_LGUI, MY_NAV,  HT_SPC,    KC_LALT, AUX_WEB, XXXXXXX,          XXXXXXX
                       //`-------------------------------------------'   `-------------------------------------------'
   ),
     [_MOUSE_LAYER] = LAYOUT_split_3x6_4(
   //,-----------------------------------------------------.                       ,-----------------------------------------------------.
-       MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,ACEL_OFF,                         KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                       |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                         XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
+      KC_LCTL, K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2,XXXXXXX,                         XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                       |--------+--------+--------+--------+--------+--------|
       KC_LSFT, K_SNIPE, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                         XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN2, XXXXXXX, KC_RSFT,
   //|-----------------------------------------------------|    |----------------------------------------------------------|
@@ -543,7 +543,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     // Prevent cursor movement while scrolling
     mouse_report.x = 0;
     mouse_report.y = 0;
-  } else {
+  } else if (!accel_off) {
     //     // Calculate magnitude of movement vector
     // float dx = (float)mouse_report.x;
     // float dy = (float)mouse_report.y;

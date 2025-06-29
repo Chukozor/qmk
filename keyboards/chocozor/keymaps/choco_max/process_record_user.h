@@ -46,6 +46,7 @@ bool ky_webnav = false;
 bool ky_spc = false;
 bool set_scrolling = false;
 bool web_aux = false;
+bool accel_off = false;
 
 #include "custom_files/functions_record_user.h"
 
@@ -311,6 +312,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           // SEND_STRING(SS_UP(X_LSFT));
         }
       }
+      return false;
+
+    case WEB_DUP:
+    // Ctrl + L (or Cmd + L) — focuses the address bar.
+    // Alt + Enter (or Cmd + Enter) 
+      // if (record->tap.count) { // Tap
+        if (record->event.pressed) {
+            // logic when pressed
+            SEND_STRING(SS_DOWN(X_LCTL));
+            // SEND_STRING(SS_DOWN(X_LSFT));
+            // SEND_STRING(SS_DELAY(1));
+            SEND_STRING(SS_TAP(X_L));
+            SEND_STRING(SS_UP(X_LCTL));
+            SEND_STRING(SS_DELAY(1));
+            // SEND_STRING(SS_UP(X_LSFT));
+            SEND_STRING(SS_DOWN(X_LALT));
+            SEND_STRING(SS_TAP(X_ENT));
+            SEND_STRING(SS_UP(X_LALT));
+          }
+          // else {
+          // }
+      // } else { // Hold
+      //   if (record->event.pressed) {
+      //     // logic when pressed
+      //     // if (record->tap.interrupted) {
+      //     //   // logic when interrupted
+      //     // } else {
+      //     //   // logic when not interrupted
+      //     // }
+      //     SEND_STRING(SS_DOWN(X_WSTP)); // KC_WSTP = browser stop
+
+      //   } else {
+      //     // logic when released
+      //     SEND_STRING(SS_UP(X_WSTP)); // KC_WSTP = browser stop
+      //   }
+      // }
       return false;
 
     case WEB_TAB:
@@ -840,6 +877,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
+    case ACEL_OFF:
+      if (record->event.pressed) {
+        accel_off = true;
+        // SEND_STRING(SS_DOWN(X_LCTL));
+        // tap_code(KC_TAB);
+      } else {
+        // SEND_STRING(SS_UP(X_LCTL));
+        // ky_webnav = false;
+      }
+      return false;
+
     case MY_ESC:
       if (record->tap.count) { // Tap
         if (record->event.pressed) {
@@ -867,6 +915,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             nav_verrouillee = false;
             combo_nav_activated = false;
             web_aux = false;
+            accel_off = false;
             // spc_is_held = false;
             layer_move(_COLEMAK_FR);
             if (record->tap.interrupted) {
