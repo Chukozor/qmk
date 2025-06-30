@@ -573,11 +573,10 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 
     // Apply a simple acceleration curve
     float accel_factor = 1.0f;
-    if (magnitude > 2) {
-        accel_factor = 1.5f;
-    }
     if (magnitude > 5) {
-        accel_factor = 2.0f;
+        accel_factor = 2.5f;
+    } else if (magnitude > 3) {
+        accel_factor = 1.5f;
     }
 
     // Calculate magnitude of movement vector
