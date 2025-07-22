@@ -20,13 +20,18 @@
               if (is_accent_layer()) {
                 tap_e_aigue();
               } else {
-                tap_code(KC_E);
+                tap_code(KC_E); // p-e a modifier avec un sendstring pour pouvoir le répéter lorsque maintenu
               }
             } else {
               if (is_accent_layer()) {
 	        	  	tap_e_circ();
 	        	  } else {
-	        	  	tap_e_grave();
+                if (get_mods() == MOD_BIT(KC_LSFT)) {   // if (get_mods() != MOD_BIT(KC_LSFT)) {
+                  // unregister_mods(MOD_BIT_LSFT);
+                  tap_code(KC_E);
+                } else {
+                  tap_e_grave();
+                }
 	        	  }
             }
 	        }
