@@ -208,7 +208,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------------------------------------------------------------|   |-------------------------------------------------------------|
                         KC_O,             MO_OX_G,    KC_I,  KC_SPC,       XXXXXXX,  KC_ENT, KC_LALT,        XXXXXXX
                      //`-------------------------------------------'   `-------------------------------------------'
-// keycodes utilisables : APEX_CTL, APEX_I,                     
+// keycodes utilisables : APEX_CTL, APEX_I, KC_LCTL, KC_I
   ),
     // Layer TF2
     [_TF2] = LAYOUT_split_3x6_4(
