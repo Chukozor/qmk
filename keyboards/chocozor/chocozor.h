@@ -18,4 +18,3 @@
 
 #include "quantum.h"
 
-void chocozor_render_logo(void);
