@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #include "print.h"
 #include QMK_KEYBOARD_H
 #include "keymap.h"
-// #include "keymap_french.h"
+#include "keymap_french.h"
 // #include "custom_files/helpers.h"
 // #include "custom_files/french_symbols/french_symbols.h"
 // #include "custom_files/french_symbols/shift_behaviours.c"
