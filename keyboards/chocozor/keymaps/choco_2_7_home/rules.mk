@@ -1,4 +1,5 @@
-SERIAL_DRIVER = usart
+# SERIAL_DRIVER = usart
+SERIAL_DRIVER = vendor
 # mes rules custom
 # TODO ACTIVATE COMBOS
 COMBO_ENABLE = no
