@@ -11,7 +11,7 @@
 #define SERIAL_USART_RX_PIN GP1     // USART RX pin
 
 // TODO : VERIFY
-#define	SPLIT_HAND_PIN_LOW_IS_LEFT
+//#define	SPLIT_HAND_PIN_LOW_IS_LEFT
 
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET // Activates the double-tap behavior
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 200U // Timeout window in ms in which the double tap can occur.
