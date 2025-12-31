@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------|    |-------------------------------------|
        KC_U, KC_V, FR_W, KC_X, KC_Y, FR_Z,     S(KC_U), S(KC_V), S(FR_W), S(KC_X), S(KC_Y), S(FR_Z), 
   //|-------------------------------------|    |-------------------------------------|
-      KC_P1,KC_P2,KC_P3,KC_P4,MO(_RGB),KC_P6,    KC_P7,   KC_P8,   KC_P9, KC_LEFT, KC_DOWN, KC_RIGHT
+      KC_P1,KC_P2,KC_P3,KC_P4,TG(_RGB),KC_P6,    KC_P7,   KC_P8,   KC_P9, KC_LEFT, KC_DOWN, KC_RIGHT
   //|-------------------------------------|    |-------------------------------------|
   ),
   // _COLEMAK_FR
@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------|    |-------------------------------------|
        KC_U, KC_V, FR_W, KC_X, KC_Y, FR_Z,     S(KC_U), S(KC_V), S(FR_W), S(KC_X), S(KC_Y), S(FR_Z), 
   //|-------------------------------------|    |-------------------------------------|
-      KC_P1,KC_P2,KC_P3,KC_P4,KC_P5,MO(_RGB),    KC_P7,   KC_P8,   KC_P9, KC_LEFT, KC_DOWN, KC_RIGHT
+      KC_P1,KC_P2,KC_P3,KC_P4,KC_P5,TG(_RGB),    KC_P7,   KC_P8,   KC_P9, KC_LEFT, KC_DOWN, KC_RIGHT
   //|-------------------------------------|    |-------------------------------------|
   )
 };
