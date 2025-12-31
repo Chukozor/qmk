@@ -10,15 +10,11 @@
       "extrakey": true,
       "nkro": true,
       "oled": true,
-      "rgblight": true
+      "rgb_matrix": true
   },
   "encoder": {
       "enabled": true,
       "rotary": [{"pin_a": "GP23", "pin_b": "GP21"}]
-  },
-  "rgblight": {
-      "led_count": 36,
-      "split_count": [18, 18]
   },
   "ws2812": {
       "driver": "vendor",
