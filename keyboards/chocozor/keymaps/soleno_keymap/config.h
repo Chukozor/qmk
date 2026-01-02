@@ -26,6 +26,7 @@
 #define QUICK_TAP_TERM 0
 #define QUICK_TAP_TERM_PER_KEY
 // ======= Solenoid =====
+#define SOLENOID_COUNT 1
 #define SOLENOID_PIN GP3
 #define SOLENOID_DEFAULT_DWELL 4
 #define SOLENOID_MIN_DWELL 4

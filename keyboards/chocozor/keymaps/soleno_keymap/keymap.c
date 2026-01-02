@@ -64,9 +64,9 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
   [_REG_QWERTY]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        solenoid_fire(0);
-    }
-    return true;
-}
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     // if (record->event.pressed) {
+//     //     solenoid_fire(0);
+//     // }
+//     // return true;
+// }
