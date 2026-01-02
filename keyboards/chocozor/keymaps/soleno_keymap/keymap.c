@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "timer.h"
 #include "drivers/haptic/solenoid.h"
 #include "keymap.h"
 #include "keymap_french.h"
@@ -9,8 +10,7 @@
 // #include "process_record_user.h"
 // -----------------------------------
 
-#include "timer.h"
-#include "drivers/haptic/solenoid.h"
+
 
 static uint16_t last_fire = 0;
 
