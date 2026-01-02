@@ -3,7 +3,7 @@
     "maintainer": "Chukozor",
     "url": "https://github.com/Chukozor/Chocozor_PCB",
     "usb": {
-        "vid": "0xFEED"
+        "vid": "0x0666"
     },
     "split": {
         "enabled": true
