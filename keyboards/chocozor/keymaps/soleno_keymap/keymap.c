@@ -9,6 +9,20 @@
 // #include "process_record_user.h"
 // -----------------------------------
 
+#include "timer.h"
+#include "drivers/haptic/solenoid.h"
+
+static uint16_t last_fire = 0;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        if (timer_elapsed(last_fire) > 80) {  // 80 ms entre deux activations
+            solenoid_fire(0);
+            last_fire = timer_read();
+        }
+    }
+    return true;
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // _DEBUGLAYER
@@ -63,10 +77,3 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
   [_COLEMAK_FR]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
   [_REG_QWERTY]   = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }, // Mapping for Base layer
 };
-
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     // if (record->event.pressed) {
-//     //     solenoid_fire(0);
-//     // }
-//     // return true;
-// }
