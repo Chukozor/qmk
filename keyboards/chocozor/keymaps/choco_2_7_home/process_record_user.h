@@ -1,62 +1,182 @@
-// ==============================================
-//           SCROLLING WITH TRACKPAD
-// ------------ For 40mm TRACKPAD ---------------
-// Modify these values to adjust the scrolling speed
-float aux_dpi = 0;
-#define SCROLL_DIVISOR_H_BASE 50.0   // Horizontal scroll speed
-#define SCROLL_DIVISOR_V_BASE 30.0   // Vertical scroll speed
-
-float scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
-float scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
-
-// Variables to store accumulated scroll values
-float scroll_accumulated_h = 0;
-float scroll_accumulated_v = 0;
-// -------
-// VOLUME CONTROL WITH TRACKPAD
-// Define how sensitive the trackpad is for volume control
-#define VOLUME_DIVISOR 18  // Adjust for volume control sensitivity (higher = more movement required)
-#define VOLUME_THRESHOLD 1  // Threshold for triggering volume change
-
-// ------------ For 35mm TRACKPAD ---------------
-// // Modify these values to adjust the scrolling speed
-// #define SCROLL_DIVISOR_H 30.0   // Horizontal scroll speed
-// #define SCROLL_DIVISOR_V 15.0   // Vertical scroll speed
-
-// // Variables to store accumulated scroll values
-// float scroll_accumulated_h = 0;
-// float scroll_accumulated_v = 0;
-// // -------
-// // VOLUME CONTROL WITH TRACKPAD
-// // Define how sensitive the trackpad is for volume control
-// #define VOLUME_DIVISOR 15.0  // Adjust for volume control sensitivity (higher = more movement required)
-// #define VOLUME_THRESHOLD 1.0  // Threshold for triggering volume change
-// -------------------------------------------------
-
-// Variables to store accumulated volume movement
-float volume_accumulated_v = 0;
-// -------------------------------------------------
-// -------------------------------------------------
-
-// #include "timer.h"
-// static uint8_t nav_interrupted = 0;
-// static bool spc_is_held = false;
 bool alt_tab_menu = false;
 bool ky_webnav = false;
 bool ky_spc = false;
-bool set_scrolling = false;
 bool web_aux = false;
-bool accel_off = false;
 
 #include "custom_files/functions_record_user.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // #include "obsolete/my_old_accents_char.h"
-    // #include "obsolete/my_old_specials_char.h"
-    #include "custom_files/french_symbols/my_accents_char_precuser.h"
+      case HT_E:
+        if (record->tap.count) { // tapped
+          if (!record->event.pressed) {
+            // your logic when released
+            return false;
+          }
+
+          if (is_accent_layer()) {
+            tap_e_aigue();
+          } else {
+            tap_code(KC_E);
+          }
+        } else { // held
+          if (!record->event.pressed) {
+            // your logic when released
+            return false;
+          }
+          
+          if (record->tap.interrupted) {
+            if (is_accent_layer()) {
+              tap_e_aigue();
+            } else {
+              tap_code(KC_E); // p-e a modifier avec un sendstring pour pouvoir le répéter lorsque maintenu
+            }
+          } else {
+            if (is_accent_layer()) {
+              tap_e_circ();
+            } else {
+              if (get_mods() == MOD_BIT(KC_LSFT)) {   // if (get_mods() != MOD_BIT(KC_LSFT)) {
+                // unregister_mods(MOD_BIT_LSFT);
+                tap_code(KC_E);
+              } else {
+                tap_e_grave();
+              }
+            }
+          }
+        }
+        return false;
+          
+      case HT_C:
+          if (!record->event.pressed) {
+            return false;
+          }
+
+          if (is_accent_layer()) {
+            tap_c_ced();
+          } else {
+            tap_code(KC_C);
+          }
+        return false;
+
+      case C_CEDIL:
+        // if (record->tap.count) { // tapped
+          if (!record->event.pressed) {
+            return false;
+          }
+            tap_c_ced();
+        return false;
+
+      case HT_A:
+          if (record->tap.count) { // tapped
+              if (record->event.pressed) {
+                  tap_a_grave();
+              }
+          } else {
+            if (!record->event.pressed) {
+            // your logic when released
+            return false;
+            }
+            if (record->tap.interrupted) {
+              // logic when interrupted
+              tap_a_grave();
+            } else {
+              tap_a_circ();
+              // logic when not interrupted
+            }
+          }
+      
+          return false;
+      
+      case HT_U:
+        if (record->tap.count) { // tapped
+          if (!record->event.pressed) {
+            return false;
+          }
+
+          if (is_accent_layer()) {
+            tap_u_grave();
+          } else {
+            tap_code(KC_U);
+          }
+        } else { // held
+
+          if (record->event.pressed) {
+            // logic when pressed
+            if (record->tap.interrupted) {
+              // logic when interrupted
+              tap_u_grave();
+            } else {
+              // logic when not interrupted
+              if (is_accent_layer()) {
+                tap_u_circ();
+          }
+            }
+          } else {
+            // logic when released
+            return false;
+          }
+        }
+        return false;
+      
+      case HT_I:
+        if (record->tap.count) { // Tap
+          if (!record->event.pressed) {
+            // your logic when pressed
+            return false;
+          }
+      
+          if (is_accent_layer()) {
+            tap_i_circ();
+          } else {
+            tap_code(KC_I);
+          }
+        } else { // held
+
+          if (record->event.pressed) {
+            // logic when pressed
+            if (record->tap.interrupted) {
+              // logic when interrupted
+              tap_i_circ();
+            } else {
+              // logic when not interrupted
+              if (is_accent_layer()) {
+                tap_i_trema();
+          }
+            }
+          } else {
+            // logic when released
+            return false;
+          }
+        }
+        return false;
+
+      case HT_O:
+        if (record->tap.count) {
+          if (!record->event.pressed) {
+            return false;
+          }
+          if (is_accent_layer()) {
+            tap_o_circ();
+          } else {
+            tap_code(KC_O);
+          }
+        } else {
+          if (record->event.pressed) {
+            if (is_accent_layer()) {
+              tap_o_circ();
+            }
+          }
+        }
+        return false;
+
+      case MY_OCIRC:
+        // if (record->tap.count) {
+          if (!record->event.pressed) {
+            return false;
+          }
+            tap_o_circ();
+        return false;
     #include "custom_files/my_specials_char_precuser.h"
-    // #include "custom_files/french_symbols/accents_for_combo.h"
 
     case MY_PRT_S:
       if (record->event.pressed) {
@@ -160,20 +280,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else { // Hold
         if (record->event.pressed) { // pressed
-          // if (!record->tap.interrupted) {
             if (is_accent_layer()) {
-              // layer_on(_RGB);
             } else {
               layer_on(_REG_SPE);
             }
-          // } 
-        //   else { // interrupted
-        //     if (is_accent_layer()) {
-        //       layer_on(_RGB);
-        //     } else {
-        //       layer_on(_CAPS_LOCK);
-        //     }
-        //   }
         }
         else { // released
           layer_off(_REG_SPE);
@@ -183,73 +293,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-    // case HT_SPC:
-    //   if (record->tap.count) { // tapped
-    //     if (!record->event.pressed) {
-    //       // your logic when released
-    //       return false;
-    //     }
-    //     if (is_colemak_layer()) {
-    //       tap_code(KC_SPC);
-    //     } else {
-    //       // tap_code(KC_NO);
-    //       tap_code(KC_SPC);
-    //     }
-    //     // if (is_accent_layer()) {
-    //     // 	tap_e_aigue();
-    //     // } else {
-    //     // 	tap_code(KC_SPC);
-    //     // }
-    //     // spc_is_held = false;
-    //   } else { // held
-    //     if (record->event.pressed) {
-    //       if (record->tap.interrupted) {
-    //       // if (is_colemak_layer()) {
-    //         layer_on(_ACCENTS);
-    //       // } else {
-    //       //   tap_code(KC_NO);
-    //       // }
-    //       } else {
-    //         layer_on(_ACCENTS);
-    //       }
-    //       // spc_is_held = true;
-    //     } else if (!record->event.pressed) {
-    //       // SEND_STRING(SS_DELAY(300));
-    //       layer_off(_ACCENTS);
-    //       return false;
-    //       // spc_is_held = false;
-    //     }
-    //   }
-    //   return false;
-
-    // case MY_ESC:
-    //   if (record->event.pressed) {
-    //     tap_code(KC_ESC);
-    //     // soft_reset_keyboard();
-    //     // eeconfig_init();
-    //     clear_mods();
-    //     layer_clear();
-    //     nav_already_activated = false;
-    //     capslock_was_activated = false;
-    //     alt_tab_menu = false;
-    //     ky_webnav = false;
-    //     caps_lock_activated = false;
-    //     shift_activated = false;
-    //     trace_operations = false;
-    //     // spc_is_held = false;
-    //     layer_move(_COLEMAK_FR);
-    //   } else {
-    //     // nothing needed here
-    //   }
-    //   return false;
-
     case WEB_D:
-      // if (spc_is_held) {
-      //   if (record->event.pressed) {
-      //     my_copy();
-      //   }
-      //   return false;
-      // } else {
       if (get_mods() != MOD_BIT(KC_LALT)) {
         if (record->event.pressed) {
           register_code(KC_LCTL);
@@ -266,8 +310,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         if (record->event.pressed) {
           SEND_STRING(SS_DOWN(X_TAB));
-          // tap_code(KC_TAB);
-          // SEND_STRING(SS_LSFT(SS_TAP(X_TAB)));
         } else {
           SEND_STRING(SS_UP(X_TAB));
         }
@@ -275,12 +317,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
 
     case WEB_G:
-      // if (spc_is_held) {
-      //   if (record->event.pressed) {
-      //     my_selec_all();
-      //   }
-      //   return false;
-      // } else {
       if (get_mods() != MOD_BIT(KC_LALT)) {
         if (record->event.pressed) {
           register_code(KC_LCTL);
@@ -297,19 +333,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else {
         if (record->event.pressed) {
-          // register_code(KC_LSFT);
           register_mods(MOD_BIT_LSHIFT);
           SEND_STRING(SS_DOWN(X_TAB));
-          // SEND_STRING(SS_DOWN(X_LSFT));
-          // SEND_STRING(SS_DOWN(X_TAB));
-          // SEND_STRING(SS_LSFT(SS_TAP(X_TAB)));
-          // SEND_STRING(SS_LSFT(SS_DOWN(X_TAB)));
         } else {
           SEND_STRING(SS_UP(X_TAB));
           unregister_mods(MOD_BIT_LSHIFT);
-          // SEND_STRING(SS_LSFT(SS_UP(X_TAB)));
-          // SEND_STRING(SS_UP(X_TAB));
-          // SEND_STRING(SS_UP(X_LSFT));
         }
       }
       return false;
@@ -331,23 +359,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_TAP(X_ENT));
             SEND_STRING(SS_UP(X_LALT));
           }
-          // else {
-          // }
-      // } else { // Hold
-      //   if (record->event.pressed) {
-      //     // logic when pressed
-      //     // if (record->tap.interrupted) {
-      //     //   // logic when interrupted
-      //     // } else {
-      //     //   // logic when not interrupted
-      //     // }
-      //     SEND_STRING(SS_DOWN(X_WSTP)); // KC_WSTP = browser stop
-
-      //   } else {
-      //     // logic when released
-      //     SEND_STRING(SS_UP(X_WSTP)); // KC_WSTP = browser stop
-      //   }
-      // }
       return false;
 
     case WEB_TAB:
@@ -360,10 +371,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else { // held
         if (record->event.pressed) {
-          // if (record->tap.interrupted) {
-          // } else {
-          //   layer_on(_ACCENTS);
-          // }
           SEND_STRING(SS_DOWN(X_LCTL));
           SEND_STRING(SS_DOWN(X_LSFT));
           SEND_STRING(SS_DELAY(1));
@@ -545,10 +552,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KY_SPC:
       if (record->event.pressed) {
         ky_spc = true;
-        // SEND_STRING(SS_DOWN(X_LCTL));
-        // tap_code(KC_TAB);
       } else {
-        // SEND_STRING(SS_UP(X_LCTL));
         ky_spc = false;
       }
       return false;
@@ -582,19 +586,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KY_RIGHT:
       if (ky_webnav) {
         if (record->event.pressed) {
-          // SEND_STRING(SS_DOWN(X_LSFT));
           SEND_STRING(SS_DOWN(X_TAB));
         } else {
           SEND_STRING(SS_UP(X_TAB));
-          // SEND_STRING(SS_UP(X_LSFT));
         }
       } else if (ky_spc) {
         if (record->event.pressed) {
-          // SEND_STRING(SS_DOWN(X_LSFT));
           SEND_STRING(SS_DOWN(X_SPC));
         } else {
           SEND_STRING(SS_UP(X_SPC));
-          // SEND_STRING(SS_UP(X_LSFT));
         }
       } else {
         if (record->event.pressed) {
@@ -612,13 +612,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_NAV);
       }
-      // layer_move(_COLEMAK_FR);
-      // set_oneshot_layer(_NAV, ONESHOT_START);
       return false;
 
     case TG_GAME:
       if (record->event.pressed) {
-        // logic when pressed
         layer_invert(_GAME);
         }
       return false;
@@ -674,75 +671,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_WEB_BROWSER);
       }
       return false;
-
-    case DPI_INC: /* Increase trackpad DPI*/
-      if (record->event.pressed) {
-        pointing_device_set_cpi(pointing_device_get_cpi()+100);
-      }
-      return false;
-    case DPI_DEC: /* Decrease trackpad DPI*/
-      if (record->event.pressed) {
-        pointing_device_set_cpi(pointing_device_get_cpi()-100);
-      }
-      return false;
-    case K_SNIPE: /* Decrease trackpad DPI*/
-      if (record->event.pressed) {
-        if (get_mods() == MOD_BIT(KC_LCTL)) {
-          unregister_mods(MOD_BIT_LCTRL);
-          alt_tab_menu = true;
-          SEND_STRING(SS_DOWN(X_LALT));
-          tap_code(KC_TAB);
-          wait_ms(5);
-          SEND_STRING(SS_UP(X_LALT));
-        } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-          aux_dpi = pointing_device_get_cpi();
-          pointing_device_set_cpi(200);
-          scroll_divisor_h =  SCROLL_DIVISOR_H_BASE * 2.0;
-          scroll_divisor_v =  SCROLL_DIVISOR_V_BASE * 2.0;
-        } else {
-          pointing_device_set_cpi(pointing_device_get_cpi()-300);
-        }
-      } else {
-        if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-          pointing_device_set_cpi(aux_dpi);
-          scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
-          scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
-        } else {
-          if (alt_tab_menu == true) {
-            alt_tab_menu = false;
-          } else {
-            pointing_device_set_cpi(pointing_device_get_cpi()+300);
-          }
-        }
-      }
-      return false;
-
-    case K_BLITZ: /* Decrease trackpad DPI*/
-      if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-        if (record->event.pressed) {
-          aux_dpi = pointing_device_get_cpi();
-          pointing_device_set_cpi(1000);
-          scroll_divisor_h = SCROLL_DIVISOR_H_BASE / 2.0;
-          scroll_divisor_v = SCROLL_DIVISOR_V_BASE / 2.0;
-        } else {
-          pointing_device_set_cpi(aux_dpi);
-          scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
-          scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
-        }
-      } else if (record->event.pressed) {
-        pointing_device_set_cpi(pointing_device_get_cpi()+300);
-      } else {
-        pointing_device_set_cpi(pointing_device_get_cpi()-300);
-      }
-      return false;
-    
-    case K_SCROL:
-      if (record->event.pressed) {
-        set_scrolling = true;
-      } else {
-        set_scrolling = false;
-      }
-      return false;
     
     case MO_NUMPAD:
       if (record->event.pressed) {
@@ -768,22 +696,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-    case ZOOM_TR:
-      if (record->event.pressed) {
-          // logic when pressed
-          set_scrolling = true;
-          SEND_STRING(SS_DOWN(X_LCTL));
-          // SEND_STRING(SS_DOWN(X_LSFT));
-          // SEND_STRING(SS_DELAY(1));
-          // SEND_STRING(SS_TAP(X_T));
-        } else {
-          set_scrolling = false;
-          SEND_STRING(SS_UP(X_LCTL));
-          // SEND_STRING(SS_UP(X_LSFT));
-          // logic when released
-        }
-        // press(MY_LCTL AND MY_LSFT)
-        return false;
 
     case AUX_WEB:
       if (record->event.pressed) {
@@ -811,26 +723,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
       } else { // Hold
         if (record->event.pressed) {
-          // logic when pressed
-          // if (record->tap.interrupted) {
-          //   // logic when interrupted
-          // } else {
-          //   // logic when not interrupted
-          // }
           SEND_STRING(SS_DOWN(X_WSTP)); // KC_WSTP = browser stop
-
         } else {
-          // logic when released
           SEND_STRING(SS_UP(X_WSTP)); // KC_WSTP = browser stop
         }
       }
-        return false;
-
-    case TG_SCROL:
-      if (record->event.pressed) {
-          // logic when pressed
-          set_scrolling = !set_scrolling;
-        }
         return false;
 
     case APEX_I:
@@ -874,17 +771,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           SEND_STRING(SS_UP(X_LCTL));
           wait_ms(3);
         }
-      }
-      return false;
-
-    case ACEL_OFF:
-      if (record->event.pressed) {
-        accel_off = true;
-        // SEND_STRING(SS_DOWN(X_LCTL));
-        // tap_code(KC_TAB);
-      } else {
-        // SEND_STRING(SS_UP(X_LCTL));
-        // ky_webnav = false;
       }
       return false;
 
@@ -944,13 +830,6 @@ void matrix_scan_user(void) {
   }
 }
 
-// void matrix_scan_user(void) {
-//   if (get_highest_layer(layer_state) == _WEB_BROWSER) {
-//     if (last_input_activity_elapsed() > WEB_BROWSER_LAYER_TIMEOUT) {
-//       layer_off(_WEB_BROWSER);
-//     }
-//   }
-// }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

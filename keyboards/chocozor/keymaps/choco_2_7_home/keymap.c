@@ -21,7 +21,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // -----------------------------------
 // -----------------------------------
 // TODO : decommenter la ligne du dessous
-// #include "process_record_user.h"
+#include "process_record_user.h"
 // -----------------------------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
