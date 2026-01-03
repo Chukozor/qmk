@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "timer.h"
+#include "accents.h"
 #include "drivers/haptic/solenoid.h"
 #include "keymap.h"
 #include "keymap_french.h"
@@ -15,6 +16,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     return true;
+
+    #define X(x) case x:
+    #define Y(x) X(x)
+    #define Z(x) X(x)
+    switch(keycode){
+     _CHAR_SPECIAUX_RANGE
+      return(process_accents(keycode, record));
+     _OFFICE_RANGE
+      return(process_office);
+    }
+    #undef X
+    #undef Y
+    #undef Z
+    
 }
 
 

@@ -1,15 +1,18 @@
 #ifndef ENUM_H_
 #define ENUM_H_
 
+
+
 #define _ACCENTS_RANGE \
- X(HT_E)\
- X(HT_A)\
- X(HT_U)\
- X(HT_I)
+ Y(HT_E)\
+ Y(HT_A)\
+ Y(HT_U)\
+ Y(HT_I)\
+ X(MY_CEDIL)\
+ X(MY_OCIRC)
 
 
 #define _CHAR_SPECIAUX_RANGE \
- X(MY_OCIRC)\
  X(MY_SLH)\
  X(MY_BSLH)\
  X(MY_DOLL)\
@@ -21,7 +24,6 @@
  X(MY_PIPE)
 
 #define _OFFICE_RANGE \
- X(MY_PRT_S)\
  X(MY_PRT_S)\
  X(MY_PRT_P)\
  X(MY_COPY)\
@@ -40,7 +42,7 @@
  X(WEB_DUP)\
  X(WEB_TAB)\
  X(FF_FENE)\
- X(FF_T_ST)
+ Y(FF_T_ST)
 
 #define _NUMPAG_RANGE \
  X(KY_P1)\
@@ -52,16 +54,14 @@
 
 #define _GAMING_RANGE \
  X(TG_GAME)\
- X(APEX_I)\
- X(APEX_CTL)
+ Y(APEX_I)\
+ Y(APEX_CTL)
 
 
 #define X(x) x,
+#define Y(y) 
 enum custom_keycodes{
-  _STARTER=SAFE_RANGE,
-  _ACCENTS_RANGE
-  C_CEDIL,
-  MY_OCIRC,
+  STARTER=SAFE_RANGE,
   _CHAR_SPECIAUX_RANGE
   _OFFICE_RANGE
   _WEB_RANGE
@@ -69,10 +69,10 @@ enum custom_keycodes{
   _GAMING_RANGE
   CSTM_ENT,
   HT_SPC,
-  MY_ESC,
   MY_ALT_T,
   };
 #undef X
+#undef Y
 
 
 

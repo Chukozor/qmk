@@ -1,4 +1,58 @@
 #include "accents.h"
+#include "enum.h"
+
+static inline void tap_e_grave(void) {
+	tap_code(KC_7);
+}
+
+static inline void tap_e_aigue(void) {
+	tap_code(KC_2);
+}
+
+static inline void tap_e_circ(void) {
+  tap_code(KC_LBRC);
+	tap_code(KC_E);
+}
+
+static inline void tap_c_ced(void) {
+	tap_code(KC_9);
+}
+
+static inline void tap_a_grave(void) {
+	tap_code(KC_0);
+}
+
+static inline void tap_a_circ(void) {
+  tap_code(KC_LBRC);
+	tap_code(KC_Q);
+}
+
+static inline void tap_i_circ(void) {
+  tap_code(KC_LBRC);
+	tap_code(KC_I);
+}
+
+static inline void tap_i_trema(void) {
+	register_code(KC_LSFT);
+  tap_code(KC_LBRC);
+  unregister_code(KC_LSFT);
+	tap_code(KC_I);
+}
+
+static inline void tap_u_grave(void) {
+	tap_code(KC_QUOTE);
+}
+
+static inline void tap_u_circ(void) {
+  tap_code(KC_LBRC);
+	tap_code(KC_U);
+}
+
+static inline void tap_o_circ(void) {
+  tap_code(KC_LBRC);
+	tap_code(KC_O);
+}
+
 
 enum {
   TAPPED_NO_ACCENT,
@@ -70,5 +124,14 @@ bool proccess_accents(uint16_t keycode, keyrecord_t* record){
     default:
       return true;
     }
+  case MY_CEDIL:
+    if (!record->event.pressed) {
+       return false;
+    }
+    tap_c_ced();
+
   }
+
+  return true;
+
 }

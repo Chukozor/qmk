@@ -32,3 +32,4 @@ ENCODER_MAP_ENABLE = yes
 
 SRC += custom_files/french_symbols/french_symbols.c # include into the compilation
 SRC += custom_files/helpers.c
+SRC += accents.c
