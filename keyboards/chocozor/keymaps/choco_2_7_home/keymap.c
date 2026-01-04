@@ -1,9 +1,13 @@
 #include QMK_KEYBOARD_H
-#include "timer.h"
-#include "accents.h"
-#include "drivers/haptic/solenoid.h"
-#include "keymap.h"
 #include "keymap_french.h"
+#include "timer.h"
+#include "enum.h"
+#include "accents.h"
+#include "gaming.h"
+#include "web.h"
+#include "globals.h"
+#include "numpad.h"
+#include "drivers/haptic/solenoid.h"
 
 
 static uint16_t last_fire = 0;
@@ -21,23 +25,62 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #define Y(x) X(x)
     #define Z(x) X(x)
     switch(keycode){
-     _CHAR_SPECIAUX_RANGE
+     _ACCENTS_RANGE
       return(process_accents(keycode, record));
-     _OFFICE_RANGE
-      return(process_office);
+     _WEB_RANGE
+       return(process_web(keycode, record));
+     _NUMPAD_RANGE
+       return(process_numpad(keycode, record));
+     _GAMING_RANGE
+       return(process_gaming(keycode, record));
+     case CSTM_ENT:
+      if (record->tap.count) { // Tap
+        if (record->event.pressed) {
+          // your logic when pressed
+          if (IS_LAYER_ON(_ACCENTS)) {
+            SEND_STRING(SS_LSFT(SS_TAP(X_ENT)));
+          } else {
+            tap_code(KC_ENT);
+          }
+        }
+      } else { // Hold
+        if (record->event.pressed) { // pressed
+          // if (!record->tap.interrupted) {
+            if (IS_LAYER_ON(_ACCENTS)) {
+              // layer_on(_RGB);
+            } else {
+              layer_on(_REG_SPE);
+            }
+        }
+        else { // released
+          layer_off(_REG_SPE);
+          // layer_off(_RGB);
+        }
+        return false;
+      }
+      return false;
+
+   case MY_ALT_T:
+     if (record->event.pressed) {
+        alt_tab_menu = true;
+        SEND_STRING(SS_DOWN(X_LALT));
+        tap_code(KC_TAB);
+      } else {
+        SEND_STRING(SS_UP(X_LALT));
+        alt_tab_menu = false;
+      }
+      return false;
+
+
     }
+
     #undef X
     #undef Y
     #undef Z
     
+  return(false);
 }
 
-
-// -----------------------------------
-// -----------------------------------
-// TODO : decommenter la ligne du dessous
-#include "process_record_user.h"
-// -----------------------------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // _COLEMAK_FR

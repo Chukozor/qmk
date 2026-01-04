@@ -1,6 +1,31 @@
 #ifndef ENUM_H_
 #define ENUM_H_
+#include QMK_KEYBOARD_H
 
+//constantes
+
+extern bool trace_operations; 
+
+
+enum layers{
+    _COLEMAK_FR,
+    _REG_QWERTY,
+    _GAME,
+    _AUX_GAME,
+    _TF2,
+    _CAPS_LOCK,
+    _F_KEYS,
+    _NUMPAD_RIGHT,
+    _NAV,
+    _OPERATIONS,
+    _WEB_BROWSER,
+    _MOUSE_LAYER,
+    _ACCENTS,
+    _REG_SPE,
+    _MULTIMEDIA,
+     _RGB,
+    _GAME_NUMBERS,
+};
 
 
 #define _ACCENTS_RANGE \
@@ -11,29 +36,34 @@
  X(MY_CEDIL)\
  X(MY_OCIRC)
 
+#define HT_E     TT(16)
+#define HT_A     TT(18)
+#define HT_U     TT(19)
+#define HT_I     TT(20)
 
-#define _CHAR_SPECIAUX_RANGE \
- X(MY_SLH)\
- X(MY_BSLH)\
- X(MY_DOLL)\
- X(MY_DIESE)\
- X(MY_EURO)\
- X(MY_TILD)\
- X(MY_BQUOT)\
- X(MY_BQUOT2)\
- X(MY_PIPE)
 
-#define _OFFICE_RANGE \
- X(MY_PRT_S)\
- X(MY_PRT_P)\
- X(MY_COPY)\
- X(MY_CUT)\
- X(MY_PASTE)\
- X(MY_UNDO)\
- X(MY_REDO)\
- X(MY_SAVE)\
- X(MY_COMENT)\
- X(SEL_ALL)
+//Characteres speciaux
+#define MY_SLH LSFT(KC_DOT)
+#define MY_BSLH RALT(KC_8)
+#define MY_DOLL KC_RBRC
+#define MY_DIESE RALT(KC_3)
+#define MY_EURO RALT(KC_E)
+#define MY_TILD RALT(KC_2)
+#define MY_BQUOT RALT(KC_7)
+#define MY_PIPE RALT(KC_6)
+
+//Office
+
+#define MY_PRT_S KC_PSCR
+#define MY_PRT_P LSFT(KC_PSCR)
+#define MY_COMMENT LCTL(KC_DOT)
+#define MY_COPY LCTL(KC_C)
+#define MY_CUT LCTL(KC_X)
+#define MY_PASTE LCTL(KC_V)
+#define MY_UNDO LCTL(FR_Z)
+#define MY_REDO LCTL(KC_Y)
+#define MY_SAVE LCTL(KC_S)
+#define SEL_ALL LCTL(FR_A)
 
 #define _WEB_RANGE \
  X(AUX_WEB)\
@@ -41,10 +71,14 @@
  X(WEB_G)\
  X(WEB_DUP)\
  X(WEB_TAB)\
- X(FF_FENE)\
+ Y(FF_FENE)\
  Y(FF_T_ST)
 
-#define _NUMPAG_RANGE \
+#define FF_T_ST  TT(27)
+#define FF_FENE TT(26)
+
+
+#define _NUMPAD_RANGE \
  X(KY_P1)\
  X(KY_P2)\
  X(KY_P3)\
@@ -57,23 +91,36 @@
  Y(APEX_I)\
  Y(APEX_CTL)
 
+#define APEX_I   TT(28)
+#define APEX_CTL TT(29)
+
 
 #define X(x) x,
 #define Y(y) 
 enum custom_keycodes{
   STARTER=SAFE_RANGE,
-  _CHAR_SPECIAUX_RANGE
-  _OFFICE_RANGE
+  _ACCENTS_RANGE
   _WEB_RANGE
-  _NUMPAG_RANGE
+  _NUMPAD_RANGE
   _GAMING_RANGE
   CSTM_ENT,
-  HT_SPC,
   MY_ALT_T,
   };
 #undef X
 #undef Y
 
+#define HT_SPC LT(_ACCENTS, KC_SPC)
 
+#define IMGLASS_CP LCTL(LSFT(KC_C))
+#define _I__MOD RGB_MOD
+#define _D_RMOD RGB_RMOD
+#define __I_LUM RGB_VAI
+#define __D_LUM RGB_VAD
+#define _I_COUL RGB_HUI
+#define _D_COUL RGB_HUD
+#define __I_SAT RGB_SAI
+#define __D_SAT RGB_SAD
+#define __I_VIT RGB_SPI
+#define __D_VIT RGB_SPD
 
 #endif // ENUM_H_

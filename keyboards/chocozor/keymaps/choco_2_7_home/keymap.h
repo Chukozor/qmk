@@ -20,12 +20,3 @@ enum layers{
 
 
 // custom independant definitions
-
-#define MY_COPY LCTL(KC_C)
-#define MY__CUT LCTL(KC_X)
-#define MY_PAST LCTL(KC_V)
-#define MY_UNDO LCTL(FR_Z) // because french keyboard OS
-#define MY_REDO LCTL(KC_Y)
-#define MY_SAVE LCTL(KC_S)
-#define SEL_ALL LCTL(FR_A) // because french keyboard OS
-

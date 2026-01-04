@@ -50,7 +50,7 @@ enum {
   INTERRUPTED_ACCENT,
   HELD_NO_ACCENT,
   HELD_ACCENT 
-}
+};
 
 bool proccess_accents(uint16_t keycode, keyrecord_t* record){
   if (!record->event.pressed)
@@ -58,13 +58,13 @@ bool proccess_accents(uint16_t keycode, keyrecord_t* record){
   // Logique pour calculer dans quel etat on est.
   int etat;
   if (record->tap.count) {
-    etat = 0
+    etat = 0;
   }
   // motion hold
   else if (record->tap.interrupted) {
-    etat = 1
+    etat = 1;
   } else {
-    etat = 2
+    etat = 2;
   }
   // not interrupted
   etat = etat * 2 + IS_LAYER_ON(_ACCENTS);
@@ -78,7 +78,7 @@ bool proccess_accents(uint16_t keycode, keyrecord_t* record){
       tap_e_aigue(); return false;
     case INTERRUPTED_NO_ACCENT:
       tap_code(KC_E); return false;
-    case INTERRUTED_ACCENT:
+    case INTERRUPTED_ACCENT:
       tap_e_aigue(); return false;
     case HELD_NO_ACCENT:
       tap_e_grave(); return false;
@@ -90,7 +90,7 @@ bool proccess_accents(uint16_t keycode, keyrecord_t* record){
     switch (etat) {
     case TAPPED_ACCENT:
       tap_a_grave(); return false;
-    case INTERRUTED_ACCENT:
+    case INTERRUPTED_ACCENT:
       tap_a_grave(); return false;
     case HELD_ACCENT:
       tap_a_circ(); return false;
@@ -101,8 +101,8 @@ bool proccess_accents(uint16_t keycode, keyrecord_t* record){
     case HT_I:
     switch (etat) {
     case TAPPED_ACCENT:
-      tap_i_grave(); return false;
-    case INTERRUTED_ACCENT:
+      tap_i_circ(); return false;
+    case INTERRUPTED_ACCENT:
       tap_i_circ(); return false;
     case HELD_ACCENT:
       tap_i_trema(); return false;
@@ -114,7 +114,7 @@ bool proccess_accents(uint16_t keycode, keyrecord_t* record){
     switch (etat) {
     case TAPPED_ACCENT:
       tap_u_grave(); return false;
-    case INTERRUTED_ACCENT:
+    case INTERRUPTED_ACCENT:
       tap_u_grave(); return false;
     case HELD_ACCENT:
       tap_u_circ(); return false;
