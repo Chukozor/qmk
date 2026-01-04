@@ -27,9 +27,15 @@ SPLIT_KEYBOARD = yes
 ENCODER_ENABLE = yes
 ENCODER_MAP_ENABLE = yes
 
+# SOLENOID
+HAPTIC_ENABLE = yes
+HAPTIC_DRIVER = solenoid
+
 # BOOTLOADER = rp2040
 # CONVERT_TO = rp2040_ce
 
-SRC += custom_files/french_symbols/french_symbols.c # include into the compilation
-SRC += custom_files/helpers.c
 SRC += accents.c
+SRC += gaming.c
+SRC += numpad.c
+SRC += web.c
+SRC += globals.c
