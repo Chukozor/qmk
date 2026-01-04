@@ -1,32 +1,5 @@
 #pragma once
 
-//#define USE_MATRIX_I2C
-
-/* Select hand configuration */
-
-
-// #define SPLIT_POINTING_ENABLE
-// #define POINTING_DEVICE_RIGHT
-// #define POINTING_DEVICE_ROTATION_90
-// #define MASTER_RIGHT
-// #define MASTER_LEFT
-
-
-// #define POINTING_DEVICE_RIGHT
-// #define POINTING_DEVICE_ROTATION_90
-// #define CIRQUE_PINNACLE_DIAMETER_MM 40
-// #define CIRQUE_PINNACLE_TAP_ENABLE
-// #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
-
-// #define EE_HANDS
-// #define MASTER_RIGHT
-// #define EE_HANDS
-// #define SPLIT_HAND_PIN B5
-// #define	SPLIT_HAND_PIN_LOW_IS_LEFT
-
-//#define QUICK_TAP_TERM 0
-//#define TAPPING_TERM 100
-
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
     #define RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -44,68 +17,7 @@
     #define RGBLIGHT_VAL_STEP 17
 #endif
 
-// #define MASTER_RIGHT
-// #define MASTER_LEFT
-// (use MASTER_LEFT only to flash on the left side, and use MASTER_RIGHT to flash on the right side, and ALWAYS connect the USB to the right side)
-
-// =====================================================================
-// TRACKPAD
-#define SPLIT_POINTING_ENABLE
-#define POINTING_DEVICE_RIGHT
-#define CIRQUE_PINNACLE_CURVED_OVERLAY
-#define DEBOUNCE 5
-#define F_SCL 100000L
-
-
-// // ========== 35mm flat ==========
-// #define CIRQUE_PINNACLE_DIAMETER_MM 35
-// #define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_4X
-// #define POINTING_DEVICE_CIRQUE_PINNACLE_DPI 1150
-// // #define POINTING_DEVICE_ROTATION_90
-// #define AUTO_MOUSE_DEBOUNCE 10
-// // ---------------------------------------------------
-
-// ========== 40mm flat ==========
-#define CIRQUE_PINNACLE_DIAMETER_MM 40
-#define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_4X
-// #define POINTING_DEVICE_CIRQUE_PINNACLE_DPI 4500
-#define TRACKPAD_DEFAULT_DPI 1000
-#define POINTING_DEVICE_ROTATION_180
-#define AUTO_MOUSE_DEBOUNCE 15
-// ---------------------------------------------------
-
-// #define CIRQUE_PINNACLE_POSITION_MODE CIRQUE_PINNACLE_RELATIVE_MODE
-#define CIRQUE_PINNACLE_POSITION_MODE CIRQUE_PINNACLE_ABSOLUTE_MODE
-
-// #define CIRQUE_PINNACLE_TAP_ENABLE
-// #define CIRQUE_PINNACLE_SECONDARY_TAP_ENABLE
-// #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
-
-// Enables support for extended i16 mouse reports (instead of i8).
-// #define MOUSE_EXTENDED_REPORT
-// Limits the frequency that the sensor is polled for motion.
-// #define POINTING_DEVICE_TASK_THROTTLE_MS 10
-
-// MOUSE AUTO-LAYER
-// in config.h:
-#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
-// only required if not setting mouse layer elsewhere
-#define AUTO_MOUSE_DEFAULT_LAYER 10
-#define AUTO_MOUSE_TIME 10
-#define AUTO_MOUSE_DELAY 5
-#define AUTO_MOUSE_THRESHOLD 10
-
-// =====================================================================
-
-#undef SPLIT_OLED_ENABLE
-#define SPLIT_LAYER_STATE_ENABLE
-#define SPLIT_LED_STATE_ENABLE
-#define SPLIT_WPM_ENABLE
-#define OLED_BRIGHTNESS 1
-#define SPLIT_MODS_ENABLE
-
-#define OLED_TIMEOUT 10000
-
+// ========= Typing =========
 #define TAPPING_TERM 160
 #define TAPPING_TERM_PER_KEY
 // #define PERMISSIVE_HOLD
@@ -118,12 +30,7 @@
 #define COMBO_TERM 50
 #define COMBO_TERM_PER_COMBO
 #define COMBO_SHOULD_TRIGGER
-
-// =====================================================================
-// #define UNICODE_ENABLE
-// #define UNICODE_SELECTED_MODES UNICODE_MODE_LINUX
-// // #define UNICODE_SELECTED_MODES UC_LINX
-// =====================================================================
+//============================
 
 // #ifdef RGB_MATRIX_ENABLE
 
@@ -205,14 +112,6 @@
 #define RGB_MATRIX_STARTUP_HUE 85
 #define RGB_MATRIX_STARTUP_VAL 68
 #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_TYPING_HEATMAP
-
-#define SPLIT_TRANSACTION_IDS_USER USER_SYNC_A
-
-// #define ENCODERS_PAD_A { B2 }
-// #define ENCODERS_PAD_B { B6 }
-
-// #define ENCODERS_PAD_A_RIGHT { B6 }
-// #define ENCODERS_PAD_B_RIGHT { B2 }
 
 #define ENCODER_RESOLUTIONS {4}
 #define ENCODER_RESOLUTIONS_RIGHT {4}
