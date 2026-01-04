@@ -37,9 +37,9 @@ enum layers{
  X(MY_OCIRC)
 
 #define HT_E     TT(16)
-#define HT_A     TT(18)
-#define HT_U     TT(19)
-#define HT_I     TT(20)
+#define HT_A     TT(17)
+#define HT_U     TT(18)
+#define HT_I     TT(19)
 
 
 //Characteres speciaux
@@ -70,12 +70,13 @@ enum layers{
  X(WEB_D)\
  X(WEB_G)\
  X(WEB_DUP)\
- X(WEB_TAB)\
+ Y(WEB_TAB)\
  Y(FF_FENE)\
  Y(FF_T_ST)
 
-#define FF_T_ST  TT(27)
-#define FF_FENE TT(26)
+#define WEB_TAB TT(20)
+#define FF_T_ST  TT(21)
+#define FF_FENE TT(22)
 
 
 #define _NUMPAD_RANGE \
@@ -91,8 +92,8 @@ enum layers{
  Y(APEX_I)\
  Y(APEX_CTL)
 
-#define APEX_I   TT(28)
-#define APEX_CTL TT(29)
+#define APEX_I   TT(23)
+#define APEX_CTL TT(24)
 
 
 #define X(x) x,
@@ -103,13 +104,15 @@ enum custom_keycodes{
   _WEB_RANGE
   _NUMPAD_RANGE
   _GAMING_RANGE
-  CSTM_ENT,
   MY_ALT_T,
+  DBL_SHIFT,
   };
 #undef X
 #undef Y
 
 #define HT_SPC LT(_ACCENTS, KC_SPC)
+#define MY_ESC  TT(25)
+#define CSTM_ENT TT(26)
 
 #define IMGLASS_CP LCTL(LSFT(KC_C))
 #define _I__MOD RGB_MOD
@@ -122,5 +125,11 @@ enum custom_keycodes{
 #define __D_SAT RGB_SAD
 #define __I_VIT RGB_SPI
 #define __D_VIT RGB_SPD
+
+#define MY_LCTL KC_LCTL
+#define MY_RCTL KC_RCTL
+#define MOFKEYS MO(_F_KEYS)
+#define MO_WEBBR MO(_WEB_BROWSER)
+
 
 #endif // ENUM_H_

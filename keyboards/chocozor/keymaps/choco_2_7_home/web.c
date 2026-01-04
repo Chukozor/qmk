@@ -1,7 +1,6 @@
+#include "globals.h"
 #include "web.h"
 #include "enum.h"
-
-static bool web_aux = false;
 
 bool process_web(uint16_t keycode, keyrecord_t* record){
  switch (keycode) {
