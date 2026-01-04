@@ -1,3 +1,0 @@
-To compile, run `make chocozor/v1_3:choco_max`
-
-or ` make chocozor/v2_7:choco_2_7_home` for this other keymap
