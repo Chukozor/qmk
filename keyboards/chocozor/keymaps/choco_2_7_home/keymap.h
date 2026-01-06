@@ -1,10 +1,18 @@
 #pragma once
 
 enum layers{
-    _DEBUGLAYER,
-    _COLEMAK_FR,
-    _REG_QWERTY,
-    _RGB
+_COLEMAK_FR,
+_GAME,
+_AUX_GAME,
+_F_KEYS,
+_NUMPAD_RIGHT,
+_NAV,
+_OPERATIONS,
+_WEB_BROWSER,
+_ACCENTS,
+_REG_SPE,
+_MULTIMEDIA,
+_RGB
 };
 
 #define _I__MOD RGB_MOD

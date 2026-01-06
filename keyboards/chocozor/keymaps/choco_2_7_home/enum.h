@@ -9,22 +9,21 @@ extern bool trace_operations;
 
 enum layers{
     _COLEMAK_FR,
-    _REG_QWERTY,
     _GAME,
-    _AUX_GAME,
-    _TF2,
+    // _AUX_GAME,
+    // _TF2,
     _CAPS_LOCK,
     _F_KEYS,
     _NUMPAD_RIGHT,
     _NAV,
     _OPERATIONS,
     _WEB_BROWSER,
-    _MOUSE_LAYER,
+    // _MOUSE_LAYER,
     _ACCENTS,
     _REG_SPE,
     _MULTIMEDIA,
-     _RGB,
-    _GAME_NUMBERS,
+    _RGB,
+    // _GAME_NUMBERS,
 };
 
 
@@ -51,12 +50,23 @@ enum layers{
 #define MY_TILD RALT(KC_2)
 #define MY_BQUOT RALT(KC_7)
 #define MY_PIPE RALT(KC_6)
+#define ____SUP S(KC_NUBS)
+#define ____INF KC_NUBS
+#define TG_NUMP KC_NUM
+#define __MOINS KC_PMNS
+#define ___PLUS KC_PPLS
+#define ___FOIS KC_PAST
+#define _DIVISE KC_PSLS
+#define __EQUAL KC_EQL
+#define ___CIRC ALGR(KC_9)
+#define _BACKSL ALGR(KC_8)
 
 //Office
 
 #define MY_PRT_S KC_PSCR
 #define MY_PRT_P LSFT(KC_PSCR)
-#define MY_COMMENT LCTL(KC_DOT)
+#define MY_PRT_Z RCTL(KC_PSCR)
+#define MY_COMENT LCTL(KC_DOT)
 #define MY_COPY LCTL(KC_C)
 #define MY_CUT LCTL(KC_X)
 #define MY_PASTE LCTL(KC_V)
@@ -77,6 +87,13 @@ enum layers{
 #define WEB_TAB TT(20)
 #define FF_T_ST  TT(21)
 #define FF_FENE TT(22)
+#define TABTO_L RCS(KC_PGUP)
+#define TABTO_R RCS(KC_PGDN)
+#define BOOKMAR C(KC_D)
+#define THEBOOK RCS(KC_O)
+#define OPENBOOK RCS(KC_O)
+#define PRIVATE RCS(KC_P)
+#define MO_OP MO(_OPERATIONS)
 
 
 #define _NUMPAD_RANGE \
@@ -85,7 +102,7 @@ enum layers{
  X(KY_P3)\
  X(KY_P5)\
  X(KY_P8)\
- X(MY_NAV_FROM_OP)
+ X(NAV_F_OP)
 
 #define _GAMING_RANGE \
  X(TG_GAME)\
@@ -94,6 +111,7 @@ enum layers{
 
 #define APEX_I   TT(23)
 #define APEX_CTL TT(24)
+
 
 
 #define X(x) x,
@@ -130,6 +148,6 @@ enum custom_keycodes{
 #define MY_RCTL KC_RCTL
 #define MOFKEYS MO(_F_KEYS)
 #define MO_WEBBR MO(_WEB_BROWSER)
-
+#define MO_OX_G MO(_AUX_GAME)
 
 #endif // ENUM_H_

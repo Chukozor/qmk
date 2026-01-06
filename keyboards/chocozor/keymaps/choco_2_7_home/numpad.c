@@ -54,7 +54,7 @@ bool process_numpad(uint16_t keycode, keyrecord_t *record){
       }
       return false;
 
-    case MY_NAV_FROM_OP:
+    case NAV_F_OP:
       if (record->event.pressed) {
         layer_on(_NAV);
         trace_operations = true;
