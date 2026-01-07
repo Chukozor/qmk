@@ -11,21 +11,17 @@ enum layers{
     _COLEMAK_FR,
     _GAME,
     _AUX_GAME,
-    // _TF2,
     _CAPS_LOCK,
     _F_KEYS,
     _NUMPAD_RIGHT,
     _NAV,
     _OPERATIONS,
     _WEB_BROWSER,
-    // _MOUSE_LAYER,
     _ACCENTS,
     _REG_SPE,
     _MULTIMEDIA,
     _RGB,
-    // _GAME_NUMBERS,
 };
-
 
 #define _ACCENTS_RANGE \
  Y(HT_E)\
@@ -149,5 +145,21 @@ enum custom_keycodes{
 #define MOFKEYS MO(_F_KEYS)
 #define MO_WEBBR MO(_WEB_BROWSER)
 #define MO_OX_G MO(_AUX_GAME)
+
+
+//RGB
+
+#define _I__MOD RGB_MOD
+#define _D_RMOD RGB_RMOD
+#define __I_LUM RGB_VAI
+#define __D_LUM RGB_VAD
+#define _I_COUL RGB_HUI
+#define _D_COUL RGB_HUD
+#define __I_SAT RGB_SAI
+#define __D_SAT RGB_SAD
+#define __I_VIT RGB_SPI
+#define __D_VIT RGB_SPD
+
+
 
 #endif // ENUM_H_
