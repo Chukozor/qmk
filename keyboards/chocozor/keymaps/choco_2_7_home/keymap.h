@@ -4,6 +4,7 @@ enum layers{
 _COLEMAK_FR,
 _GAME,
 _AUX_GAME,
+_CAPS_LOCK,
 _F_KEYS,
 _NUMPAD_RIGHT,
 _NAV,

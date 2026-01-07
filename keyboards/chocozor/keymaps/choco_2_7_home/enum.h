@@ -10,7 +10,7 @@ extern bool trace_operations;
 enum layers{
     _COLEMAK_FR,
     _GAME,
-    // _AUX_GAME,
+    _AUX_GAME,
     // _TF2,
     _CAPS_LOCK,
     _F_KEYS,
