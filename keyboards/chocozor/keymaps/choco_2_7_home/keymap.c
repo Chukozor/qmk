@@ -2,6 +2,7 @@
 #include "keymap_french.h"
 #include "timer.h"
 #include "enum.h"
+#include "oled.h"
 #include "accents.h"
 #include "gaming.h"
 #include "globals.h"
@@ -10,7 +11,6 @@
 #include "drivers/haptic/solenoid.h"
 
 #include "custom_files/tap_dances/tap_dance.h"
-
 
 // ------------- COMBO ---------------
 
@@ -484,3 +484,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
   [_MULTIMEDIA] = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  },
   [_RGB] = { ENCODER_CCW_CW(KC_WH_U, KC_WH_D),  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  }
 };
+
+bool shutdown_user(bool jump_to_bootloader) {
+  oled_render_boot(jump_to_bootloader);
+  return false;
+}

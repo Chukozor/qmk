@@ -7,21 +7,26 @@
 extern bool trace_operations; 
 
 
+#define _LAYERS \
+  X(_COLEMAK_FR, "COLE-  MAK       FR                          ")\
+  X(_GAME, " GAME                                        ")\
+  X(_AUX_GAME," AUX  GAME                                   ")\
+  X(_CAPS_LOCK, "  CAPS_LOCK                                   ")\
+  X(_F_KEYS,"  F_  KEYS                                   ")\
+  X(_NUMPAD_RIGHT," NUM-PAD  RIGHT                              ")\
+  X(_NAV,"  NAV                                        ")\
+  X(_OPERATIONS,"OPERATEURS                                   ")\
+  X(_WEB_BROWSER," WEB_                                        ")\
+  X(_ACCENTS,"ACCE-  NTS                                   ")\
+  X(_REG_SPE,"  REG _SPE                                   ")\
+  X(_MULTIMEDIA,"MULTIMEDIA                                   ")\
+  X(_RGB," RGB                                         ")
+
+#define X(a,b) a,
 enum layers{
-    _COLEMAK_FR,
-    _GAME,
-    _AUX_GAME,
-    _CAPS_LOCK,
-    _F_KEYS,
-    _NUMPAD_RIGHT,
-    _NAV,
-    _OPERATIONS,
-    _WEB_BROWSER,
-    _ACCENTS,
-    _REG_SPE,
-    _MULTIMEDIA,
-    _RGB,
+ _LAYERS
 };
+#undef X
 
 #define _ACCENTS_RANGE \
  Y(HT_E)\
