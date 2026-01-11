@@ -19,7 +19,9 @@ static void SEND_NUMERIC(char* code){
   }  
 }
 
-void special_code_helper(char* code, int variant){
+
+void special_code_helper(SpecialCode* code){
+  os_variant_t variant = detected_host_os();
   if(variant==OS_LINUX){
     register_code(KC_LEFT_CTRL);
     register_code(KC_LSFT);
@@ -27,12 +29,12 @@ void special_code_helper(char* code, int variant){
     unregister_code(KC_LSFT);
     unregister_code(KC_LEFT_CTRL);
     unregister_code(KC_U);
-    SEND_STRING(code);
+    SEND_STRING(code->linux);
     tap_code16(KC_ENTER);
   }
   else if(variant==OS_WINDOWS){
     register_code(KC_LEFT_ALT);
-    SEND_NUMERIC(code);
+    SEND_NUMERIC(code->windows);
     unregister_code(KC_LEFT_ALT);
   }
 }

@@ -1,5 +1,12 @@
 #include "accents.h"
 #include "enum.h"
+#include "special_codes.h"
+
+#define SPECIAL_CODES\
+  X()
+
+
+static SpecialCode e_grave = {.windows = "0234", .linux = "00e8"};
 
 static inline void tap_e_grave(void) { tap_code(KC_7); }
 
@@ -81,7 +88,7 @@ bool proccess_accents(uint16_t keycode, keyrecord_t* record){
     case INTERRUPTED_ACCENT:
       tap_e_aigue(); return false;
     case HELD_NO_ACCENT:
-      tap_e_grave(); return false;
+     special_code_helper(&e_grave)  ; return false;
     case HELD_ACCENT:
       tap_e_circ(); return false;
     }
