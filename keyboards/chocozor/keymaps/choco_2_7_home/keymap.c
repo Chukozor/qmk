@@ -485,12 +485,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 };
 
 
-static void render_layer_status(void) {
-  //static const char* impression[]= {_LAYERS 0};
-  //oled_write(impression[get_highest_layer(layer_state)], false);
-  oled_write("TEEEST!",false); 
-  }
-
 bool oled_task_user() {
   //oled_set_cursor(0, 0);
   //render_logo();
@@ -498,18 +492,3 @@ bool oled_task_user() {
   oled_write_P(PSTR("Hello, OLED!"), false);
   return false;
 }
-
-void oled_render_boot(bool bootloader) {
-  if (bootloader) {
-    oled_write_P(PSTR("FLASH"), false);
-  } else {
-    oled_write_P(PSTR("RESET"), false);
-  }
-  oled_render_dirty(true);
-}
-
-bool shutdown_user(bool jump_to_bootloader) {
-  oled_render_boot(jump_to_bootloader);
-  return false;
-}
-
