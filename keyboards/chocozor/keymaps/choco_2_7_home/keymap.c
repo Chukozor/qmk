@@ -81,6 +81,9 @@ static void solenoid_helper(void){
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       solenoid_helper();
+      if(oled_get_brightness()==254){
+        SEND_STRING("ABC");
+      }
     }
     return true;
 
