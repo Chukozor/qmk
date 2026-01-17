@@ -81,7 +81,10 @@ static void solenoid_helper(void){
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       solenoid_helper();
-      (void)oled_on();
+      if(!is_oled_on()){
+        (void)oled_init(0);
+        (void)oled_on();
+      }
       if(is_oled_on()){
         SEND_STRING("ABC");
         oled_write_P(PSTR("Hello, OLED!"), false);
