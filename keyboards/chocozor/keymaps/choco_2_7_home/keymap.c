@@ -495,13 +495,11 @@ bool oled_task_user() {
   //oled_set_cursor(0, 0);
   //render_logo();
   //oled_set_cursor(0, 7);
-  render_layer_status();
+  oled_write_P(PSTR("Hello, OLED!"), false);
   return false;
 }
 
 void oled_render_boot(bool bootloader) {
-  oled_clear();
-  oled_set_cursor(0, 2);
   if (bootloader) {
     oled_write_P(PSTR("FLASH"), false);
   } else {
