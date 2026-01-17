@@ -83,7 +83,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       solenoid_helper();
     }
-    return true;
 
     #define X(x) case x:
     #define Y(x) X(x)
