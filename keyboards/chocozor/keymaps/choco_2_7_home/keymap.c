@@ -81,11 +81,12 @@ static void solenoid_helper(void){
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       solenoid_helper();
-      if(oled_get_brightness()==254){
+      if(is_oled_on()){
         SEND_STRING("ABC");
+        oled_write_P(PSTR("Hello, OLED!"), false);
+
       }
     }
-    return true;
 
     #define X(x) case x:
     #define Y(x) X(x)
