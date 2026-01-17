@@ -52,7 +52,7 @@ enum {
   HELD_ACCENT 
 };
 
-bool proccess_accents(uint16_t keycode, keyrecord_t* record){
+bool process_accents(uint16_t keycode, keyrecord_t* record){
   if (!record->event.pressed)
     return false;
   // Logique pour calculer dans quel etat on est.
