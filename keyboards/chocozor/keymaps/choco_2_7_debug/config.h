@@ -131,3 +131,13 @@
 #define ENCODER_RESOLUTIONS {4}
 #define ENCODER_RESOLUTIONS_RIGHT {4}
 
+// =========== OLED =============
+#define SPLIT_OLED_ENABLE
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE
+#define SPLIT_WPM_ENABLE
+#define OLED_BRIGHTNESS 1
+#define SPLIT_MODS_ENABLE
+// #define OLED_TIMEOUT 10000
+// ==============================
+

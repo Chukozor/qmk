@@ -76,7 +76,7 @@ static void solenoid_helper(void){
   if (timer_elapsed(last_fire) > 80) {  // 80 ms entre deux activations
     solenoid_fire(0);
     last_fire = timer_read();
-  } 
+  }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
