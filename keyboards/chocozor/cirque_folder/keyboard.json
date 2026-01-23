@@ -10,7 +10,8 @@
       "extrakey": true,
       "nkro": true,
       "oled": true,
-      "rgb_matrix": true
+      "rgb_matrix": true,
+      "pointing_device": true
   },
   "encoder": {
       "enabled": true,
