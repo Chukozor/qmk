@@ -143,6 +143,7 @@
 
 /*       CIRQUE TRACKPAD       */
 // SPI pins (if your keyboard/MCU doesn’t already define them elsewhere)
+#define SPI_DRIVER SPID0
 #define SPI_SCK_PIN  GP6
 #define SPI_MOSI_PIN GP3
 #define SPI_MISO_PIN GP4
@@ -152,7 +153,7 @@
 
 // Cirque options (optional)
 #define CIRQUE_PINNACLE_DIAMETER_MM 40
-#define TRACKPAD_DEFAULT_DPI 1000
+#define TRACKPAD_DEFAULT_DPI 1300
 // #define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_4X
 
 // SPI setting :

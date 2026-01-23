@@ -3,6 +3,8 @@
 #include "drivers/haptic/solenoid.h"
 #include "keymap.h"
 #include "keymap_french.h"
+#include "pointing_device.h"
+#include <stdlib.h>   // abs()
 
 
 static void solenoid_helper(void){
