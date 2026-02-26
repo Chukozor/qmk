@@ -15,7 +15,7 @@
   },
   "encoder": {
       "enabled": true,
-      "rotary": [{"pin_a": "GP23", "pin_b": "GP21"}]
+      "rotary": [{"pin_a": "GP21", "pin_b": "GP23"}]
   },
   "ws2812": {
       "driver": "vendor",
@@ -121,7 +121,7 @@
     "encoder": {
       "right": {
         "rotary": [
-          { "pin_a": "GP21", "pin_b": "GP23" }
+          { "pin_a": "GP23", "pin_b": "GP21" }
         ]
       }
     },
@@ -134,7 +134,7 @@
   },
   "diode_direction": "COL2ROW",
   "layouts": {
-    "LAYOUT_2_7_full": {
+    "LAYOUT_2_9_full": {
       "layout": [
         {"matrix": [0, 0], "x": 0, "y": 0},
         {"matrix": [0, 1], "x": 1, "y": 0},
@@ -215,7 +215,7 @@
         {"matrix": [11, 0], "x": 11, "y": 5}
       ]
     },
-    "LAYOUT_2_7_mouse_clic": {
+    "LAYOUT_2_9_mouse_clic": {
       "layout": [
         {"matrix": [0, 0], "x": 0, "y": 0},
         {"matrix": [0, 1], "x": 1, "y": 0},
@@ -286,7 +286,7 @@
         {"matrix": [11, 5], "x": 6, "y": 5}
       ]
     },
-    "LAYOUT_2_7_regular": {
+    "LAYOUT_2_9_regular": {
       "layout": [
         {"matrix": [0, 0], "x": 0, "y": 0},
         {"matrix": [0, 1], "x": 1, "y": 0},
@@ -354,7 +354,7 @@
         {"matrix": [10, 3], "x": 8, "y": 4}
       ]
     },
-    "LAYOUT_2_7_simple": {
+    "LAYOUT_2_9_simple": {
       "layout": [
         {"matrix": [1, 0], "x": 0, "y": 0},
         {"matrix": [1, 1], "x": 1, "y": 0},

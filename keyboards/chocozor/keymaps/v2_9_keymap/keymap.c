@@ -26,7 +26,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // _DEBUGLAYER
-    [_DEBUGLAYER] = LAYOUT_2_7_regular(
+    [_DEBUGLAYER] = LAYOUT_2_9_regular(
   //--------------------------------------.                                           -----------------------------------------------------.
        FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                            S(FR_A), S(KC_B), S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
   //|------+-----+-----+-----+-----+------|                                          |-------+--------+--------+--------+--------+---------|
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------------------------------------------------|           |----------------------------------------------------------------------|
   ),
   // _RGB
-    [_RGB] = LAYOUT_2_7_regular(
+    [_RGB] = LAYOUT_2_9_regular(
   //--------------------------------------.                                           ------------------------------------------------------.
        FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                             S(FR_A), S(KC_B), S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
   //|------+-----+-----+-----+-----+------|                                           |-------+--------+--------+--------+--------+---------|
