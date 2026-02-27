@@ -69,21 +69,13 @@ const key_override_t *key_overrides[] = {
     NULL // Null terminate the array of overrides!
 };
 
-static bool solenoid_enabled = false;  // Solénoïde OFF au boot
-
-#include "haptic.h"
-void keyboard_post_init_user(void) {
-    haptic_disable();   // Désactive complètement le haptic au boot
-}
-
-static void solenoid_helper(void) {
+static void solenoid_helper(void){
   static uint16_t last_fire = 0;
-  if (timer_elapsed(last_fire) > 80) { // 80 ms entre deux activations
+  if (timer_elapsed(last_fire) > 80) {  // 80 ms entre deux activations
     solenoid_fire(0);
     last_fire = timer_read();
   }
 }
-
 
 // some variables
 float aux_dpi = 0;
@@ -126,16 +118,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return (process_numpad(keycode, record));
     _GAMING_RANGE
     return (process_gaming(keycode, record));
-  case SOL_TOG:
-    if (record->event.pressed) {
-        solenoid_enabled = !solenoid_enabled;
-        if (solenoid_enabled) {
-            haptic_enable();
-        } else {
-            haptic_disable();
-        }
-    }
-    return false;
   case CSTM_ENT:
     if (record->tap.count) { // Tap
       if (record->event.pressed) {
@@ -407,7 +389,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK_FR] = LAYOUT_2_9_regular(
-      KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                              KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1, SOL_TOG,
+      KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                              KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1,   KC_P2,
      MY_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                                               KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
     MY_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                               KC_H,    KC_N,    HT_E,    KC_I,    KC_O, MY_RCTL,
     KC_LSFT,    FR_Q,    KC_X,    KC_C,    KC_V,    KC_B,                                               KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_RSFT,

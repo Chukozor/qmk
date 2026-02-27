@@ -11,8 +11,8 @@ extern bool trace_operations;
   X(_COLEMAK_FR,   "COLEMAK          FR")\
   X(_GAME,         "        GAME       ")\
   X(_AUX_GAME,     "     AUX  GAME     ")\
-  X(_CAPS_LOCK,    "CAPS_LOCK          ")\
-  X(_F_KEYS,       "F_  KEYS           ")\
+  X(_CAPS_LOCK,    "     CAPS_LOCK     ")\
+  X(_F_KEYS,       "      F_  KEYS     ")\
   X(_NUMPAD_RIGHT, "   NUMPAD  RIGHT   ")\
   X(_NAV,          "       NAV         ")\
   X(_OPERATIONS,   "    OPERATEURS     ")\
@@ -134,7 +134,6 @@ enum custom_keycodes{
   DPI_INC,
   DPI_DEC,
   ACEL_OFF,
-  SOL_TOG,
   MY_BQUOT2,
   };
 #undef X
