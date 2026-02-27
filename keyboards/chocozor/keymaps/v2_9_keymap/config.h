@@ -23,8 +23,12 @@
 // #define ENCODERS_PAD_A_RIGHT { B6 }
 // #define ENCODERS_PAD_B_RIGHT { B2 }
 
-#define ENCODER_RESOLUTIONS {4}
-#define ENCODER_RESOLUTIONS_RIGHT {4}
+#define ENCODER_RESOLUTIONS {2}
+#define ENCODER_RESOLUTIONS_RIGHT {2}
+#define ENCODER_MAP_KEY_DELAY 10
+
+// #define ENCODER_RESOLUTIONS {4}
+// #define ENCODER_RESOLUTIONS_RIGHT {4}
 // =========== OLED =============
 #define SPLIT_OLED_ENABLE
 #define SPLIT_LAYER_STATE_ENABLE
@@ -35,15 +39,21 @@
 #define OLED_TIMEOUT 15000 //in ms
 // ==============================
 
-/*       CIRQUE TRACKPAD       */
+// =========== CIRQUE TRACKPAD =============
 // SPI pins (if your keyboard/MCU doesn’t already define them elsewhere)
 #define SPI_DRIVER SPID0
 #define SPI_SCK_PIN  GP6
 #define SPI_MOSI_PIN GP3
 #define SPI_MISO_PIN GP4
-
 // Trackpad chip select
 #define POINTING_DEVICE_CS_PIN GP5
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_COMBINED
+
+// rotation
+// #define POINTING_DEVICE_ROTATION_180
+#define POINTING_DEVICE_ROTATION_180_LEFT
+
 
 // Cirque options (optional)
 #define CIRQUE_PINNACLE_DIAMETER_MM 40
@@ -68,8 +78,7 @@
 // #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
 
 
-// rotation
-// #define POINTING_DEVICE_ROTATION_180
+
 
 
 

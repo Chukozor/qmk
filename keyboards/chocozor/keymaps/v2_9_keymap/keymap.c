@@ -22,6 +22,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
     }
 
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (is_keyboard_left()) {
+        mouse_report.x = -mouse_report.x;
+        mouse_report.y = -mouse_report.y;
+    }
+    return mouse_report;
+}
 // -----------------------------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
