@@ -1,5 +1,5 @@
 Different layouts :
-
+<!-- TODO --> A METTRE A JOUR
 "All additionnal key but no joystick" : "LAYOUT_2_7_regular"
 "LAYOUT_2_7_mouse_clic" : "All additionnal keys and mouse clic",
 "No additionna key" : "LAYOUT_2_7_simple"
