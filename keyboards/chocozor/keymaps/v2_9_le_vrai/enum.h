@@ -17,6 +17,7 @@ extern bool trace_operations;
   X(_NAV,"  NAV                                        ")\
   X(_OPERATIONS,"OPERATEURS                                   ")\
   X(_WEB_BROWSER," WEB_                                        ")\
+  X(_MOUSE_LAYER," MOUSE_                                     ")\
   X(_ACCENTS,"ACCE-  NTS                                   ")\
   X(_REG_SPE,"  REG _SPE                                   ")\
   X(_MULTIMEDIA,"MULTIMEDIA                                   ")\
@@ -125,6 +126,14 @@ enum custom_keycodes{
   _GAMING_RANGE
   MY_ALT_T,
   DBL_SHIFT,
+  K_SNIPE,
+  K_BLITZ,
+  K_SCROL,
+  TG_SCROL,
+  ZOOM_TR,
+  DPI_INC,
+  DPI_DEC,
+  ACEL_OFF,
   };
 #undef X
 #undef Y

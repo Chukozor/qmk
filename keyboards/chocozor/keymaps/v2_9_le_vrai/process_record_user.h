@@ -774,6 +774,80 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
+    case TG_SCROL:
+      if (record->event.pressed) {
+          // logic when pressed
+          set_scrolling = !set_scrolling;
+        }
+        return false;
+
+    case K_BLITZ: /* Decrease trackpad DPI*/
+        if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+          if (record->event.pressed) {
+            aux_dpi = pointing_device_get_cpi();
+            pointing_device_set_cpi(1000);
+            scroll_divisor_h = SCROLL_DIVISOR_H_BASE / 2.0;
+            scroll_divisor_v = SCROLL_DIVISOR_V_BASE / 2.0;
+          } else {
+            pointing_device_set_cpi(aux_dpi);
+            scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
+            scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
+          }
+        } else if (record->event.pressed) {
+          pointing_device_set_cpi(pointing_device_get_cpi()+300);
+        } else {
+          pointing_device_set_cpi(pointing_device_get_cpi()-300);
+        }
+      return false;
+    
+    case K_SCROL:
+      if (record->event.pressed) {
+        set_scrolling = true;
+      } else {
+        set_scrolling = false;
+      }
+      return false;
+
+    case ZOOM_TR:
+      if (record->event.pressed) {
+          // logic when pressed
+          set_scrolling = true;
+          SEND_STRING(SS_DOWN(X_LCTL));
+          // SEND_STRING(SS_DOWN(X_LSFT));
+          // SEND_STRING(SS_DELAY(1));
+          // SEND_STRING(SS_TAP(X_T));
+        } else {
+          set_scrolling = false;
+          SEND_STRING(SS_UP(X_LCTL));
+          // SEND_STRING(SS_UP(X_LSFT));
+          // logic when released
+        }
+        // press(MY_LCTL AND MY_LSFT)
+        return false;
+
+    case DPI_INC: /* Increase trackpad DPI*/
+      if (record->event.pressed) {
+        pointing_device_set_cpi(pointing_device_get_cpi()+100);
+      }
+      return false;
+    case DPI_DEC: /* Decrease trackpad DPI*/
+      if (record->event.pressed) {
+        pointing_device_set_cpi(pointing_device_get_cpi()-100);
+      }
+      return false;
+
+    case ACEL_OFF:
+      if (record->event.pressed) {
+        accel_off = true;
+        // SEND_STRING(SS_DOWN(X_LCTL));
+        // tap_code(KC_TAB);
+      } else {
+        // SEND_STRING(SS_UP(X_LCTL));
+        // ky_webnav = false;
+      }
+      return false;
+
+
 
   }
   return true;

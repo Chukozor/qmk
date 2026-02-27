@@ -86,6 +86,31 @@ static void solenoid_helper(void) {
   }
 }
 
+
+// some variables
+float aux_dpi = 0;
+#define SCROLL_DIVISOR_H_BASE 50.0   // Horizontal scroll speed
+#define SCROLL_DIVISOR_V_BASE 30.0   // Vertical scroll speed
+bool accel_off = false;
+
+float scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
+float scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
+
+// Variables to store accumulated scroll values
+float scroll_accumulated_h = 0;
+float scroll_accumulated_v = 0;
+// -------
+// VOLUME CONTROL WITH TRACKPAD
+// Define how sensitive the trackpad is for volume control
+#define VOLUME_DIVISOR 18  // Adjust for volume control sensitivity (higher = more movement required)
+#define VOLUME_THRESHOLD 1  // Threshold for triggering volume change
+
+// Variables to store accumulated volume movement
+float volume_accumulated_v = 0;
+
+bool set_scrolling = false;
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     solenoid_helper();
@@ -205,6 +230,79 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       // here we don't alter its «release» default behavior (hence, return true)
       return true;
     }
+
+  case TG_SCROL:
+    if (record->event.pressed) {
+      // logic when pressed
+      set_scrolling = !set_scrolling;
+    }
+    return false;
+
+  case K_SCROL:
+    if (record->event.pressed) {
+      set_scrolling = true;
+    } else {
+      set_scrolling = false;
+    }
+    return false;
+
+case K_BLITZ: /* Decrease trackpad DPI*/
+    if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+      if (record->event.pressed) {
+        aux_dpi = pointing_device_get_cpi();
+        pointing_device_set_cpi(1000);
+        scroll_divisor_h = SCROLL_DIVISOR_H_BASE / 2.0;
+        scroll_divisor_v = SCROLL_DIVISOR_V_BASE / 2.0;
+      } else {
+        pointing_device_set_cpi(aux_dpi);
+        scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
+        scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
+      }
+    } else if (record->event.pressed) {
+      pointing_device_set_cpi(pointing_device_get_cpi()+300);
+    } else {
+      pointing_device_set_cpi(pointing_device_get_cpi()-300);
+    }
+  return false;
+
+case ZOOM_TR:
+  if (record->event.pressed) {
+      // logic when pressed
+      set_scrolling = true;
+      SEND_STRING(SS_DOWN(X_LCTL));
+      // SEND_STRING(SS_DOWN(X_LSFT));
+      // SEND_STRING(SS_DELAY(1));
+      // SEND_STRING(SS_TAP(X_T));
+    } else {
+      set_scrolling = false;
+      SEND_STRING(SS_UP(X_LCTL));
+      // SEND_STRING(SS_UP(X_LSFT));
+      // logic when released
+    }
+    // press(MY_LCTL AND MY_LSFT)
+    return false;
+
+case DPI_INC: /* Increase trackpad DPI*/
+  if (record->event.pressed) {
+    pointing_device_set_cpi(pointing_device_get_cpi()+100);
+  }
+  return false;
+case DPI_DEC: /* Decrease trackpad DPI*/
+  if (record->event.pressed) {
+    pointing_device_set_cpi(pointing_device_get_cpi()-100);
+  }
+  return false;
+
+case ACEL_OFF:
+  if (record->event.pressed) {
+    accel_off = true;
+    // SEND_STRING(SS_DOWN(X_LCTL));
+    // tap_code(KC_TAB);
+  } else {
+    // SEND_STRING(SS_UP(X_LCTL));
+    // ky_webnav = false;
+  }
+  return false;
   }
 
 #undef X
@@ -420,6 +518,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_LGUI, MY_NAV,  HT_SPC,         KC_LALT, AUX_WEB, XXXXXXX
   //|---------------------------------------------------------------------|        |----------------------------------------------------------------------|
 ),
+[_MOUSE_LAYER] = LAYOUT_2_9_regular(
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+//|-----------------------------------------------------.                                           |-----------------------------------------------------.
+     MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,ACEL_OFF,                                             KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+//|--------+--------+--------+--------+--------+--------|                                           |--------+--------+--------+--------+--------+--------|
+    KC_LCTL, K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2,XXXXXXX,                                              XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
+//|--------+--------+--------+--------+--------+--------|                                           |--------+--------+--------+--------+--------+--------|
+    KC_LSFT, K_SNIPE, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                             XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN2, XXXXXXX, KC_RSFT,
+//|-----------------------------------------------------------------------|        |----------------------------------------------------------------------|
+                      XXXXXXX, XXXXXXX, XXXXXXX,                                                               XXXXXXX, XXXXXXX, KC_BTN2,
+                                                 KC_LSFT, KC_LCTL, MO(_ACCENTS),     KC_BTN1, KC_BTN3, TG_SCROL
+//|-----------------------------------------------------------------------|        |----------------------------------------------------------------------|
+),
 [_ACCENTS] = LAYOUT_2_9_regular(
     XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                                           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //|-----------------------------------------------------.                                          |-----------------------------------------------------.
@@ -474,17 +585,131 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 
+
+// // ==============================================
+// MOUSE AUTO-LAYER
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MOUSE_LAYER); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+    pointing_device_set_cpi(TRACKPAD_DEFAULT_DPI);
+}
+
+// // #include "custom_files/trackpad/scrolling.h"
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+  // Check if _REG_SPE layer is active (for volume control)
+  if (IS_LAYER_ON(_REG_SPE)) {
+    // Accumulate vertical movement, scaled by VOLUME_DIVISOR for volume control
+    volume_accumulated_v += (float)mouse_report.y / VOLUME_DIVISOR;
+
+    // If accumulated vertical movement reaches the threshold, adjust the volume
+    if (volume_accumulated_v >= VOLUME_THRESHOLD) {
+        tap_code(KC_VOLD);  // Decrease volume
+        volume_accumulated_v = 0;  // Reset accumulator after triggering
+    } else if (volume_accumulated_v <= -VOLUME_THRESHOLD) {
+        tap_code(KC_VOLU);  // Increase volume
+        volume_accumulated_v = 0;  // Reset accumulator after triggering
+    }
+
+    // Prevent any cursor movement while controlling volume
+    mouse_report.x = 0;
+    mouse_report.y = 0;
+
+  } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+    // SCROLLING FUNCTIONALITY
+    // Accumulate scroll values based on mouse movement and divisors
+    scroll_accumulated_h += (float)mouse_report.x / scroll_divisor_h;
+    scroll_accumulated_v += (float)mouse_report.y / scroll_divisor_v;
+
+    // Assign integer parts of accumulated scroll values to the mouse report
+    mouse_report.h = (int8_t)scroll_accumulated_h;  // Horizontal scroll
+    mouse_report.v = -(int8_t)scroll_accumulated_v; // Vertical scroll (negated for natural scroll)
+
+    // Update accumulated scroll values by subtracting the integer parts
+    scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+    scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+    // Prevent cursor movement while scrolling
+    mouse_report.x = 0;
+    mouse_report.y = 0;
+  } else if (!accel_off) {
+    //     // Calculate magnitude of movement vector
+    // float dx = (float)mouse_report.x;
+    // float dy = (float)mouse_report.y;
+
+    // float magnitude = sqrtf(dx * dx + dy * dy);
+
+    // // // Don't apply acceleration if there's no movement
+    // // if (magnitude == 0) {
+    // //     return mouse_report;
+    // // }
+    
+    // // // Don't apply acceleration if there's not enough movement
+    // if (magnitude < 2.0f) {
+    //     return mouse_report;
+    // }
+
+    // // Set acceleration factor based on movement speed
+    // float accel_factor = 1.0f + 0.05f * magnitude;
+
+    // // Apply the scaling
+    // mouse_report.x = (int8_t)(dx * accel_factor);
+    // mouse_report.y = (int8_t)(dy * accel_factor);
+
+    // Calculate movement magnitude
+    int magnitude = abs(mouse_report.x) + abs(mouse_report.y);
+
+
+    // Apply a simple acceleration curve
+    float accel_factor = 1.0f;
+    if (magnitude > 5) {
+        accel_factor = 2.5f;
+    } else if (magnitude > 3) {
+        accel_factor = 1.5f;
+    }
+
+    // Calculate magnitude of movement vector
+    float dx = (float)mouse_report.x;
+    float dy = (float)mouse_report.y;
+    
+    int scaled_x = (int)(dx * accel_factor);
+    int scaled_y = (int)(dy * accel_factor);
+    
+    // Clamp to valid int8_t range [-127, 127]
+    if (scaled_x > 127) scaled_x = 127;
+    if (scaled_x < -127) scaled_x = -127;
+    
+    if (scaled_y > 127) scaled_y = 127;
+    if (scaled_y < -127) scaled_y = -127;
+    
+        // Apply the acceleration
+    mouse_report.x = (int8_t)scaled_x;
+    mouse_report.y = (int8_t)scaled_y;
+
+  }
+  
+//   // else {
+//   //   if (abs(mouse_report.x) < 2 && abs(mouse_report.y) < 2) {
+//   //   // Ignore small movements
+//   //   mouse_report.x = 0;
+//   //   mouse_report.y = 0;
+//   //   }
+//   // }
+
+//   // Return the modified or unmodified mouse report
+  return mouse_report;
+}
+
 // // ==============================================
 // ENCODERS :
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     // Mappings for 1st Encoder          // Mappings for 2nd Encoder
     [_COLEMAK_FR] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
-                     ENCODER_CCW_CW(KC_VOLD,
-                                    KC_VOLU)}, // Mapping for Base layer
+                     ENCODER_CCW_CW(KC_VOLD,KC_VOLU)}, // Mapping for Base layer
     [_GAME] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
                ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_AUX_GAME] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
-                   ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}, // Mapping for Base layer
+                   ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_CAPS_LOCK] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
                     ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_F_KEYS] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
@@ -497,6 +722,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
                      ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_WEB_BROWSER] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
                       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_MOUSE_LAYER]  = {ENCODER_CCW_CW(DPI_DEC, DPI_INC),
+                       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_ACCENTS] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
                   ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_REG_SPE] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
@@ -509,10 +736,4 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 bool shutdown_user(bool jump_to_bootloader) {
   oled_render_boot(jump_to_bootloader);
   return false;
-}
-
-void pointing_device_init_user(void) {
-    // set_auto_mouse_layer(_MOUSE_LAYER); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
-    // set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
-    pointing_device_set_cpi(TRACKPAD_DEFAULT_DPI);
 }
