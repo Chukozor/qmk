@@ -20,6 +20,7 @@
 #define SOLENOID_MIN_DWELL 15
 #define SOLENOID_MAX_DWELL 20
 #define SOLENOID_DWELL_STEP_SIZE 1
+#define HAPTIC_OFF_IN_LOW_POWER 1
 #define NO_HAPTIC_MOD
 // #define SOLENOIDèio_PIN_ACTIVE_LOW
 // ======= Encoder ======
