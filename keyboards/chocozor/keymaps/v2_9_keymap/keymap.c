@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // _DEBUGLAYER
     [_DEBUGLAYER] = LAYOUT_2_9_regular(
   //--------------------------------------.                                           -----------------------------------------------------.
-       FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                            S(FR_A), S(KC_B), S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
+       FR_A, KC_B, KC_C, KC_D, KC_E, QK_BOOT,                                        QK_BOOT, S(KC_B), S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
   //|------+-----+-----+-----+-----+------|                                          |-------+--------+--------+--------+--------+---------|
        KC_G, KC_H, KC_I, KC_J, KC_K, KC_L,                                            S(KC_G), S(KC_H), S(KC_I), S(KC_J), S(KC_K), S(KC_L), 
   //|------+-----+-----+-----+-----+------|                                          |-------+--------+--------+--------+--------+---------|
