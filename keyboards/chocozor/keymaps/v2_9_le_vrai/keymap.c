@@ -28,6 +28,8 @@ const uint16_t PROGMEM combo_clear_eeprom[]       = {RGB_TOG, _I__MOD, _I_COUL,_
 const uint16_t PROGMEM combo_web[]                = {MY_LCTL, MY_RCTL, COMBO_END};
 const uint16_t PROGMEM combo_print_screen[]       = {KC_R, KC_S, KC_T, COMBO_END};
 
+static bool solenoid_actif = false;
+
 combo_t key_combos[] = {
     [COMBO_NUMPAD_RIGHT]  = COMBO(toggle_numpad_right, TG(_NUMPAD_RIGHT)),
     [COMBO_NUMPAD_RIGHT2] = COMBO(toggle_numpad_right2, TG(_NUMPAD_RIGHT)),
@@ -71,6 +73,8 @@ const key_override_t *key_overrides[] = {
 
 static void solenoid_helper(void){
   static uint16_t last_fire = 0;
+  if(!solenoid_actif)
+    return;
   if (timer_elapsed(last_fire) > 40) {  // 80 ms entre deux activations
     solenoid_fire(0);
     last_fire = timer_read();
@@ -318,6 +322,10 @@ case ACEL_OFF:
     // ky_webnav = false;
   }
   return false;
+ case SOL_TOG:
+   if(record->event.pressed){
+     solenoid_actif = !solenoid_actif;
+   }
   }
 
 #undef X
