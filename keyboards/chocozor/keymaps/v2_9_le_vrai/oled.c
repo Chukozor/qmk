@@ -15,6 +15,16 @@ static void render_logo(void) {
   oled_write_raw_P(logo, sizeof(logo));
 }
 
+// oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    if (is_keyboard_left()) {
+        return OLED_ROTATION_0;
+    } else {
+        return OLED_ROTATION_180;
+    }
+}
+
 bool oled_task_user() {
   oled_set_cursor(0, 0);
   render_logo();

@@ -8,20 +8,20 @@ extern bool trace_operations;
 
 
 #define _LAYERS \
-  X(_COLEMAK_FR, "COLE-  MAK       FR                          ")\
-  X(_GAME, " GAME                                        ")\
-  X(_AUX_GAME," AUX  GAME                                   ")\
-  X(_CAPS_LOCK, "  CAPS_LOCK                                   ")\
-  X(_F_KEYS,"  F_  KEYS                                   ")\
-  X(_NUMPAD_RIGHT," NUM-PAD  RIGHT                              ")\
-  X(_NAV,"  NAV                                        ")\
-  X(_OPERATIONS,"OPERATEURS                                   ")\
-  X(_WEB_BROWSER," WEB_                                        ")\
-  X(_MOUSE_LAYER," MOUSE_                                     ")\
-  X(_ACCENTS,"ACCE-  NTS                                   ")\
-  X(_REG_SPE,"  REG _SPE                                   ")\
-  X(_MULTIMEDIA,"MULTIMEDIA                                   ")\
-  X(_RGB," RGB                                         ")
+  X(_COLEMAK_FR,   "COLEMAK          FR")\
+  X(_GAME,         "        GAME       ")\
+  X(_AUX_GAME,     "     AUX  GAME     ")\
+  X(_CAPS_LOCK,    "CAPS_LOCK          ")\
+  X(_F_KEYS,       "F_  KEYS           ")\
+  X(_NUMPAD_RIGHT, "   NUMPAD  RIGHT   ")\
+  X(_NAV,          "       NAV         ")\
+  X(_OPERATIONS,   "    OPERATEURS     ")\
+  X(_WEB_BROWSER,  "       WEB_        ")\
+  X(_MOUSE_LAYER,  "      MOUSE        ")\
+  X(_ACCENTS,      "     ACCENTS       ")\
+  X(_REG_SPE,      "     REG _SPE      ")\
+  X(_MULTIMEDIA,   "    MULTIMEDIA     ")\
+  X(_RGB,          "       RGB         ")
 
 #define X(a,b) a,
 enum layers{
@@ -135,6 +135,7 @@ enum custom_keycodes{
   DPI_DEC,
   ACEL_OFF,
   SOL_TOG,
+  MY_BQUOT2,
   };
 #undef X
 #undef Y
