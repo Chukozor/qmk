@@ -78,14 +78,18 @@ const key_override_t *key_overrides[] = {
     NULL // Null terminate the array of overrides!
 };
 
+static bool solenoid_enabled = false; // Solenoid off at start
+
 static void solenoid_helper(void) {
+  if (!solenoid_enabled) {
+    return;
+  }
   static uint16_t last_fire = 0;
-  if (timer_elapsed(last_fire) > 80) { // 80 ms entre deux activations
+  if (timer_elapsed(last_fire) > 80) {
     solenoid_fire(0);
     last_fire = timer_read();
   }
 }
-
 
 // some variables
 float aux_dpi = 0;
@@ -112,6 +116,13 @@ bool set_scrolling = false;
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (keycode == SOL_TOG) {
+    if (record->event.pressed) {
+      solenoid_enabled = !solenoid_enabled;
+    }
+    return false; // ne rien envoyer au PC
+  }
+
   if (record->event.pressed) {
     solenoid_helper();
   }
@@ -406,7 +417,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK_FR] = LAYOUT_2_9_regular(
-      KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                              KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1,   KC_P2,
+      KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                              KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1, SOL_TOG,
      MY_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                                               KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
 //|--------+--------+--------+--------+--------+--------|                                            |------+--------+--------+--------+--------+--------|
     MY_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                               KC_H,    KC_N,    HT_E,    KC_I,    KC_O, MY_RCTL,

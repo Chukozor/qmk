@@ -134,6 +134,7 @@ enum custom_keycodes{
   DPI_INC,
   DPI_DEC,
   ACEL_OFF,
+  SOL_TOG,
   };
 #undef X
 #undef Y
