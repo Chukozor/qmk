@@ -52,7 +52,7 @@
 
 // rotation
 // #define POINTING_DEVICE_ROTATION_180
-#define POINTING_DEVICE_ROTATION_180_LEFT
+#define POINTING_DEVICE_ROTATION_180
 
 
 // Cirque options (optional)
