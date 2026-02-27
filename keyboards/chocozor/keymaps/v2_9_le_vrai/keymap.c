@@ -71,7 +71,7 @@ const key_override_t *key_overrides[] = {
 
 static void solenoid_helper(void){
   static uint16_t last_fire = 0;
-  if (timer_elapsed(last_fire) > 80) {  // 80 ms entre deux activations
+  if (timer_elapsed(last_fire) > 40) {  // 80 ms entre deux activations
     solenoid_fire(0);
     last_fire = timer_read();
   }
