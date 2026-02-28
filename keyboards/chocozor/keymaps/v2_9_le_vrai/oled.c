@@ -1,8 +1,11 @@
 #include QMK_KEYBOARD_H
 #include "enum.h"
-#include "quantum/wpm.h"
 #include <string.h>
-#include <stdio.h>  // snprintf
+#include <stdio.h>
+
+#ifdef WPM_ENABLE
+#    include "quantum/wpm.h"
+#endif
 
 // ==========================================================
 // LOGO 32x32
@@ -38,13 +41,10 @@ static void render_logo_left(void) {
 #define BIG_CHAR_STRIDE 12
 
 static const uint8_t PROGMEM font5x7[][5] = {
-
     {0x00,0x00,0x00,0x00,0x00}, // space
+    {0x60,0x60,0x60,0x60,0x60}, // '_'
 
-    // '_'  -> BAS (bits 5 & 6 pour épaisseur)
-    {0x60,0x60,0x60,0x60,0x60},
-
-    // '0'..'9'
+    // 0-9
     {0x3E,0x51,0x49,0x45,0x3E},
     {0x00,0x42,0x7F,0x40,0x00},
     {0x62,0x51,0x49,0x49,0x46},
@@ -56,7 +56,7 @@ static const uint8_t PROGMEM font5x7[][5] = {
     {0x36,0x49,0x49,0x49,0x36},
     {0x26,0x49,0x49,0x49,0x3E},
 
-    // 'A'..'Z'
+    // A-Z
     {0x7E,0x11,0x11,0x11,0x7E},
     {0x7F,0x49,0x49,0x49,0x36},
     {0x3E,0x41,0x41,0x41,0x22},
@@ -113,7 +113,6 @@ static void build_big_text_bitmap_x2(const char *s, uint8_t max_chars, uint8_t *
             for (uint8_t row = 0; row < 7; row++) {
                 if (bits & (1 << row)) {
                     uint8_t y2 = row * 2;
-
                     for (uint8_t dx = 0; dx < 2; dx++)
                         for (uint8_t dy = 0; dy < 2; dy++)
                             set_px_16(top, bot, x0 + col*2 + dx, y2 + dy);
@@ -135,8 +134,8 @@ static void render_layer_big_next_to_logo(void) {
 
     build_big_text_bitmap_x2(lbl, BIG_TEXT_MAX_CH, top, bot);
 
-    uint8_t col8 = BIG_TEXT_X_PX / 8; // 40px -> col 5
-    uint8_t page = BIG_TEXT_Y_PX / 8; // 8px  -> page 1
+    uint8_t col8 = BIG_TEXT_X_PX / 8;
+    uint8_t page = BIG_TEXT_Y_PX / 8;
 
     oled_set_cursor(col8, page);
     oled_write_raw((const char *)top, BIG_TEXT_W_PX);
@@ -146,22 +145,27 @@ static void render_layer_big_next_to_logo(void) {
 }
 
 // ==========================================================
-// WPM small text (below big layer text)
+// CPM display
 // ==========================================================
-static void render_wpm_small_below_layer(void) {
-    const uint8_t col8 = BIG_TEXT_X_PX / 8; // col 5
-    const uint8_t row  = 3;                // last page (y=24..31)
+static void render_cpm_small_below_layer(void) {
+    const uint8_t col8 = BIG_TEXT_X_PX / 8;
+    const uint8_t row  = 3;
 
     char buf[16];
-    snprintf(buf, sizeof(buf), "WPM:%3u      ", (unsigned)get_current_wpm());
+
+#ifdef WPM_ENABLE
+    uint16_t cpm = get_current_wpm() * 5;
+    snprintf(buf, sizeof(buf), "CPM:%3u      ", cpm);
+#else
+    snprintf(buf, sizeof(buf), "CPM:---      ");
+#endif
 
     oled_set_cursor(col8, row);
     oled_write(buf, false);
 }
 
 // ==========================================================
-// OLED hooks
-// ==========================================================
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return is_keyboard_left() ? OLED_ROTATION_0 : OLED_ROTATION_180;
 }
@@ -169,7 +173,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 bool oled_task_user(void) {
     render_logo_left();
     render_layer_big_next_to_logo();
-    render_wpm_small_below_layer();
+    render_cpm_small_below_layer();
     return false;
 }
 
