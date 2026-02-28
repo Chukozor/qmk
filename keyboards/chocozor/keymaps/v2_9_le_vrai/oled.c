@@ -1,6 +1,8 @@
 #include QMK_KEYBOARD_H
 #include "enum.h"
+#include "quantum/wpm.h"
 #include <string.h>
+#include <stdio.h>  // snprintf
 
 // ==========================================================
 // LOGO 32x32
@@ -133,8 +135,8 @@ static void render_layer_big_next_to_logo(void) {
 
     build_big_text_bitmap_x2(lbl, BIG_TEXT_MAX_CH, top, bot);
 
-    uint8_t col8 = BIG_TEXT_X_PX / 8;
-    uint8_t page = BIG_TEXT_Y_PX / 8;
+    uint8_t col8 = BIG_TEXT_X_PX / 8; // 40px -> col 5
+    uint8_t page = BIG_TEXT_Y_PX / 8; // 8px  -> page 1
 
     oled_set_cursor(col8, page);
     oled_write_raw((const char *)top, BIG_TEXT_W_PX);
@@ -143,6 +145,23 @@ static void render_layer_big_next_to_logo(void) {
     oled_write_raw((const char *)bot, BIG_TEXT_W_PX);
 }
 
+// ==========================================================
+// WPM small text (below big layer text)
+// ==========================================================
+static void render_wpm_small_below_layer(void) {
+    const uint8_t col8 = BIG_TEXT_X_PX / 8; // col 5
+    const uint8_t row  = 3;                // last page (y=24..31)
+
+    char buf[16];
+    snprintf(buf, sizeof(buf), "WPM:%3u      ", (unsigned)get_current_wpm());
+
+    oled_set_cursor(col8, row);
+    oled_write(buf, false);
+}
+
+// ==========================================================
+// OLED hooks
+// ==========================================================
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return is_keyboard_left() ? OLED_ROTATION_0 : OLED_ROTATION_180;
 }
@@ -150,6 +169,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 bool oled_task_user(void) {
     render_logo_left();
     render_layer_big_next_to_logo();
+    render_wpm_small_below_layer();
     return false;
 }
 
