@@ -318,6 +318,12 @@ case ACEL_OFF:
     // ky_webnav = false;
   }
   return false;
+
+case ACEL_ON:
+  if (record->event.pressed) {
+    accel_off = false;
+  }
+  return false;
 //  case SOL_TOG:
 //    if(record->event.pressed){
 //      solenoid_actif = !solenoid_actif;
@@ -466,7 +472,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_MOUSE_LAYER] = LAYOUT_2_9_regular(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,ACEL_OFF,                                             KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+     MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, ACEL_ON,ACEL_OFF,                                             KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     KC_LCTL, K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2,XXXXXXX,                                              XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
     KC_LSFT, K_SNIPE, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                             XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN2, XXXXXXX, KC_RSFT,
                       XXXXXXX, XXXXXXX, XXXXXXX,                                                               XXXXXXX, XXXXXXX, KC_BTN2,

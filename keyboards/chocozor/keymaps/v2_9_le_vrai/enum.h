@@ -134,6 +134,7 @@ enum custom_keycodes{
   DPI_INC,
   DPI_DEC,
   ACEL_OFF,
+  ACEL_ON,
   MY_BQUOT2,
   SOL_TOG,
   };
