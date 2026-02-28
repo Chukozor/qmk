@@ -401,7 +401,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK_FR] = LAYOUT_2_9_regular(
-      KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                              KC_P7,   KC_P8,   KC_P9, HF_DWLD, HF_DWLU, HF_TOGG,
+      KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                              KC_P7,   KC_P8,   KC_P9,   KC_P1,   KC_P2,   KC_P3,
      MY_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                                               KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
     MY_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                               KC_H,    KC_N,    HT_E,    KC_I,    KC_O, MY_RCTL,
     KC_LSFT,    FR_Q,    KC_X,    KC_C,    KC_V,    KC_B,                                               KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_RSFT,
@@ -505,12 +505,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, KC_MPLY, XXXXXXX
 ),
 [_RGB] = LAYOUT_2_9_regular(
-    FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                              QK_CLEAR_EEPROM, XXXXXXX, XXXXXXX, XXXXXXX, HF_DWLD, HF_DWLU,
     KC_G, KC_H, KC_I, KC_J, KC_K, KC_L,                                                      RGB_TOG, _I__MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
-    KC_M, KC_N, KC_O, KC_P, FR_Q, KC_R,                                                      XXXXXXX, _D_RMOD, _D_COUL, __D_LUM, __D_SAT, __D_VIT,
+    KC_M, KC_N, KC_O, KC_P, FR_Q, KC_R,                                                      HF_TOGG, _D_RMOD, _D_COUL, __D_LUM, __D_SAT, __D_VIT,
     KC_U, KC_V, FR_W, KC_X, KC_Y, FR_Z,                                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
                 FR_Z, KC_1, KC_2,                                                                              XXXXXXX, XXXXXXX, XXXXXXX,
-                               XXXXXXX,TG(_RGB), XXXXXXX,                  XXXXXXX, XXXXXXX, XXXXXXX
+                               TG(_RGB),TG(_RGB), TG(_RGB),                  XXXXXXX, XXXXXXX, XXXXXXX
 )
 };
 
@@ -640,8 +640,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
                   ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_MULTIMEDIA] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
                      ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_RGB] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
-              ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}};
+    [_RGB] = {ENCODER_CCW_CW(_D_RMOD, _I__MOD),
+              ENCODER_CCW_CW(__D_LUM, __I_LUM)}};
 
 bool shutdown_user(bool jump_to_bootloader) {
   oled_render_boot(jump_to_bootloader);

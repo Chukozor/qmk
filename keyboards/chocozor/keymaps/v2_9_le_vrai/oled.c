@@ -10,6 +10,7 @@
 // ==========================================================
 // LOGO 32x32
 // ==========================================================
+
 static const uint8_t PROGMEM logo_cornia_32x32[] = {
   0,0,0,0,0,0,0,0,192,32,16,0,0,0,0,0,
   0,0,0,0,0,16,32,192,0,0,0,0,0,0,0,0,
@@ -41,6 +42,7 @@ static void render_logo_left(void) {
 #define BIG_CHAR_STRIDE 12
 
 static const uint8_t PROGMEM font5x7[][5] = {
+
     {0x00,0x00,0x00,0x00,0x00}, // space
     {0x60,0x60,0x60,0x60,0x60}, // '_'
 
@@ -147,6 +149,7 @@ static void render_layer_big_next_to_logo(void) {
 // ==========================================================
 // CPM display
 // ==========================================================
+
 static void render_cpm_small_below_layer(void) {
     const uint8_t col8 = BIG_TEXT_X_PX / 8;
     const uint8_t row  = 3;
@@ -165,15 +168,34 @@ static void render_cpm_small_below_layer(void) {
 }
 
 // ==========================================================
+// OLED hooks + auto off
+// ==========================================================
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return is_keyboard_left() ? OLED_ROTATION_0 : OLED_ROTATION_180;
 }
 
 bool oled_task_user(void) {
+
+    static bool oled_is_on = true;
+
+    if (last_input_activity_elapsed() > OLED_TIMEOUT) {
+        if (oled_is_on) {
+            oled_off();
+            oled_is_on = false;
+        }
+        return false;
+    }
+
+    if (!oled_is_on) {
+        oled_on();
+        oled_is_on = true;
+    }
+
     render_logo_left();
     render_layer_big_next_to_logo();
     render_cpm_small_below_layer();
+
     return false;
 }
 
