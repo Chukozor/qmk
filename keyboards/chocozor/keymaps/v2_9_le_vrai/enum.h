@@ -23,6 +23,23 @@ extern bool trace_operations;
   X(_MULTIMEDIA,   "    MULTIMEDIA     ")\
   X(_RGB,          "       RGB         ")
 
+// AJOUT: Texte court pour affichage en gros sur l'OLED jusqu'à 7 lettres
+#define _LAYERS_BIG \
+  X(_COLEMAK_FR,   "COLMAK")\
+  X(_GAME,         "GAME")\
+  X(_AUX_GAME,     "AUXGAME")\
+  X(_CAPS_LOCK,    "CAPS")\
+  X(_F_KEYS,       "F_KEYS")\
+  X(_NUMPAD_RIGHT, "NUM")\
+  X(_NAV,          "NAV")\
+  X(_OPERATIONS,   "OPERAT")\
+  X(_WEB_BROWSER,  "WEB")\
+  X(_MOUSE_LAYER,  "MOUSE")\
+  X(_ACCENTS,      "ACCENTS")\
+  X(_REG_SPE,      "REG_SPE")\
+  X(_MULTIMEDIA,   "MEDIA")\
+  X(_RGB,          "RGB")
+
 #define X(a,b) a,
 enum layers{
  _LAYERS
