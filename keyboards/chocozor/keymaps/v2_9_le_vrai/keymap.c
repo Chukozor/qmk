@@ -27,6 +27,7 @@ const uint16_t PROGMEM toggle_game[]              = {FR_A, KC_R, KC_S,KC_T, KC_D
 const uint16_t PROGMEM combo_clear_eeprom[]       = {RGB_TOG, _I__MOD, _I_COUL,__I_LUM, __I_SAT, COMBO_END};
 const uint16_t PROGMEM combo_web[]                = {MY_LCTL, MY_RCTL, COMBO_END};
 const uint16_t PROGMEM combo_print_screen[]       = {KC_R, KC_S, KC_T, COMBO_END};
+const uint16_t PROGMEM combo_RGB[]                = {FR_Z,KC_1,KC_2,COMBO_END};
 
 // static bool solenoid_actif = false;
 
@@ -42,6 +43,7 @@ combo_t key_combos[] = {
     [COMBO_CLEAR_EEPROM]  = COMBO(combo_clear_eeprom, QK_CLEAR_EEPROM),
     [COMBO_WEB]           = COMBO(combo_web, TG(_WEB_BROWSER)),
     [COMBO_PRINT_SCREEN]  = COMBO(combo_print_screen, KC_PSCR),
+    [COMBO_RGB]           = COMBO(combo_RGB, TG(_RGB)),
 };
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
@@ -507,7 +509,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_G, KC_H, KC_I, KC_J, KC_K, KC_L,                                                      RGB_TOG, _I__MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
     KC_M, KC_N, KC_O, KC_P, FR_Q, KC_R,                                                      XXXXXXX, _D_RMOD, _D_COUL, __D_LUM, __D_SAT, __D_VIT,
     KC_U, KC_V, FR_W, KC_X, KC_Y, FR_Z,                                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-               KC_NO,KC_NO,KC_NO,                                                                     XXXXXXX, XXXXXXX, XXXXXXX,
+                FR_Z, KC_1, KC_2,                                                                              XXXXXXX, XXXXXXX, XXXXXXX,
                                XXXXXXX,TG(_RGB), XXXXXXX,                  XXXXXXX, XXXXXXX, XXXXXXX
 )
 };
