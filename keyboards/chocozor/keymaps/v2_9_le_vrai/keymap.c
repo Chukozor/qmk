@@ -606,10 +606,10 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
     float accel_factor = 1.0f;
     if (magnitude > 5) {
         accel_factor = 2.5f;
-    } else if (magnitude > 3) {
+    } else if (magnitude >= 3) {
         accel_factor = 1.5f;
-    } else if (magnitude < 0.2) {
-        accel_factor = 0.2f;
+    } else if (magnitude < 3) {
+        accel_factor = 0.0f;
     }
 
 
