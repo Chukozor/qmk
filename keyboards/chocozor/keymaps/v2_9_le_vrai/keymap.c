@@ -262,7 +262,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       set_scrolling = false;
     }
     return false;
-
+  case K_SNIPE: /* Decrease trackpad DPI*/
+    if (record->event.pressed) {
+      if (get_mods() == MOD_BIT(KC_LCTL)) {
+        unregister_mods(MOD_BIT_LCTRL);
+        alt_tab_menu = true;
+        SEND_STRING(SS_DOWN(X_LALT));
+        tap_code(KC_TAB);
+        wait_ms(5);
+        SEND_STRING(SS_UP(X_LALT));
+      } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+        aux_dpi = pointing_device_get_cpi();
+        pointing_device_set_cpi(200);
+        scroll_divisor_h =  SCROLL_DIVISOR_H_BASE * 2.0;
+        scroll_divisor_v =  SCROLL_DIVISOR_V_BASE * 2.0;
+      } else {
+        pointing_device_set_cpi(pointing_device_get_cpi()-300);
+      }
+    } else {
+      if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+        pointing_device_set_cpi(aux_dpi);
+        scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
+        scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
+      } else {
+        if (alt_tab_menu == true) {
+          alt_tab_menu = false;
+        } else {
+          pointing_device_set_cpi(pointing_device_get_cpi()+300);
+        }
+      }
+    }
+    return false;
 case K_BLITZ: /* Decrease trackpad DPI*/
     if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
       if (record->event.pressed) {
