@@ -569,44 +569,48 @@ void pointing_device_init_user(void) {
 // ===============================
 #define USE_SMOOTH_ACCEL 1
 
-// Deadzone: below this magnitude, acceleration factor = 0.0 (no movement)
-#define ACCEL_DEADZONE_MAG   0.0f
-
-// Full accel reached at/above this magnitude
-#define ACCEL_FULL_MAG       5.0f
-
-// Max multiplier when fully accelerated
-#define ACCEL_MAX_FACTOR     2.5f
-
 static inline float clamp01f(float x) {
     if (x < 0.0f) return 0.0f;
     if (x > 1.0f) return 1.0f;
     return x;
 }
 
-// Smoothstep 0..1 with zero slope at both ends
-static inline float smoothstep01(float t) {
-    t = clamp01f(t);
-    return t * t * (3.0f - 2.0f * t);
-}
+// ===============================
+// Piecewise-linear accel (3 segments)
+// Returns factor in [0 .. fmax]
+static inline float accel_factor_piecewise(int8_t x, int8_t y) {
+    float mag = (float)abs(x) + (float)abs(y); // L1 magnitude
 
-// Returns a continuous accel factor:
-// - 0.0 in deadzone
-// - ramps smoothly to ACCEL_MAX_FACTOR
-static inline float accel_factor_smooth(int8_t x, int8_t y) {
-    // magnitude (cheap) : L1 norm like you already do
-    float mag = (float)abs(x) + (float)abs(y);
+    // --- Tunable breakpoints (in "counts") ---
+    const float dz   = 1.0f;  // deadzone end
+    const float m1   = 3.0f;  // end of "slow ramp"
+    const float m2   = 5.0f;  // end of "medium ramp"
+    const float f1   = 1.5f;  // factor at m1
+    const float f2   = 2.5f;  // factor at m2
+    const float fmax = 3.0f;  // factor at/above m3
+    const float m3   = 6.0f;  // reach full accel here
 
-    if (mag <= ACCEL_DEADZONE_MAG) {
-        return 0.0f;
+    if (mag <= dz) return 0.0f;
+
+    // Segment dz -> m1 : 0 .. f1
+    if (mag < m1) {
+        float t = (mag - dz) / (m1 - dz);
+        return t * f1;
     }
-    if (mag >= ACCEL_FULL_MAG) {
-        return ACCEL_MAX_FACTOR;
+
+    // Segment m1 -> m2 : f1 .. f2
+    if (mag < m2) {
+        float t = (mag - m1) / (m2 - m1);
+        return f1 + t * (f2 - f1);
     }
 
-    float t = (mag - ACCEL_DEADZONE_MAG) / (ACCEL_FULL_MAG - ACCEL_DEADZONE_MAG); // 0..1
-    float s = smoothstep01(t); // 0..1 smooth
-    return s * ACCEL_MAX_FACTOR;
+    // Segment m2 -> m3 : f2 .. fmax
+    if (mag < m3) {
+        float t = (mag - m2) / (m3 - m2);
+        return f2 + t * (fmax - f2);
+    }
+
+    return fmax;
 }
 // ===============================
 
@@ -649,19 +653,7 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
     mouse_report.y = 0;
   } else if (!accel_off) {
   #if USE_SMOOTH_ACCEL
-      float accel_factor = accel_factor_smooth(mouse_report.x, mouse_report.y);
-  #else
-      // --- your current stepped behavior ---
-      int magnitude = abs(mouse_report.x) + abs(mouse_report.y);
-
-      float accel_factor = 1.0f;
-      if (magnitude > 5) {
-          accel_factor = 2.5f;
-      } else if (magnitude >= 3) {
-          accel_factor = 1.5f;
-      } else if (magnitude < 3) {
-          accel_factor = 0.0f;
-      }
+      float accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y);
   #endif
 
       int scaled_x = (int)((float)mouse_report.x * accel_factor);
