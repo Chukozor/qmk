@@ -608,7 +608,10 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
         accel_factor = 2.5f;
     } else if (magnitude > 3) {
         accel_factor = 1.5f;
+    } else if (magnitude < 0.2) {
+        accel_factor = 0.2f;
     }
+
 
     int scaled_x = (int)((float)mouse_report.x * accel_factor);
     int scaled_y = (int)((float)mouse_report.y * accel_factor);
