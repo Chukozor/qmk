@@ -582,13 +582,20 @@ static inline float accel_factor_piecewise(int8_t x, int8_t y) {
     float mag = (float)abs(x) + (float)abs(y); // L1 magnitude
 
     // --- Tunable breakpoints (in "counts") ---
-    const float dz   = 1.0f;  // deadzone end
-    const float m1   = 3.0f;  // end of "slow ramp"
-    const float m2   = 5.0f;  // end of "medium ramp"
-    const float f1   = 1.5f;  // factor at m1
-    const float f2   = 2.5f;  // factor at m2
-    const float fmax = 3.0f;  // factor at/above m3
-    const float m3   = 6.0f;  // reach full accel here
+    // const float dz   = 1.0f;  // deadzone end
+    // const float m1   = 3.0f;  // end of "slow ramp"
+    // const float m2   = 5.0f;  // end of "medium ramp"
+    // const float f1   = 1.5f;  // factor at m1
+    // const float f2   = 2.5f;  // factor at m2
+    // const float fmax = 3.0f;  // factor at/above m3
+    // const float m3   = 6.0f;  // reach full accel here
+    const float dz   = 1.0f;
+    const float m1   = 6.0f;
+    const float m2   = 14.0f;
+    const float f1   = 1.2f;
+    const float f2   = 2.0f;
+    const float fmax = 3.0f;
+    const float m3   = 30.0f;
 
     if (mag <= dz) return 0.0f;
 
