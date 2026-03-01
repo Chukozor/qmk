@@ -562,6 +562,55 @@ void pointing_device_init_user(void) {
 // - single pointing device  -> pointing_device_task_user()
 // - split + POINTING_DEVICE_COMBINED -> pointing_device_task_combined_user()
 
+
+
+// ===============================
+// Smooth acceleration tuning
+// ===============================
+#define USE_SMOOTH_ACCEL 1
+
+// Deadzone: below this magnitude, acceleration factor = 0.0 (no movement)
+#define ACCEL_DEADZONE_MAG   0.0f
+
+// Full accel reached at/above this magnitude
+#define ACCEL_FULL_MAG       5.0f
+
+// Max multiplier when fully accelerated
+#define ACCEL_MAX_FACTOR     2.5f
+
+static inline float clamp01f(float x) {
+    if (x < 0.0f) return 0.0f;
+    if (x > 1.0f) return 1.0f;
+    return x;
+}
+
+// Smoothstep 0..1 with zero slope at both ends
+static inline float smoothstep01(float t) {
+    t = clamp01f(t);
+    return t * t * (3.0f - 2.0f * t);
+}
+
+// Returns a continuous accel factor:
+// - 0.0 in deadzone
+// - ramps smoothly to ACCEL_MAX_FACTOR
+static inline float accel_factor_smooth(int8_t x, int8_t y) {
+    // magnitude (cheap) : L1 norm like you already do
+    float mag = (float)abs(x) + (float)abs(y);
+
+    if (mag <= ACCEL_DEADZONE_MAG) {
+        return 0.0f;
+    }
+    if (mag >= ACCEL_FULL_MAG) {
+        return ACCEL_MAX_FACTOR;
+    }
+
+    float t = (mag - ACCEL_DEADZONE_MAG) / (ACCEL_FULL_MAG - ACCEL_DEADZONE_MAG); // 0..1
+    float s = smoothstep01(t); // 0..1 smooth
+    return s * ACCEL_MAX_FACTOR;
+}
+// ===============================
+
+
 static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
   // Check if _REG_SPE layer is active (for volume control)
   if (IS_LAYER_ON(_REG_SPE)) {
@@ -599,33 +648,33 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
     mouse_report.x = 0;
     mouse_report.y = 0;
   } else if (!accel_off) {
-    // Calculate movement magnitude
-    int magnitude = abs(mouse_report.x) + abs(mouse_report.y);
+  #if USE_SMOOTH_ACCEL
+      float accel_factor = accel_factor_smooth(mouse_report.x, mouse_report.y);
+  #else
+      // --- your current stepped behavior ---
+      int magnitude = abs(mouse_report.x) + abs(mouse_report.y);
 
-    // Apply a simple acceleration curve
-    float accel_factor = 1.0f;
-    if (magnitude > 5) {
-        accel_factor = 2.5f;
-    } else if (magnitude >= 3) {
-        accel_factor = 1.5f;
-    } else if (magnitude < 3) {
-        accel_factor = 0.0f;
-    }
+      float accel_factor = 1.0f;
+      if (magnitude > 5) {
+          accel_factor = 2.5f;
+      } else if (magnitude >= 3) {
+          accel_factor = 1.5f;
+      } else if (magnitude < 3) {
+          accel_factor = 0.0f;
+      }
+  #endif
 
+      int scaled_x = (int)((float)mouse_report.x * accel_factor);
+      int scaled_y = (int)((float)mouse_report.y * accel_factor);
 
-    int scaled_x = (int)((float)mouse_report.x * accel_factor);
-    int scaled_y = (int)((float)mouse_report.y * accel_factor);
+      // Clamp to valid int8_t range [-127, 127]
+      if (scaled_x > 127) scaled_x = 127;
+      if (scaled_x < -127) scaled_x = -127;
+      if (scaled_y > 127) scaled_y = 127;
+      if (scaled_y < -127) scaled_y = -127;
 
-    // Clamp to valid int8_t range [-127, 127]
-    if (scaled_x > 127) scaled_x = 127;
-    if (scaled_x < -127) scaled_x = -127;
-
-    if (scaled_y > 127) scaled_y = 127;
-    if (scaled_y < -127) scaled_y = -127;
-
-    // Apply the acceleration
-    mouse_report.x = (int8_t)scaled_x;
-    mouse_report.y = (int8_t)scaled_y;
+      mouse_report.x = (int8_t)scaled_x;
+      mouse_report.y = (int8_t)scaled_y;
   }
 
   return mouse_report;
