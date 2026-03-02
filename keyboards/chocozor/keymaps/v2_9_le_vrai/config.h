@@ -85,13 +85,20 @@
 
 // SPI setting :
 // #define CIRQUE_PINNACLE_CLOCK_SPEED 1000000
-#define CIRQUE_PINNACLE_CLOCK_SPEED 500000
+#define CIRQUE_PINNACLE_CLOCK_SPEED 1000000
 
 // // absolute mode
 #define CIRQUE_PINNACLE_POSITION_MODE CIRQUE_PINNACLE_ABSOLUTE_MODE
 #define CIRQUE_PINNACLE_TAP_ENABLE
 // #define CIRQUE_PINNACLE_TAPPING_TERM 0.75 // default value is TAPPING_TERM/200
 // #define CIRQUE_PINNACLE_TOUCH_DEBOUNCE 0.75 // default value is TAPPING_TERM/200
+
+
+// ============= Acceleration ===========
+#define POINTING_DEVICE_ACCEL_TAKEOFF 2.0      // lower/higher value = curve takes off more smoothly/abruptly
+#define POINTING_DEVICE_ACCEL_GROWTH_RATE 0.45 // lower/higher value = curve reaches its upper limit slower/faster
+#define POINTING_DEVICE_ACCEL_OFFSET 8       // lower/higher value = acceleration kicks in earlier/later
+#define POINTING_DEVICE_ACCEL_LIMIT 0.001        // lower limit of accel curve (minimum acceleration factor)
 
 
 

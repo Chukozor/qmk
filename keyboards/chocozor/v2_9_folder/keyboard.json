@@ -17,6 +17,7 @@
       "enabled": true,
       "rotary": [{"pin_a": "GP21", "pin_b": "GP23"}]
   },
+  "modules": ["drashna/pointing_device_accel"],
   "ws2812": {
       "driver": "vendor",
       "pin": "GP11"

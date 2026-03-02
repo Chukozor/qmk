@@ -563,133 +563,62 @@ void pointing_device_init_user(void) {
 // - split + POINTING_DEVICE_COMBINED -> pointing_device_task_combined_user()
 
 
-
-// ===============================
-// Smooth acceleration tuning
-// ===============================
-#define USE_SMOOTH_ACCEL 1
-
-static inline float clamp01f(float x) {
-    if (x < 0.0f) return 0.0f;
-    if (x > 1.0f) return 1.0f;
-    return x;
-}
-
-// ===============================
-// Piecewise-linear accel (3 segments)
-// Returns factor in [0 .. fmax]
-static inline float accel_factor_piecewise(int8_t x, int8_t y) {
-    float mag = (float)abs(x) + (float)abs(y); // L1 magnitude
-
-    // --- Tunable breakpoints (in "counts") ---
-    // const float dz   = 1.0f;  // deadzone end
-    // const float m1   = 3.0f;  // end of "slow ramp"
-    // const float m2   = 5.0f;  // end of "medium ramp"
-    // const float f1   = 1.5f;  // factor at m1
-    // const float f2   = 2.5f;  // factor at m2
-    // const float fmax = 3.0f;  // factor at/above m3
-    // const float m3   = 6.0f;  // reach full accel here
-    const float dz   = 1.0f;
-    const float m1   = 6.0f;
-    const float m2   = 14.0f;
-    const float f1   = 1.2f;
-    const float f2   = 2.0f;
-    const float fmax = 3.0f;
-    const float m3   = 30.0f;
-
-    if (mag <= dz) return 0.0f;
-
-    // Segment dz -> m1 : 0 .. f1
-    if (mag < m1) {
-        float t = (mag - dz) / (m1 - dz);
-        return t * f1;
-    }
-
-    // Segment m1 -> m2 : f1 .. f2
-    if (mag < m2) {
-        float t = (mag - m1) / (m2 - m1);
-        return f1 + t * (f2 - f1);
-    }
-
-    // Segment m2 -> m3 : f2 .. fmax
-    if (mag < m3) {
-        float t = (mag - m2) / (m3 - m2);
-        return f2 + t * (fmax - f2);
-    }
-
-    return fmax;
-}
 // ===============================
 
 
-static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
-  // Check if _REG_SPE layer is active (for volume control)
-  if (IS_LAYER_ON(_REG_SPE)) {
-    // Accumulate vertical movement, scaled by VOLUME_DIVISOR for volume control
-    volume_accumulated_v += (float)mouse_report.y / VOLUME_DIVISOR;
+// static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
+//   // Check if _REG_SPE layer is active (for volume control)
+//   if (IS_LAYER_ON(_REG_SPE)) {
+//     // Accumulate vertical movement, scaled by VOLUME_DIVISOR for volume control
+//     volume_accumulated_v += (float)mouse_report.y / VOLUME_DIVISOR;
 
-    // If accumulated vertical movement reaches the threshold, adjust the volume
-    if (volume_accumulated_v >= VOLUME_THRESHOLD) {
-        tap_code(KC_VOLD);  // Decrease volume
-        volume_accumulated_v = 0;  // Reset accumulator after triggering
-    } else if (volume_accumulated_v <= -VOLUME_THRESHOLD) {
-        tap_code(KC_VOLU);  // Increase volume
-        volume_accumulated_v = 0;  // Reset accumulator after triggering
-    }
+//     // If accumulated vertical movement reaches the threshold, adjust the volume
+//     if (volume_accumulated_v >= VOLUME_THRESHOLD) {
+//         tap_code(KC_VOLD);  // Decrease volume
+//         volume_accumulated_v = 0;  // Reset accumulator after triggering
+//     } else if (volume_accumulated_v <= -VOLUME_THRESHOLD) {
+//         tap_code(KC_VOLU);  // Increase volume
+//         volume_accumulated_v = 0;  // Reset accumulator after triggering
+//     }
 
-    // Prevent any cursor movement while controlling volume
-    mouse_report.x = 0;
-    mouse_report.y = 0;
+//     // Prevent any cursor movement while controlling volume
+//     mouse_report.x = 0;
+//     mouse_report.y = 0;
 
-  } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-    // SCROLLING FUNCTIONALITY
-    // Accumulate scroll values based on mouse movement and divisors
-    scroll_accumulated_h += (float)mouse_report.x / scroll_divisor_h;
-    scroll_accumulated_v += (float)mouse_report.y / scroll_divisor_v;
+//   } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+//     // SCROLLING FUNCTIONALITY
+//     // Accumulate scroll values based on mouse movement and divisors
+//     scroll_accumulated_h += (float)mouse_report.x / scroll_divisor_h;
+//     scroll_accumulated_v += (float)mouse_report.y / scroll_divisor_v;
 
-    // Assign integer parts of accumulated scroll values to the mouse report
-    mouse_report.h = (int8_t)scroll_accumulated_h;  // Horizontal scroll
-    mouse_report.v = -(int8_t)scroll_accumulated_v; // Vertical scroll (negated for natural scroll)
+//     // Assign integer parts of accumulated scroll values to the mouse report
+//     mouse_report.h = (int8_t)scroll_accumulated_h;  // Horizontal scroll
+//     mouse_report.v = -(int8_t)scroll_accumulated_v; // Vertical scroll (negated for natural scroll)
 
-    // Update accumulated scroll values by subtracting the integer parts
-    scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
-    scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+//     // Update accumulated scroll values by subtracting the integer parts
+//     scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+//     scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
 
-    // Prevent cursor movement while scrolling
-    mouse_report.x = 0;
-    mouse_report.y = 0;
-  } else if (!accel_off) {
-  #if USE_SMOOTH_ACCEL
-      float accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y);
-  #endif
+//     // Prevent cursor movement while scrolling
+//     mouse_report.x = 0;
+//     mouse_report.y = 0;
+//   } else if (!accel_off) {
+//   }
 
-      int scaled_x = (int)((float)mouse_report.x * accel_factor);
-      int scaled_y = (int)((float)mouse_report.y * accel_factor);
-
-      // Clamp to valid int8_t range [-127, 127]
-      if (scaled_x > 127) scaled_x = 127;
-      if (scaled_x < -127) scaled_x = -127;
-      if (scaled_y > 127) scaled_y = 127;
-      if (scaled_y < -127) scaled_y = -127;
-
-      mouse_report.x = (int8_t)scaled_x;
-      mouse_report.y = (int8_t)scaled_y;
-  }
-
-  return mouse_report;
-}
+//   return mouse_report;
+// }
 
 // // Single / non-combined builds:
 // report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 //   return process_trackpad_report(mouse_report);
 // }
 
-// Split + POINTING_DEVICE_COMBINED builds:
-report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-  left_report  = process_trackpad_report(left_report);
-  right_report = process_trackpad_report(right_report);
-  return pointing_device_combine_reports(left_report, right_report);
-}
+// // Split + POINTING_DEVICE_COMBINED builds:
+// report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
+//   left_report  = process_trackpad_report(left_report);
+//   right_report = process_trackpad_report(right_report);
+//   return pointing_device_combine_reports(left_report, right_report);
+// }
 
 // // ==============================================
 // ENCODERS :
