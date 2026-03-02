@@ -632,6 +632,7 @@ static inline float accel_factor_piecewise(int8_t x, int8_t y) {
 
 
 static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
+  float accel_factor = 1.0f;
   // Check if _REG_SPE layer is active (for volume control)
   if (IS_LAYER_ON(_REG_SPE)) {
     // Accumulate vertical movement, scaled by VOLUME_DIVISOR for volume control
@@ -669,7 +670,7 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
     mouse_report.y = 0;
   } else if (!accel_off) {
   #if USE_SMOOTH_ACCEL
-      float accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y);
+      accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y);
   #endif
 
       int scaled_x = (int)((float)mouse_report.x * accel_factor);
