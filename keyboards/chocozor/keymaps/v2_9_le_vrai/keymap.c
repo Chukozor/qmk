@@ -575,6 +575,12 @@ static inline float clamp01f(float x) {
     return x;
 }
 
+static inline float smoothstep01(float t) {
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+    return t * t * (3.0f - 2.0f * t);
+}
+
 // ===============================
 // Piecewise-linear accel (3 segments)
 // Returns factor in [0 .. fmax]
@@ -602,6 +608,7 @@ static inline float accel_factor_piecewise(int8_t x, int8_t y) {
     // Segment dz -> m1 : 0 .. f1
     if (mag < m1) {
         float t = (mag - dz) / (m1 - dz);
+        t = smoothstep01(t);
         return t * f1;
     }
 
