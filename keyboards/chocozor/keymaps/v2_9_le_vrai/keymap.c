@@ -595,8 +595,8 @@ static inline float accel_factor_piecewise(int8_t x, int8_t y) {
     // const float f2   = 2.5f;  // factor at m2
     // const float fmax = 3.0f;  // factor at/above m3
     // const float m3   = 6.0f;  // reach full accel here
-    const float dz   = 1.0f;
-    const float m1   = 6.0f;
+    const float dz   = 0.5f;
+    const float m1   = 3.0f;
     const float m2   = 14.0f;
     const float f1   = 1.2f;
     const float f2   = 2.0f;
@@ -615,12 +615,14 @@ static inline float accel_factor_piecewise(int8_t x, int8_t y) {
     // Segment m1 -> m2 : f1 .. f2
     if (mag < m2) {
         float t = (mag - m1) / (m2 - m1);
+        t = smoothstep01(t);
         return f1 + t * (f2 - f1);
     }
 
     // Segment m2 -> m3 : f2 .. fmax
     if (mag < m3) {
         float t = (mag - m2) / (m3 - m2);
+        t = smoothstep01(t);
         return f2 + t * (fmax - f2);
     }
 
