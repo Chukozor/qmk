@@ -583,7 +583,7 @@ static inline float smoothstep01(float t) {
 // - m1->m2 linear
 // - m2->m3 linear
 // ===============================
-static inline float accel_factor_piecewise(int8_t x, int8_t y) {
+static inline float accel_factor_piecewise(int8_t x, int8_t y, bool a) {
     float mag = (float)abs(x) + (float)abs(y); // L1 magnitude
 
     const float dz   = 0.5f;
@@ -596,6 +596,7 @@ static inline float accel_factor_piecewise(int8_t x, int8_t y) {
 
     if (mag <= dz) return 0.0f;
 
+if (a==true) {
     // Segment dz -> m1 : 0 .. f1 (EASE IN/OUT)
     if (mag < m1) {
         float t = (mag - dz) / (m1 - dz);
@@ -614,8 +615,10 @@ static inline float accel_factor_piecewise(int8_t x, int8_t y) {
         float t = (mag - m2) / (m3 - m2);
         return f2 + t * (fmax - f2);
     }
-
     return fmax;
+} else {
+    return 1.0f;
+    }
 }
 
 // ===============================
@@ -692,9 +695,23 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
 
         // 2) accel
     #if USE_SMOOTH_ACCEL
-        accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y);
+        accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y, true);
     #endif
 
+        int scaled_x = (int)((float)mouse_report.x * accel_factor);
+        int scaled_y = (int)((float)mouse_report.y * accel_factor);
+
+        if (scaled_x > 127) scaled_x = 127;
+        if (scaled_x < -127) scaled_x = -127;
+        if (scaled_y > 127) scaled_y = 127;
+        if (scaled_y < -127) scaled_y = -127;
+
+        mouse_report.x = (int8_t)scaled_x;
+        mouse_report.y = (int8_t)scaled_y;
+    } else { // accel is off but we still want to reduce the jitering
+        // 1) mild anti-jitter "deadzone feel" on tiny movements
+        xy_filter_apply(&mouse_report);
+        accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y, false);
         int scaled_x = (int)((float)mouse_report.x * accel_factor);
         int scaled_y = (int)((float)mouse_report.y * accel_factor);
 
