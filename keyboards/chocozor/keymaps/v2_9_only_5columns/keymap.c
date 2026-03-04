@@ -429,117 +429,117 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_COLEMAK_FR] = LAYOUT_2_9_regular(
-      KC_P1,  MY_ESC,   KC_P3,   KC_P4,   KC_P5, QK_BOOT,                                            QK_BOOT,   KC_P8,   KC_P9,   KC_P1,   KC_P2,   KC_P3,
-     MY_ESC,  MY_ESC,    FR_W,    KC_F,    KC_P,    KC_G,                                               KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
-    MY_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                               KC_H,    KC_N,    HT_E,    KC_I,    KC_O, MY_RCTL,
-    KC_LSFT,    FR_Q,    KC_X,    KC_C,    KC_V,    KC_B,                                               KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_RSFT,
-                         FR_Z, MY_LCTL, KC_LSFT,                                                              KC_RSFT, MY_RCTL,  KC_TAB,
-                                                 KC_LGUI,  MY_NAV,  HT_SPC,        MOFKEYS, CSTM_ENT, KC_LALT
+[_COLEMAK_FR] = LAYOUT_2_9_only_5_columns(
+  MY_ESC,   KC_P3,   KC_P4,   KC_P5, QK_BOOT,                                            QK_BOOT,   KC_P8,   KC_P9,   KC_P1,   KC_P2,
+  MY_ESC,    FR_W,    KC_F,    KC_P,    KC_G,                                               KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,
+    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                               KC_H,    KC_N,    HT_E,    KC_I,    KC_O,
+    FR_Q,    KC_X,    KC_C,    KC_V,    KC_B,                                               KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES,
+             FR_Z, MY_LCTL, KC_LSFT,                                                              KC_RSFT, MY_RCTL,  KC_TAB,
+                                     KC_LGUI,  MY_NAV,  HT_SPC,        MOFKEYS, CSTM_ENT, KC_LALT
 ),
-[_GAME] = LAYOUT_2_9_regular(
-      KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                        KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1,   KC_P2,
-     KC_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
-    KC_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
-    KC_LSFT,    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
-                         KC_O, XXXXXXX, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX,
-                                                 MO_OX_G,  KC_I,  KC_SPC,      XXXXXXX,  KC_ENT, KC_LALT
+[_GAME] = LAYOUT_2_9_only_5_columns(
+   MY_ESC,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                                  KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1,
+    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                                                   KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,
+    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                                   KC_H,    KC_N,    KC_E,    KC_I,    KC_O,
+    FR_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                                   KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES,
+             KC_O, MY_LCTL, KC_LSFT,                                                                  XXXXXXX, XXXXXXX,  KC_TAB,
+                                    MO_OX_G,  KC_I,  KC_SPC,                XXXXXXX,  KC_ENT, KC_LALT
 ),
-[_AUX_GAME] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_P, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                      XXXXXXX, XXXXXXX, XXXXXXX,                                                                  XXXXXXX, XXXXXXX, XXXXXXX,
-                                                 XXXXXXX, XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX, XXXXXXX
+[_AUX_GAME] = LAYOUT_2_9_only_5_columns(
+   MY_ESC, XXXXXXX, XXXXXXX,    KC_P, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+           XXXXXXX, XXXXXXX, XXXXXXX,                                                                  XXXXXXX, XXXXXXX,  KC_TAB,
+                                      XXXXXXX, XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX, XXXXXXX
 ),
-[_CAPS_LOCK] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,  XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC, S(FR_Q), S(FR_W), S(KC_F), S(KC_P), S(KC_G),                                             S(KC_J), S(KC_L), S(KC_U), S(KC_Y), FR_QUOT,  KC_TAB,
-    MY_LCTL, S(FR_A), S(KC_R), S(KC_S), S(KC_T), S(KC_D),                                             S(KC_H), S(KC_N), S(KC_E), S(KC_I), S(KC_O), MY_RCTL,
-    KC_LSFT, S(FR_Q), S(KC_X), S(KC_C), S(KC_V), S(KC_B),                                             S(KC_K), S(FR_M), FR_COMM,  FR_DOT, FR_QUES, KC_RSFT,
-                      S(FR_Z), XXXXXXX, XXXXXXX,                                                               XXXXXXX, XXXXXXX, XXXXXXX,
-                                                 KC_LGUI,  MY_NAV,  HT_SPC,        XXXXXXX,  CSTM_ENT, KC_LALT
+[_CAPS_LOCK] = LAYOUT_2_9_only_5_columns(
+  MY_ESC, XXXXXXX, XXXXXXX,XXXXXXX,  XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ S(FR_Q), S(FR_W), S(KC_F), S(KC_P), S(KC_G),                                                 S(KC_J), S(KC_L), S(KC_U), S(KC_Y), FR_QUOT,
+ S(FR_A), S(KC_R), S(KC_S), S(KC_T), S(KC_D),                                                 S(KC_H), S(KC_N), S(KC_E), S(KC_I), S(KC_O),
+ S(FR_Q), S(KC_X), S(KC_C), S(KC_V), S(KC_B),                                                 S(KC_K), S(FR_M), FR_COMM,  FR_DOT, FR_QUES,
+          S(FR_Z), MY_LCTL, KC_LSFT,                                                                   XXXXXXX, XXXXXXX,  KC_TAB,
+                                     KC_LGUI,  MY_NAV,  HT_SPC,            XXXXXXX, CSTM_ENT, KC_LALT
 ),
-[_F_KEYS] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,  XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC,  KC_F16,   KC_F7,   KC_F8,   KC_F9,  KC_F12,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    MY_LCTL,  KC_F15,   KC_F4,   KC_F5,   KC_F6,  KC_F11,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    KC_LSFT,  KC_F14,   KC_F1,   KC_F2,   KC_F3,  KC_F10,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                         KC_F13, XXXXXXX, XXXXXXX,                                                               XXXXXXX, XXXXXXX, XXXXXXX,
-                                                 XXXXXXX, KC_LCTL, XXXXXXX,         XXXXXXX, KC_LCTL, KC_LALT
+[_F_KEYS] = LAYOUT_2_9_only_5_columns(
+  MY_ESC, XXXXXXX, XXXXXXX,XXXXXXX,  XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  KC_F16,   KC_F7,   KC_F8,   KC_F9,  KC_F12,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  KC_F15,   KC_F4,   KC_F5,   KC_F6,  KC_F11,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  KC_F14,   KC_F1,   KC_F2,   KC_F3,  KC_F10,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+           KC_F13, MY_LCTL, KC_LSFT,                                                                   XXXXXXX, XXXXXXX,  KC_TAB,
+                                     XXXXXXX, KC_LCTL, XXXXXXX,             XXXXXXX, KC_LCTL, KC_LALT
 ),
-[_NUMPAD_RIGHT] = LAYOUT_2_9_regular(
-    XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC, IMGLASS_CP,   KC_P7,   KY_P8,   KC_P9, KC_BSPC,                                             XXXXXXX,   KC_P7,   KC_P8,   KC_P9, XXXXXXX,  KC_TAB,
-    MY_LCTL,   MO_WEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                                             KC_PDOT,   KC_P4,   KC_P5,   KC_P6, XXXXXXX, MY_RCTL,
-    KC_LSFT,   MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                                              KC_ENT,   KC_P1,   KC_P2,   KC_P3,  KC_ENT, KC_RSFT,
-                           KC_P0, XXXXXXX, XXXXXXX,                                                               XXXXXXX, XXXXXXX, XXXXXXX,
-                                                    _______, _______, _______,           MO_OP, MO(_NAV), KC_LALT
+[_NUMPAD_RIGHT] = LAYOUT_2_9_only_5_columns(
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                               XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+IMGLASS_CP,   KC_P7,   KY_P8,   KC_P9, KC_BSPC,                                               XXXXXXX,   KC_P7,   KC_P8,   KC_P9, XXXXXXX,
+  MO_WEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                                               KC_PDOT,   KC_P4,   KC_P5,   KC_P6, XXXXXXX,
+  MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                                                KC_ENT,   KC_P1,   KC_P2,   KC_P3,  KC_ENT,
+              KC_P0, MY_LCTL, KC_LSFT,                                                                 XXXXXXX, XXXXXXX,  KC_TAB,
+                                       _______, _______, _______,            MO_OP, MO(_NAV), KC_LALT
  ),
-[_NAV] = LAYOUT_2_9_regular(
-    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC,IMGLASS_CP,   KC_P7,   KY_P8,   KC_P9, KC_BSPC,                                        XXXXXXX, KC_PGUP,   KC_UP, KC_PGDN, XXXXXXX,  KC_TAB,
-    MY_LCTL,  MO_WEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                                        KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL, MY_RCTL,
-    KC_LSFT,  MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                                        XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, KC_RSFT,
-                           KC_P0, XXXXXXX, XXXXXXX,                                                         XXXXXXX, XXXXXXX, XXXXXXX,
-                                                   _______, _______, _______,     XXXXXXX, KC_LCTL, KC_LALT
+[_NAV] = LAYOUT_2_9_only_5_columns(
+    MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                               XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+IMGLASS_CP,   KC_P7,   KY_P8,   KC_P9, KC_BSPC,                                               XXXXXXX, KC_PGUP,   KC_UP, KC_PGDN, XXXXXXX,
+  MO_WEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                                               KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL,
+  MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                                               XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX,
+              KC_P0, MY_LCTL, KC_LSFT,                                                                 XXXXXXX, XXXXXXX,  KC_TAB,
+                                       _______, _______, _______,            XXXXXXX, KC_LCTL, KC_LALT
 ),
-[_OPERATIONS] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC, TG_NUMP, ____INF, ____SUP, XXXXXXX, XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    MY_LCTL, XXXXXXX, __MOINS, __EQUAL, ___PLUS, XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    KC_LSFT, XXXXXXX, _DIVISE, MY_PIPE, ___FOIS, XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                      XXXXXXX, XXXXXXX, XXXXXXX,                                                                XXXXXXX, XXXXXXX, XXXXXXX,
-                                                 XXXXXXX, NAV_F_OP, HT_SPC,           XXXXXXX, XXXXXXX, XXXXXXX
+[_OPERATIONS] = LAYOUT_2_9_only_5_columns(
+  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ TG_NUMP, ____INF, ____SUP, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ XXXXXXX, __MOINS, __EQUAL, ___PLUS, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ XXXXXXX, _DIVISE, MY_PIPE, ___FOIS, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+          XXXXXXX, XXXXXXX, XXXXXXX,                                                                   XXXXXXX, XXXXXXX,  KC_TAB,
+                                     XXXXXXX, NAV_F_OP, HT_SPC,              XXXXXXX, XXXXXXX, XXXXXXX
 ),
-[_WEB_BROWSER] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                                           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC,  XXXXXXX, TABTO_L, WEB_TAB, TABTO_R, PRIVATE,                                           PRIVATE, TABTO_L, WEB_TAB, TABTO_R, XXXXXXX, XXXXXXX,
-    MY_LCTL, OPENBOOK,   WEB_G, FF_T_ST,   WEB_D, FF_FENE,                                           FF_FENE,   WEB_G, FF_T_ST,   WEB_D, XXXXXXX, MY_RCTL,
-    KC_LSFT,  XXXXXXX, WEB_DUP, THEBOOK, BOOKMAR, XXXXXXX,                                           XXXXXXX, BOOKMAR, THEBOOK, XXXXXXX, XXXXXXX, XXXXXXX,
-                       XXXXXXX, XXXXXXX, XXXXXXX,                                                             XXXXXXX, XXXXXXX, XXXXXXX,
-                                                  KC_LGUI, MY_NAV,  HT_SPC,         KC_LALT, AUX_WEB, XXXXXXX
+[_WEB_BROWSER] = LAYOUT_2_9_only_5_columns(
+ MY_ESC, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ XXXXXXX, TABTO_L, WEB_TAB, TABTO_R, PRIVATE,                                                 PRIVATE, TABTO_L, WEB_TAB, TABTO_R, XXXXXXX,
+OPENBOOK,   WEB_G, FF_T_ST,   WEB_D, FF_FENE,                                                 FF_FENE,   WEB_G, FF_T_ST,   WEB_D, XXXXXXX,
+ XXXXXXX, WEB_DUP, THEBOOK, BOOKMAR, XXXXXXX,                                                 XXXXXXX, BOOKMAR, THEBOOK, XXXXXXX, XXXXXXX,
+          XXXXXXX, MY_LCTL, KC_LSFT,                                                                   XXXXXXX, XXXXXXX,  KC_TAB,
+                                     KC_LGUI, MY_NAV,  HT_SPC,              KC_LALT, AUX_WEB, XXXXXXX
 ),
-[_MOUSE_LAYER] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, ACEL_ON,ACEL_OFF,                                             KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    KC_LCTL, K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2,XXXXXXX,                                              XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
-    KC_LSFT, K_SNIPE, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                             XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN2, XXXXXXX, KC_RSFT,
-                      XXXXXXX, XXXXXXX, XXXXXXX,                                                               XXXXXXX, XXXXXXX, KC_BTN2,
-                                                 KC_LSFT, KC_LCTL, MO(_ACCENTS),     KC_BTN1, KC_BTN3, TG_SCROL
+[_MOUSE_LAYER] = LAYOUT_2_9_only_5_columns(
+  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ XXXXXXX, XXXXXXX, XXXXXXX, ACEL_ON,ACEL_OFF,                                                 KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                                 XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX,
+ K_SNIPE, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                                 XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN2, XXXXXXX,
+          XXXXXXX, MY_LCTL, KC_LSFT,                                                                   XXXXXXX, XXXXXXX, KC_BTN2,
+                                     KC_LSFT, KC_LCTL, MO(_ACCENTS),       KC_BTN1, KC_BTN3, TG_SCROL
 ),
-[_ACCENTS] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                                           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     MY_ESC, XXXXXXX,  MY_UNDO, MY_REDO, MY_CUT, MY_PRT_P,                                           XXXXXXX, XXXXXXX,    HT_U, XXXXXXX, XXXXXXX,  KC_TAB,
-    MY_LCTL,     HT_A, SEL_ALL, MY_SAVE, MY_COPY,MY_PRT_Z,                                           KC_BSPC, XXXXXXX, _______,    HT_I,MY_OCIRC, MY_RCTL,
-    KC_LSFT,MY_COMENT, XXXXXXX,MY_CEDIL,MY_PASTE,MY_PRT_S,                                           XXXXXXX, XXXXXXX, FR_COLN, FR_SCLN, FR_EXLM, KC_RSFT,
-                       XXXXXXX, XXXXXXX, XXXXXXX,                                                             XXXXXXX, XXXXXXX, XXXXXXX,
-                                                  KC_LGUI, MY_NAV,  HT_SPC,         KC_LALT,CSTM_ENT,XXXXXXX
+[_ACCENTS] = LAYOUT_2_9_only_5_columns(
+   MY_ESC, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                                               XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX,  MY_UNDO, MY_REDO, MY_CUT, MY_PRT_P,                                               XXXXXXX, XXXXXXX,    HT_U, XXXXXXX, XXXXXXX,
+      HT_A, SEL_ALL, MY_SAVE, MY_COPY,MY_PRT_Z,                                               KC_BSPC, XXXXXXX, _______,    HT_I,MY_OCIRC,
+ MY_COMENT, XXXXXXX,MY_CEDIL,MY_PASTE,MY_PRT_S,                                               XXXXXXX, XXXXXXX, FR_COLN, FR_SCLN, FR_EXLM,
+            XXXXXXX, MY_LCTL, KC_LSFT,                                                                 XXXXXXX, XXXXXXX,  KC_TAB,
+                                       KC_LGUI, MY_NAV,  HT_SPC,           KC_LALT, CSTM_ENT, XXXXXXX
 ),
-[_REG_SPE] = LAYOUT_2_9_regular(
-     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,
-      MY_ESC, MY_TILD, FR_LBRC, XXXXXXX, FR_RBRC,MY_DIESE,                                             FR_PERC,  FR_LCBR, FR_UNDS, FR_RCBR,    FR_AMPR,  KC_TAB,
-     MY_LCTL,   FR_AT, KC_PMNS,  KC_EQL, KC_PPLS, MY_DOLL,                                             FR_ASTR,MY_BQUOT2, FR_QUOT, FR_DQUO, S(KC_MINS), MY_RCTL,
-     _______, XXXXXXX, KC_PSLS, MY_PIPE, KC_PAST, MY_EURO,                                             ___CIRC,  FR_LPRN, _BACKSL, FR_RPRN,    XXXXXXX, _______,
-                       XXXXXXX, XXXXXXX, XXXXXXX,                                                      XXXXXXX,  XXXXXXX, XXXXXXX,
-                                                  _______, _______, _______,        _______, CSTM_ENT, _______
+[_REG_SPE] = LAYOUT_2_9_only_5_columns(
+ MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,
+MY_TILD, FR_LBRC, XXXXXXX, FR_RBRC,MY_DIESE,                                                  FR_PERC,  FR_LCBR, FR_UNDS, FR_RCBR,    FR_AMPR,
+  FR_AT, KC_PMNS,  KC_EQL, KC_PPLS, MY_DOLL,                                                  FR_ASTR,MY_BQUOT2, FR_QUOT, FR_DQUO, S(KC_MINS),
+XXXXXXX, KC_PSLS, MY_PIPE, KC_PAST, MY_EURO,                                                  ___CIRC,  FR_LPRN, _BACKSL, FR_RPRN,    XXXXXXX,
+         XXXXXXX, MY_LCTL, KC_LSFT,                                                                     XXXXXXX, XXXXXXX,  KC_TAB,
+                                         _______, _______, _______,        _______, CSTM_ENT, _______
 ),
-[_MULTIMEDIA] = LAYOUT_2_9_regular(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX, XXXXXXX, KC_CALC, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             KC_MSTP, KC_MPRV, KC_VOLD, KC_MNXT, KC_MUTE, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                      XXXXXXX, XXXXXXX, XXXXXXX,                                                               XXXXXXX, XXXXXXX, XXXXXXX,
-                                                 XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, KC_MPLY, XXXXXXX
+[_MULTIMEDIA] = LAYOUT_2_9_only_5_columns(
+  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, KC_CALC, XXXXXXX, XXXXXXX,
+ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 KC_MSTP, KC_MPRV, KC_VOLD, KC_MNXT, KC_MUTE,
+ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+          XXXXXXX, MY_LCTL, KC_LSFT,                                                                   XXXXXXX, XXXXXXX,  KC_TAB,
+                                     XXXXXXX, XXXXXXX, XXXXXXX,             XXXXXXX, KC_MPLY, XXXXXXX
 ),
-[_RGB] = LAYOUT_2_9_regular(
-    FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                              QK_CLEAR_EEPROM, XXXXXXX, XXXXXXX, XXXXXXX, HF_DWLD, HF_DWLU,
-    KC_G, KC_H, KC_I, KC_J, KC_K, KC_L,                                                      RGB_TOG, _I__MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
-    KC_M, KC_N, KC_O, KC_P, FR_Q, KC_R,                                                      HF_TOGG, _D_RMOD, _D_COUL, __D_LUM, __D_SAT, __D_VIT,
-    KC_U, KC_V, FR_W, KC_X, KC_Y, FR_Z,                                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-                FR_Z, KC_1, KC_2,                                                                              XXXXXXX, XXXXXXX, XXXXXXX,
-                               TG(_RGB),TG(_RGB), TG(_RGB),                  XXXXXXX, XXXXXXX, XXXXXXX
+[_RGB] = LAYOUT_2_9_only_5_columns(
+MY_ESC, KC_C, KC_D, KC_E, KC_F,                                      QK_CLEAR_EEPROM, XXXXXXX, XXXXXXX, HF_DWLD, HF_DWLU,
+  KC_H, KC_I, KC_J, KC_K, KC_L,                                              RGB_TOG, _I__MOD, _I_COUL, __I_LUM, __I_SAT,
+  KC_N, KC_O, KC_P, FR_Q, KC_R,                                              HF_TOGG, _D_RMOD, _D_COUL, __D_LUM, __D_SAT,
+  KC_V, FR_W, KC_X, KC_Y, FR_Z,                                                KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        FR_Z, KC_1, KC_2,                                                             __I_VIT, __D_VIT,  KC_TAB,
+                      TG(_RGB),TG(_RGB),TG(_RGB),          XXXXXXX, XXXXXXX, XXXXXXX
 )
 };
 
