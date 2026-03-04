@@ -28,6 +28,8 @@ const uint16_t PROGMEM combo_clear_eeprom[]       = {RGB_TOG, _I__MOD, _I_COUL,_
 const uint16_t PROGMEM combo_web[]                = {MY_LCTL, MY_RCTL, COMBO_END};
 const uint16_t PROGMEM combo_print_screen[]       = {KC_R, KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM combo_RGB[]                = {FR_Z,MY_LCTL,KC_LSFT,COMBO_END};
+const uint16_t PROGMEM combo_boot1[]              = {KC_P4,KC_P5,KC_P6,COMBO_END};
+const uint16_t PROGMEM combo_boot2[]              = {KC_P7,KC_P8,KC_P9,COMBO_END};
 
 // static bool solenoid_actif = false;
 
@@ -44,6 +46,8 @@ combo_t key_combos[] = {
     [COMBO_WEB]           = COMBO(combo_web, TG(_WEB_BROWSER)),
     [COMBO_PRINT_SCREEN]  = COMBO(combo_print_screen, KC_PSCR),
     [COMBO_RGB]           = COMBO(combo_RGB, TG(_RGB)),
+    [COMBO_QKBOOT1]       = COMBO(combo_boot1, QK_BOOT),
+    [COMBO_QKBOOT2]       = COMBO(combo_boot2, QK_BOOT),
 };
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
@@ -430,7 +434,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK_FR] = LAYOUT_2_9_only_5_columns(
-  MY_ESC,   KC_P3,   KC_P4,   KC_P5, QK_BOOT,                                            QK_BOOT,   KC_P8,   KC_P9,   KC_P1,   KC_P2,
+  MY_ESC,   KC_P3,   KC_P4,   KC_P5,   KC_P6,                                              KC_P7,   KC_P8,   KC_P9,   KC_P1,   KC_P2,
  XXXXXXX,    FR_W,    KC_F,    KC_P,    KC_G,                                               KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,
     FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                               KC_H,    KC_N,    HT_E,    KC_I,    KC_O,
     FR_Q,    KC_X,    KC_C,    KC_V,    KC_B,                                               KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES,
@@ -446,7 +450,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     MO_OX_G,  KC_I,  KC_SPC,                XXXXXXX,  KC_ENT, KC_LALT
 ),
 [_AUX_GAME] = LAYOUT_2_9_only_5_columns(
-   MY_ESC, XXXXXXX, XXXXXXX,    KC_P, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+   MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -510,11 +514,11 @@ OPENBOOK,   WEB_G, FF_T_ST,   WEB_D, FF_FENE,                                   
                                      KC_LSFT, KC_LCTL, MO(_ACCENTS),       KC_BTN1, KC_BTN3, TG_SCROL
 ),
 [_ACCENTS] = LAYOUT_2_9_only_5_columns(
-   MY_ESC,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX,  MY_UNDO, MY_REDO,  MY_CUT, MY_PRT_P,                                              XXXXXXX, XXXXXXX,    HT_U, XXXXXXX, XXXXXXX,
-      HT_A, SEL_ALL, MY_SAVE, MY_COPY, MY_PRT_Z,                                               KC_BSPC, XXXXXXX, _______,    HT_I,MY_OCIRC,
- MY_COMENT, XXXXXXX,MY_CEDIL,MY_PASTE, MY_PRT_S,                                               XXXXXXX, XXXXXXX, FR_COLN, FR_SCLN, FR_EXLM,
-            XXXXXXX, MY_LCTL, KC_LSFT,                                                                  KC_RSFT, MY_RCTL,  KC_TAB,
+   MY_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX,  MY_UNDO, MY_REDO,  MY_CUT, MY_PRT_P,                                             XXXXXXX, XXXXXXX,    HT_U, XXXXXXX, XXXXXXX,
+     HT_A,  SEL_ALL, MY_SAVE, MY_COPY, MY_PRT_Z,                                             KC_BSPC, XXXXXXX, _______,    HT_I,MY_OCIRC,
+MY_COMENT,  XXXXXXX,MY_CEDIL,MY_PASTE, MY_PRT_S,                                             XXXXXXX, XXXXXXX, FR_COLN, FR_SCLN, FR_EXLM,
+            XXXXXXX, MY_LCTL, KC_LSFT,                                                                KC_RSFT, MY_RCTL,  KC_TAB,
                                        KC_LGUI, MY_NAV,  HT_SPC,           KC_LALT, CSTM_ENT, XXXXXXX
 ),
 [_REG_SPE] = LAYOUT_2_9_only_5_columns(
@@ -523,7 +527,7 @@ MY_TILD, FR_LBRC, XXXXXXX, FR_RBRC,MY_DIESE,                                    
   FR_AT, KC_PMNS,  KC_EQL, KC_PPLS, MY_DOLL,                                                  FR_ASTR,MY_BQUOT2, FR_QUOT, FR_DQUO, S(KC_MINS),
 XXXXXXX, KC_PSLS, MY_PIPE, KC_PAST, MY_EURO,                                                  ___CIRC,  FR_LPRN, _BACKSL, FR_RPRN,    XXXXXXX,
          XXXXXXX, MY_LCTL, KC_LSFT,                                                                     KC_RSFT, MY_RCTL,  KC_TAB,
-                                         _______, _______, _______,        _______, CSTM_ENT, _______
+                                    _______, _______, _______,             _______, CSTM_ENT, _______
 ),
 [_MULTIMEDIA] = LAYOUT_2_9_only_5_columns(
   MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
