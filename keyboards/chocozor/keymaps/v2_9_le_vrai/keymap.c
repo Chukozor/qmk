@@ -416,7 +416,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RGB] = LAYOUT_2_9_regular(
     FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                              QK_CLEAR_EEPROM, XXXXXXX, XXXXXXX, XXXXXXX, HF_DWLD, HF_DWLU,
     KC_G, KC_H, KC_I, KC_J, KC_K, KC_L,                                                      RGB_TOG, _I__MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT,
-    KC_M, KC_N, KC_O, KC_P, FR_Q, KC_R,                                                      HF_TOGG, _D_RMOD, _D_COUL, __D_LUM, __D_SAT, __D_VIT,
+    KC_M, KC_N, KC_O, KC_P, FR_Q, KC_R,                                                      SOL_TOG, _D_RMOD, _D_COUL, __D_LUM, __D_SAT, __D_VIT,
     KC_U, KC_V, FR_W, KC_X, KC_Y, FR_Z,                                                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
                 FR_Z, KC_1, KC_2,                                                                              XXXXXXX, XXXXXXX, XXXXXXX,
                                TG(_RGB),TG(_RGB), TG(_RGB),                  XXXXXXX, XXXXXXX, XXXXXXX
