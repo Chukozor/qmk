@@ -224,7 +224,7 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
 
         // 1) mild anti-jitter "deadzone feel" on tiny movements
         xy_filter_apply(&mouse_report);
-        accel_factor = acceleration_factor(mouse_report.x, mouse_report.y, false);
+        accel_factor = acceleration_factor(mouse_report.x, mouse_report.y, !accel_off);
         int scaled_x = (int)((float)mouse_report.x * accel_factor);
         int scaled_y = (int)((float)mouse_report.y * accel_factor);
 
