@@ -1,6 +1,5 @@
 # SERIAL_DRIVER = usart
-SERIAL_DRIVER = vendor
-# mes rules custom
+SERIAL_DRIVER = vendor # mes rules custom
 # TODO ACTIVATE COMBOS
 COMBO_ENABLE = yes
 COMBO_SHOULD_TRIGGER = yes
@@ -53,4 +52,4 @@ SRC += numpad.c
 SRC += web.c
 SRC += globals.c
 SRC += oled.c
-SRC += solenoid.c
+SRC += my_solenoid.c

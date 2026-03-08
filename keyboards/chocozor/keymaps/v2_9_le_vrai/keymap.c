@@ -9,7 +9,8 @@
 #include "timer.h"
 #include "web.h"
 #include "trackpad.h"
-#include "solenoid.h"
+#include "my_solenoid.h"
+#include "drivers/haptic/solenoid.h"
 
 #include "custom_files/tap_dances/tap_dance.h"
 
