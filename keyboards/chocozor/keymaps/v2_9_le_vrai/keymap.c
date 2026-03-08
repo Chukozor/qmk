@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 #include "accents.h"
-#include "drivers/haptic/solenoid.h"
 #include "enum.h"
 #include "gaming.h"
 #include "globals.h"
@@ -10,6 +9,7 @@
 #include "timer.h"
 #include "web.h"
 #include "trackpad.h"
+#include "solenoid.h"
 
 #include "custom_files/tap_dances/tap_dance.h"
 
@@ -28,7 +28,6 @@ const uint16_t PROGMEM combo_web[]                = {MY_LCTL, MY_RCTL, COMBO_END
 const uint16_t PROGMEM combo_print_screen[]       = {KC_R, KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM combo_RGB[]                = {FR_Z,KC_1,KC_2,COMBO_END};
 
-// static bool solenoid_actif = false;
 
 combo_t key_combos[] = {
     [COMBO_NUMPAD_RIGHT]  = COMBO(toggle_numpad_right, TG(_NUMPAD_RIGHT)),
@@ -85,6 +84,7 @@ const key_override_t *key_overrides[] = {
 // some variables
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  solenoid_helper();
 #define X(x) case x:
 #define Y(x) X(x)
 #define Z(x) X(x)
@@ -234,10 +234,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
   return false;
-//  case SOL_TOG:
-//    if(record->event.pressed){
-//      solenoid_actif = !solenoid_actif;
-//    }
+  case SOL_TOG:
+    if(record->event.pressed){
+      solenoid_toggle();
+    }
   }
 
 #undef X
@@ -463,4 +463,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 bool shutdown_user(bool jump_to_bootloader) {
   oled_render_boot(jump_to_bootloader);
   return false;
+}
+
+void keyboard_post_init_user(){
+  haptic_disable();
 }

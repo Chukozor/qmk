@@ -53,3 +53,4 @@ SRC += numpad.c
 SRC += web.c
 SRC += globals.c
 SRC += oled.c
+SRC += solenoid.c
