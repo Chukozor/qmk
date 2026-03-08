@@ -102,14 +102,16 @@
 // #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
 
 
+//================ CUSTOM POINTING DEVICE VALUES ==========
+#define DEADZONE 0.25f // Zone of movement within which trackpad will be ignored
+#define MAXIMUM_ACCELERATION_ZONE 200.0f // Zone from which the acceleration factor will be 1.
 
-
-
-
-
-
-
-
+#define VOLUME_THRESHOLD 1  // Threshold for triggering volume change
+#define VOLUME_DIVISOR 18  // Adjust for volume control sensitivity (higher = more movement required)
+#define SCROLL_DIVISOR_V_BASE 30.0   // Vertical scroll speed
+#define SCROLL_DIVISOR_H_BASE 50.0   // Horizontal scroll speed
+#define XY_FILTER_DIVISOR 3.0f // 3.0 = light filtering (6.0+ starts to feel dead)
+#define XY_FILTER_MAG_THRESHOLD  1    // only when abs(x)+abs(y) <= 1
 
 
 

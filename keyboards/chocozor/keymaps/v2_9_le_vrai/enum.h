@@ -5,6 +5,7 @@
 //constantes
 
 extern bool trace_operations; 
+extern bool alt_tab_menu;
 
 
 #define _LAYERS \
@@ -128,6 +129,17 @@ enum layers{
  Y(APEX_I)\
  Y(APEX_CTL)
 
+#define _TRACKPAD_RANGE \
+ X(TG_SCROL)\
+ X(K_SCROL)\
+ X(K_SNIPE)\
+ X(K_BLITZ)\
+ X(ZOOM_TR)\
+ X(DPI_INC)\
+ X(DPI_DEC)\
+ X(ACEL_OFF)\
+ X(ACEL_ON)
+
 #define APEX_I   TT(23)
 #define APEX_CTL TT(24)
 
@@ -141,17 +153,9 @@ enum custom_keycodes{
   _WEB_RANGE
   _NUMPAD_RANGE
   _GAMING_RANGE
+  _TRACKPAD_RANGE
   MY_ALT_T,
   DBL_SHIFT,
-  K_SNIPE,
-  K_BLITZ,
-  K_SCROL,
-  TG_SCROL,
-  ZOOM_TR,
-  DPI_INC,
-  DPI_DEC,
-  ACEL_OFF,
-  ACEL_ON,
   MY_BQUOT2,
   SOL_TOG,
   };

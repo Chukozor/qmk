@@ -46,8 +46,8 @@ endif
 
 # BOOTLOADER = rp2040
 # CONVERT_TO = rp2040_ce
-
 SRC += accents.c
+SRC += trackpad.c
 SRC += gaming.c
 SRC += numpad.c
 SRC += web.c

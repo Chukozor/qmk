@@ -7,10 +7,9 @@
 #include "keymap_french.h"
 #include "numpad.h"
 #include "oled.h"
-#include "pointing_device.h"
 #include "timer.h"
 #include "web.h"
-#include <stdlib.h> // abs()
+#include "trackpad.h"
 
 #include "custom_files/tap_dances/tap_dance.h"
 
@@ -84,41 +83,27 @@ const key_override_t *key_overrides[] = {
 // }
 
 // some variables
-float aux_dpi = 0;
-#define SCROLL_DIVISOR_H_BASE 50.0   // Horizontal scroll speed
-#define SCROLL_DIVISOR_V_BASE 30.0   // Vertical scroll speed
-bool accel_off = false;
-
-float scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
-float scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
-
-// Variables to store accumulated scroll values
-float scroll_accumulated_h = 0;
-float scroll_accumulated_v = 0;
-// -------
-// VOLUME CONTROL WITH TRACKPAD
-// Define how sensitive the trackpad is for volume control
-#define VOLUME_DIVISOR 18  // Adjust for volume control sensitivity (higher = more movement required)
-#define VOLUME_THRESHOLD 1  // Threshold for triggering volume change
-
-// Variables to store accumulated volume movement
-float volume_accumulated_v = 0;
-
-bool set_scrolling = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define X(x) case x:
 #define Y(x) X(x)
 #define Z(x) X(x)
   switch (keycode) {
-    _ACCENTS_RANGE
+   _ACCENTS_RANGE
     return (process_accents(keycode, record));
-    _WEB_RANGE
+
+   _WEB_RANGE
     return (process_web(keycode, record));
-    _NUMPAD_RANGE
+
+   _NUMPAD_RANGE
     return (process_numpad(keycode, record));
-    _GAMING_RANGE
+
+   _GAMING_RANGE
     return (process_gaming(keycode, record));
+
+  _TRACKPAD_RANGE
+    return (process_trackpad(keycode, record));
+
   case CSTM_ENT:
     if (record->tap.count) { // Tap
       if (record->event.pressed) {
@@ -247,113 +232,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false;
       }
 
-  case TG_SCROL:
-    if (record->event.pressed) {
-      // logic when pressed
-      set_scrolling = !set_scrolling;
-    }
-    return false;
 
-  case K_SCROL:
-    if (record->event.pressed) {
-      set_scrolling = true;
-    } else {
-      set_scrolling = false;
-    }
-    return false;
-  case K_SNIPE: /* Decrease trackpad DPI*/
-    if (record->event.pressed) {
-      if (get_mods() == MOD_BIT(KC_LCTL)) {
-        unregister_mods(MOD_BIT_LCTRL);
-        alt_tab_menu = true;
-        SEND_STRING(SS_DOWN(X_LALT));
-        tap_code(KC_TAB);
-        wait_ms(5);
-        SEND_STRING(SS_UP(X_LALT));
-      } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-        aux_dpi = pointing_device_get_cpi();
-        pointing_device_set_cpi(200);
-        scroll_divisor_h =  SCROLL_DIVISOR_H_BASE * 2.0;
-        scroll_divisor_v =  SCROLL_DIVISOR_V_BASE * 2.0;
-      } else {
-        pointing_device_set_cpi(pointing_device_get_cpi()-300);
-      }
-    } else {
-      if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-        pointing_device_set_cpi(aux_dpi);
-        scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
-        scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
-      } else {
-        if (alt_tab_menu == true) {
-          alt_tab_menu = false;
-        } else {
-          pointing_device_set_cpi(pointing_device_get_cpi()+300);
-        }
-      }
-    }
-    return false;
-case K_BLITZ: /* Decrease trackpad DPI*/
-    if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-      if (record->event.pressed) {
-        aux_dpi = pointing_device_get_cpi();
-        pointing_device_set_cpi(1000);
-        scroll_divisor_h = SCROLL_DIVISOR_H_BASE / 2.0;
-        scroll_divisor_v = SCROLL_DIVISOR_V_BASE / 2.0;
-      } else {
-        pointing_device_set_cpi(aux_dpi);
-        scroll_divisor_h = SCROLL_DIVISOR_H_BASE;
-        scroll_divisor_v = SCROLL_DIVISOR_V_BASE;
-      }
-    } else if (record->event.pressed) {
-      pointing_device_set_cpi(pointing_device_get_cpi()+300);
-    } else {
-      pointing_device_set_cpi(pointing_device_get_cpi()-300);
-    }
-  return false;
-
-case ZOOM_TR:
-  if (record->event.pressed) {
-      // logic when pressed
-      set_scrolling = true;
-      SEND_STRING(SS_DOWN(X_LCTL));
-      // SEND_STRING(SS_DOWN(X_LSFT));
-      // SEND_STRING(SS_DELAY(1));
-      // SEND_STRING(SS_TAP(X_T)));
-    } else {
-      set_scrolling = false;
-      SEND_STRING(SS_UP(X_LCTL));
-      // SEND_STRING(SS_UP(X_LSFT));
-      // logic when released
-    }
-    // press(MY_LCTL AND MY_LSFT)
-    return false;
-
-case DPI_INC: /* Increase trackpad DPI*/
-  if (record->event.pressed) {
-    pointing_device_set_cpi(pointing_device_get_cpi()+100);
-  }
-  return false;
-case DPI_DEC: /* Decrease trackpad DPI*/
-  if (record->event.pressed) {
-    pointing_device_set_cpi(pointing_device_get_cpi()-100);
-  }
-  return false;
-
-case ACEL_OFF:
-  if (record->event.pressed) {
-    accel_off = true;
-    // SEND_STRING(SS_DOWN(X_LCTL));
-    // tap_code(KC_TAB);
-  } else {
-    // SEND_STRING(SS_UP(X_LCTL));
-    // ky_webnav = false;
-  }
-  return false;
-
-case ACEL_ON:
-  if (record->event.pressed) {
-    accel_off = false;
-  }
   return false;
 //  case SOL_TOG:
 //    if(record->event.pressed){
@@ -546,193 +425,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 // // ==============================================
-// MOUSE AUTO-LAYER
-void pointing_device_init_user(void) {
-    set_auto_mouse_layer(_MOUSE_LAYER); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
-    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
-    pointing_device_set_cpi(TRACKPAD_DEFAULT_DPI);
-}
-
-// ===============================
-// TRACKPAD processing
-// ===============================
-// Works with:
-// - single pointing device  -> pointing_device_task_user() (if you enable it)
-// - split + POINTING_DEVICE_COMBINED -> pointing_device_task_combined_user()
-
-// ===============================
-// Smooth acceleration tuning
-// ===============================
-#define USE_SMOOTH_ACCEL 1
-
-static inline float clamp01f(float x) {
-    if (x < 0.0f) return 0.0f;
-    if (x > 1.0f) return 1.0f;
-    return x;
-}
-
-static inline float smoothstep01(float t) {
-    t = clamp01f(t);
-    return t * t * (3.0f - 2.0f * t);
-}
-
-// ===============================
-// Piecewise accel inspired by your "good" version
-// - deadzone hard under dz
-// - dz->m1 eased (smooth start/end)
-// - m1->m2 linear
-// - m2->m3 linear
-// ===============================
-static inline float accel_factor_piecewise(int8_t x, int8_t y, bool a) {
-    float mag = (float)abs(x) + (float)abs(y); // L1 magnitude
-
-    const float dz   = 0.5f;
-    const float m1   = 3.0f;
-    const float m2   = 14.0f;
-    const float f1   = 1.2f;
-    const float f2   = 2.0f;
-    const float fmax = 3.0f;
-    const float m3   = 30.0f;
-
-    if (mag <= dz) return 0.0f;
-
-if (a==true) {
-    // Segment dz -> m1 : 0 .. f1 (EASE IN/OUT)
-    if (mag < m1) {
-        float t = (mag - dz) / (m1 - dz);
-        t = smoothstep01(t);
-        return t * f1;
-    }
-
-    // Segment m1 -> m2 : f1 .. f2 (LINEAR)
-    if (mag < m2) {
-        float t = (mag - m1) / (m2 - m1);
-        return f1 + t * (f2 - f1);
-    }
-
-    // Segment m2 -> m3 : f2 .. fmax (LINEAR)
-    if (mag < m3) {
-        float t = (mag - m2) / (m3 - m2);
-        return f2 + t * (fmax - f2);
-    }
-    return fmax;
-} else {
-    return 1.0f;
-    }
-}
-
-// ===============================
-// "Deadzone feel" via small-motion accumulator (very mild)
-// ===============================
-static float xy_accum_x = 0.0f;
-static float xy_accum_y = 0.0f;
-
-// IMPORTANT: keep this mild, otherwise it feels like glue.
-// Apply only to tiny deltas (anti-jitter), not to normal movement.
-#define XY_FILTER_MAG_THRESHOLD  1    // only when abs(x)+abs(y) <= 1
-#define XY_FILTER_DIVISOR        3.0f // 3.0 = light filtering (6.0+ starts to feel dead)
-
-static inline void xy_filter_apply(report_mouse_t *r) {
-    int mag = abs(r->x) + abs(r->y);
-
-    if (mag <= XY_FILTER_MAG_THRESHOLD) {
-        xy_accum_x += (float)r->x / XY_FILTER_DIVISOR;
-        xy_accum_y += (float)r->y / XY_FILTER_DIVISOR;
-
-        int8_t out_x = (int8_t)xy_accum_x;
-        int8_t out_y = (int8_t)xy_accum_y;
-
-        xy_accum_x -= (float)out_x;
-        xy_accum_y -= (float)out_y;
-
-        r->x = out_x;
-        r->y = out_y;
-    } else {
-        // Reset to avoid delayed "leftover" after a fast move
-        xy_accum_x = 0.0f;
-        xy_accum_y = 0.0f;
-    }
-}
-
-// ===============================
-// TRACKPAD report processing
-// ===============================
-static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
-    float accel_factor = 1.0f;
-
-    // Check if _REG_SPE layer is active (for volume control)
-    if (IS_LAYER_ON(_REG_SPE)) {
-        volume_accumulated_v += (float)mouse_report.y / VOLUME_DIVISOR;
-
-        if (volume_accumulated_v >= VOLUME_THRESHOLD) {
-            tap_code(KC_VOLD);
-            volume_accumulated_v = 0;
-        } else if (volume_accumulated_v <= -VOLUME_THRESHOLD) {
-            tap_code(KC_VOLU);
-            volume_accumulated_v = 0;
-        }
-
-        mouse_report.x = 0;
-        mouse_report.y = 0;
-
-    } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
-        scroll_accumulated_h += (float)mouse_report.x / scroll_divisor_h;
-        scroll_accumulated_v += (float)mouse_report.y / scroll_divisor_v;
-
-        mouse_report.h = (int8_t)scroll_accumulated_h;
-        mouse_report.v = -(int8_t)scroll_accumulated_v;
-
-        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
-        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
-
-        mouse_report.x = 0;
-        mouse_report.y = 0;
-
-    } else if (!accel_off) {
-
-        // 1) mild anti-jitter "deadzone feel" on tiny movements
-        xy_filter_apply(&mouse_report);
-
-        // 2) accel
-    #if USE_SMOOTH_ACCEL
-        accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y, true);
-    #endif
-
-        int scaled_x = (int)((float)mouse_report.x * accel_factor);
-        int scaled_y = (int)((float)mouse_report.y * accel_factor);
-
-        if (scaled_x > 127) scaled_x = 127;
-        if (scaled_x < -127) scaled_x = -127;
-        if (scaled_y > 127) scaled_y = 127;
-        if (scaled_y < -127) scaled_y = -127;
-
-        mouse_report.x = (int8_t)scaled_x;
-        mouse_report.y = (int8_t)scaled_y;
-    } else { // accel is off but we still want to reduce the jitering
-        // 1) mild anti-jitter "deadzone feel" on tiny movements
-        xy_filter_apply(&mouse_report);
-        accel_factor = accel_factor_piecewise(mouse_report.x, mouse_report.y, false);
-        int scaled_x = (int)((float)mouse_report.x * accel_factor);
-        int scaled_y = (int)((float)mouse_report.y * accel_factor);
-
-        if (scaled_x > 127) scaled_x = 127;
-        if (scaled_x < -127) scaled_x = -127;
-        if (scaled_y > 127) scaled_y = 127;
-        if (scaled_y < -127) scaled_y = -127;
-
-        mouse_report.x = (int8_t)scaled_x;
-        mouse_report.y = (int8_t)scaled_y;
-    }
-
-    return mouse_report;
-}
-
-// Split + POINTING_DEVICE_COMBINED builds:
-report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-    left_report  = process_trackpad_report(left_report);
-    right_report = process_trackpad_report(right_report);
-    return pointing_device_combine_reports(left_report, right_report);
-}
 
 
 // // ==============================================
