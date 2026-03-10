@@ -27,7 +27,7 @@ const uint16_t PROGMEM toggle_game[]              = {FR_A, KC_R, KC_S,KC_T, KC_D
 const uint16_t PROGMEM combo_clear_eeprom[]       = {RGB_TOG, _I__MOD, _I_COUL,__I_LUM, __I_SAT, COMBO_END};
 const uint16_t PROGMEM combo_web[]                = {MY_LCTL, MY_RCTL, COMBO_END};
 const uint16_t PROGMEM combo_print_screen[]       = {KC_R, KC_S, KC_T, COMBO_END};
-const uint16_t PROGMEM combo_RGB[]                = {FR_Z,KC_1,KC_2,COMBO_END};
+const uint16_t PROGMEM combo_RGB[]                = {FR_Z,MY_LCTL,KC_LSFT,COMBO_END};
 const uint16_t PROGMEM combo_boot1[]              = {KC_P4,KC_P5,KC_P6,COMBO_END};
 const uint16_t PROGMEM combo_boot2[]              = {KC_P7,KC_P8,KC_P9,COMBO_END};
 
