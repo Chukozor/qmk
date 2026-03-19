@@ -66,7 +66,7 @@ enum layers{
 #define MY_DOLL KC_RBRC
 #define MY_DIESE RALT(KC_3)
 #define MY_EURO RALT(KC_E)
-#define MY_TILD RALT(KC_2)
+// #define MY_TILD RALT(KC_2)
 #define MY_BQUOT RALT(KC_7)
 #define MY_PIPE RALT(KC_6)
 #define ____SUP S(KC_NUBS)
@@ -153,6 +153,7 @@ enum custom_keycodes{
   ACEL_OFF,
   ACEL_ON,
   MY_BQUOT2,
+  MY_TILD,
   SOL_TOG,
   };
 #undef X

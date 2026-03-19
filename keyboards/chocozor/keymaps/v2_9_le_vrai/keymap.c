@@ -251,6 +251,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false;
       }
 
+    case MY_TILD:
+      if (record->event.pressed) {
+        // add_mods(MOD_BIT_LALT);
+        // tap_code(KC_KP_1);
+        // tap_code(KC_KP_2);
+        // tap_code(KC_KP_6);
+        // unregister_mods(MOD_BIT_LALT);
+        add_mods(MOD_BIT_RALT);
+        tap_code(KC_2);
+        unregister_mods(MOD_BIT_RALT);
+        add_mods(MOD_BIT_RALT);
+        tap_code(KC_2);
+        unregister_mods(MOD_BIT_RALT);
+        tap_code(KC_BSPC);
+        // here we override its «press» behavior (hence, return false)
+        return false;
+      } else {
+        // here we don't alter its «release» default behavior (hence, return true)
+        return true;
+      }
+
   case TG_SCROL:
     if (record->event.pressed) {
       // logic when pressed
