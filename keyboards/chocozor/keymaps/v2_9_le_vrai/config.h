@@ -134,6 +134,10 @@
 #    define RGB_MATRIX_SAT_STEP 8
 #    define RGB_MATRIX_VAL_STEP 8
 #    define RGB_MATRIX_SPD_STEP 10
+#undef RGB_MATRIX_DEFAULT_VAL
+#    define RGB_MATRIX_DEFAULT_VAL 20
+#undef RGB_MATRIX_DEFAULT_MODE
+#    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_PIXEL_RAIN
 
 // /* Enable the animations you want/need.  You may need to enable only a small number of these because       *
 //  * they take up a lot of space.  Enable and confirm that you can still successfully compile your firmware. */
@@ -172,7 +176,7 @@
 // #    define ENABLE_RGB_MATRIX_PIXEL_RAIN // Randomly light keys with random hues
 // // enabled only if RGB_MATRIX_FRAMEBUFFER_EFFECTS is defined
 // // ======================================================================
-#    define ENABLE_RGB_MATRIX_TYPING_HEATMAP // How hot is your WPM!
+// #    define ENABLE_RGB_MATRIX_TYPING_HEATMAP // How hot is your WPM!
 // #define RGB_MATRIX_TYPING_HEATMAP_SPREAD 40 // Limit the distance the effect spreads to surrounding keys.
 // #define RGB_MATRIX_TYPING_HEATMAP_SLIM // Remove the spread effect entirely.
 // #define RGB_MATRIX_TYPING_HEATMAP_INCREASE_STEP 32 // Decreasing this value increases the number of keystrokes needed to fully heat up the key.

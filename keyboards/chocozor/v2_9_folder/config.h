@@ -101,9 +101,9 @@
 #    define ENABLE_RGB_MATRIX_RIVERFLOW           // Modification to breathing animation, offset's animation depending on key location to simulate a river flowing
 #    define ENABLE_RGB_MATRIX_EFFECT_MAX    
 
-#define RGB_MATRIX_STARTUP_HUE 85
-#define RGB_MATRIX_STARTUP_VAL 68
-#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_TYPING_HEATMAP
+#define RGB_MATRIX_DEFAULT_HUE 85
+#define RGB_MATRIX_DEFAULT_VAL 20
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_ALPHAS_MODS
 #endif
 
 #ifdef RGBLIGHT_ENABLE

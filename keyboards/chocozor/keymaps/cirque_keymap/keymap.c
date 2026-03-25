@@ -22,13 +22,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
     }
 
+#define QK_EPR QK_CLEAR_EEPROM
 // -----------------------------------
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // _DEBUGLAYER
-    [_DEBUGLAYER] = LAYOUT_2_7_regular(
+    [_DEBUGLAYER] = LAYOUT_2_9_regular(
   //--------------------------------------.                                           -----------------------------------------------------.
-       FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                            S(FR_A), S(KC_B), S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
+       FR_A, KC_B, KC_C, KC_D,QK_EPR,QK_BOOT,                                         QK_BOOT,  QK_EPR, S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
   //|------+-----+-----+-----+-----+------|                                          |-------+--------+--------+--------+--------+---------|
        KC_G, KC_H, KC_I, KC_J, KC_K, KC_L,                                            S(KC_G), S(KC_H), S(KC_I), S(KC_J), S(KC_K), S(KC_L), 
   //|------+-----+-----+-----+-----+------|                                          |-------+--------+--------+--------+--------+---------|
@@ -41,9 +42,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------------------------------------------------|           |----------------------------------------------------------------------|
   ),
   // _RGB
-    [_RGB] = LAYOUT_2_7_regular(
+    [_RGB] = LAYOUT_2_9_regular(
   //--------------------------------------.                                           ------------------------------------------------------.
-       FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                             S(FR_A), S(KC_B), S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
+       FR_A, KC_B, KC_C, KC_D, KC_E, KC_F,                                             QK_BOOT, S(KC_B), S(KC_C), S(KC_D), S(KC_E), S(KC_F), 
   //|------+-----+-----+-----+-----+------|                                           |-------+--------+--------+--------+--------+---------|
        KC_G, KC_H, KC_I, KC_J, KC_K, KC_L,                                             RGB_TOG, _I__MOD, _I_COUL, __I_LUM, __I_SAT, __I_VIT, 
   //|------+-----+-----+-----+-----+------|                                           |-------+--------+--------+--------+--------+---------|

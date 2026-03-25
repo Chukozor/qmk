@@ -88,10 +88,10 @@
 // #    define ENABLE_RGB_MATRIX_HUE_WAVE // Hue shifts up a slight ammount and then back down in a wave to the right
 // #    define ENABLE_RGB_MATRIX_PIXEL_FRACTAL // Single hue fractal filled keys pulsing horizontally out to edges
 // #    define ENABLE_RGB_MATRIX_PIXEL_FLOW  // Pulsing RGB flow along LED wiring with random hues
-// #    define ENABLE_RGB_MATRIX_PIXEL_RAIN // Randomly light keys with random hues
+#    define ENABLE_RGB_MATRIX_PIXEL_RAIN // Randomly light keys with random hues
 // // enabled only if RGB_MATRIX_FRAMEBUFFER_EFFECTS is defined
 // // ======================================================================
-#    define ENABLE_RGB_MATRIX_TYPING_HEATMAP // How hot is your WPM!
+// #    define ENABLE_RGB_MATRIX_TYPING_HEATMAP // How hot is your WPM!
 // #define RGB_MATRIX_TYPING_HEATMAP_SPREAD 40 // Limit the distance the effect spreads to surrounding keys.
 // #define RGB_MATRIX_TYPING_HEATMAP_SLIM // Remove the spread effect entirely.
 // #define RGB_MATRIX_TYPING_HEATMAP_INCREASE_STEP 32 // Decreasing this value increases the number of keystrokes needed to fully heat up the key.
@@ -116,10 +116,11 @@
 // #    define ENABLE_RGB_MATRIX_RIVERFLOW           // Modification to breathing animation, offset's animation depending on key location to simulate a river flowing
 // #    define ENABLE_RGB_MATRIX_EFFECT_MAX    
 // // #endif
-
-#define RGB_MATRIX_STARTUP_HUE 85
-#define RGB_MATRIX_STARTUP_VAL 68
-#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_TYPING_HEATMAP
+#undef RGB_MATRIX_DEFAULT_HUE
+#define RGB_MATRIX_DEFAULT_HUE 85
+#undef RGB_MATRIX_DEFAULT_VAL
+#define RGB_MATRIX_DEFAULT_VAL 50
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_ALPHAS_MODS
 
 // #define SPLIT_TRANSACTION_IDS_USER USER_SYNC_A
 // #define ENCODERS_PAD_A { B2 }
