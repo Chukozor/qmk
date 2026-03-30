@@ -24,6 +24,7 @@ const uint16_t PROGMEM combo_capslock[]           = {KC_LSFT, KC_RSFT, COMBO_END
 const uint16_t PROGMEM temp_active_boot[]         = {MY_NAV,  HT_SPC,   KC_LGUI,KC_LALT, CSTM_ENT, COMBO_END};
 const uint16_t PROGMEM temp_active_boot2[]        = {KC_LGUI, MY_NAV, HT_SPC, MOFKEYS, CSTM_ENT, KC_LALT, COMBO_END};
 const uint16_t PROGMEM toggle_game[]              = {FR_A, KC_R, KC_S,KC_T, KC_D, COMBO_END};
+const uint16_t PROGMEM toggle_game_qwerty[]       = {FR_Q,FR_W,KC_F,KC_P,KC_G, COMBO_END};
 const uint16_t PROGMEM combo_clear_eeprom[]       = {RGB_TOG, _I__MOD, _I_COUL,__I_LUM, __I_SAT, COMBO_END};
 const uint16_t PROGMEM combo_web[]                = {MY_LCTL, MY_RCTL, COMBO_END};
 const uint16_t PROGMEM combo_print_screen[]       = {KC_R, KC_S, KC_T, COMBO_END};
@@ -38,6 +39,7 @@ combo_t key_combos[] = {
     [COMBO_NUMPAD_RIGHT2] = COMBO(toggle_numpad_right2, TG(_NUMPAD_RIGHT)),
     [COMBO_MULTIMEDIA]    = COMBO(temp_active_MULTIMEDIA, MO(_MULTIMEDIA)),
     [TOGGLE_GAME]         = COMBO(toggle_game, TG_GAME),
+    [TOGGLE_GAME_QWERTY]  = COMBO(toggle_game_qwerty, TG_GAME_QWERTY),
     [COMBO_OSM_SHIFT]     = COMBO(temp_active_SHIFT, OSM(MOD_LSFT)),
     [COMBO_CAPSLOCK]      = COMBO(combo_capslock, DBL_SHIFT),
     [COMBO_BOOT]          = COMBO(temp_active_boot, QK_BOOT),
@@ -470,6 +472,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      KC_F1,   KC_F2,   KC_F3,                                                                  KC_RSFT, MY_RCTL,  KC_TAB,
                                               MO_OX_G,  KC_I,  KC_SPC,                XXXXXXX,  KC_ENT, KC_LALT
 ),
+[_GAME_QWERTY] = LAYOUT_2_9_regular(
+  MY_ESC,  MY_ESC,   KC_P1,   KC_P2,   KC_P3,   KC_P4,                                                  KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1,   KC_P2,
+  MY_ESC,    FR_Q,    FR_W,    KC_F,    KC_P,    KC_G,                                                   KC_J,    KC_L,    KC_U,    KC_Y, FR_QUOT,  KC_TAB,
+  KC_TAB, KC_LSFT,    FR_A,    FR_W,    KC_D,    KC_D,                                                   KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
+ KC_LSFT,    FR_Z,    KC_X,    KC_S,    KC_V,    KC_B,                                                   KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_LSFT,
+                     KC_F1,   KC_F2,   KC_F3,                                                                  KC_RSFT, MY_RCTL,  KC_TAB,
+                                              MO_OX_G,  KC_I,  KC_SPC,                XXXXXXX,  KC_ENT, KC_LALT
+),
 [_AUX_GAME] = LAYOUT_2_9_regular(
    MY_ESC,   MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
    MY_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -767,6 +777,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
                      ENCODER_CCW_CW(KC_VOLD,KC_VOLU)}, // Mapping for Base layer
     [_GAME] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
                ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_GAME_QWERTY] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+                      ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_AUX_GAME] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
                    ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_CAPS_LOCK] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),

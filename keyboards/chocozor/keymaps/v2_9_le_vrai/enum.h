@@ -8,8 +8,9 @@ extern bool trace_operations;
 
 
 #define _LAYERS \
-  X(_COLEMAK_FR,   "COLEMAK          FR")\
+  X(_COLEMAK_FR,   "      COLEMAK      ")\
   X(_GAME,         "        GAME       ")\
+  X(_GAME_QWERTY,  "    GAME  QWERTY   ")\
   X(_AUX_GAME,     "     AUX  GAME     ")\
   X(_CAPS_LOCK,    "     CAPS_LOCK     ")\
   X(_F_KEYS,       "      F_  KEYS     ")\
@@ -125,6 +126,7 @@ enum layers{
 
 #define _GAMING_RANGE \
  X(TG_GAME)\
+ X(TG_GAME_QWERTY)\
  Y(APEX_I)\
  Y(APEX_CTL)
 
@@ -168,6 +170,7 @@ enum combos {
   COMBO_BOOT,
   COMBO_BOOT2,
   TOGGLE_GAME,
+  TOGGLE_GAME_QWERTY,
   TOGGLE_WEB,
   COMBO_CLEAR_EEPROM,
   COMBO_WEB,

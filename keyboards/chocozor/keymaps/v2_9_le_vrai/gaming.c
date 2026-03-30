@@ -9,6 +9,13 @@ bool process_gaming(uint16_t keycode, keyrecord_t *record){
         }
       return false;
 
+    case TG_GAME_QWERTY:
+      if (record->event.pressed) {
+        // logic when pressed
+        layer_invert(_GAME_QWERTY);
+        }
+      return false;
+
     case APEX_I:
       if (record->tap.count) { // Tap
         if (record->event.pressed) {
