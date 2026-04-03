@@ -81,7 +81,10 @@ bool process_accents(uint16_t keycode, keyrecord_t* record){
     case INTERRUPTED_ACCENT:
       tap_e_aigue(); return false;
     case HELD_NO_ACCENT:
-      tap_e_grave(); return false;
+      if (get_mods() == MOD_BIT(KC_LSFT)) {   // if (get_mods() != MOD_BIT(KC_LSFT)) {
+      // unregister_mods(MOD_BIT_LSFT);
+      tap_code(KC_E);} else {
+      tap_e_grave();} return false;
     case HELD_ACCENT:
       tap_e_circ(); return false;
     }
