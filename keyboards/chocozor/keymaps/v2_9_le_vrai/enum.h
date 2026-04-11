@@ -28,7 +28,7 @@ extern bool trace_operations;
 #define _LAYERS_BIG \
   X(_COLEMAK_FR,   " COLMAK")\
   X(_GAME,         "  GAME ")\
-  X(_GAME_QWERTY,  "GAMEQWE")\  
+  X(_GAME_QWERTY,  "GAMEQWE")\
   X(_AUX_GAME,     "AUXGAME")\
   X(_CAPS_LOCK,    "  CAPS ")\
   X(_F_KEYS,       " F_KEYS")\
