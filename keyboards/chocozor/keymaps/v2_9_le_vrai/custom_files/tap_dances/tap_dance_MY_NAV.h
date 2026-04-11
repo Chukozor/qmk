@@ -18,21 +18,12 @@ void nav_finished (tap_dance_state_t *state, void *user_data) {
     case SINGLE_TAP: 
       set_oneshot_layer(_OPERATIONS, ONESHOT_START);
       break;
-    case DOUBLE_TAP: 
-      if (IS_LAYER_ON(_NAV) && !combo_nav_activated) {
-        layer_off(_NAV);
-      } else { 
-        layer_move(_COLEMAK_FR);
-        layer_on(_NAV);
-        nav_verrouillee = true;
-      }
+    case DOUBLE_TAP:
+      nav_verrouillee = !nav_verrouillee;
+      layer_invert(_NAV);
       break;
     case SINGLE_HOLD:
-      if (IS_LAYER_ON(_NAV)) {
-        nav_already_activated = true;
-      } else {
-        nav_already_activated = false;
-      }
+      nav_already_activated = IS_LAYER_ON(_NAV);
       layer_on(_NAV);
       break;
     case DOUBLE_HOLD:
