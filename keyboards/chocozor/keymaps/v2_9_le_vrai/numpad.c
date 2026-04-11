@@ -56,10 +56,13 @@ bool process_numpad(uint16_t keycode, keyrecord_t *record){
 
     case NAV_F_OP:
       if (record->event.pressed) {
+        trace_operations = IS_LAYER_ON(_NAV);
         layer_on(_NAV);
-        trace_operations = true;
       } else {
-        layer_off(_NAV);
+        if (!trace_operations) {
+          layer_off(_NAV);
+          trace_operations = false;
+        }
       }
       // layer_move(_COLEMAK_FR);
       // set_oneshot_layer(_NAV, ONESHOT_START);

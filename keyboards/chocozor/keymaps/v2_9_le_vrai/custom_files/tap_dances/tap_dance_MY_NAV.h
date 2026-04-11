@@ -48,10 +48,10 @@ void nav_reset (tap_dance_state_t *state, void *user_data) {
       layer_off(_F_KEYS);
       break;
   }
-  if (trace_operations == true) {
-    layer_off(_NAV);
-    trace_operations = false;
-  }
+  // if (trace_operations == true) {
+  //   layer_off(_NAV);
+  //   trace_operations = false;
+  // }
   nav_tap_state.state = 0;
 }
 // ================= END NAV_F_KEYS TAPDANCE ================
