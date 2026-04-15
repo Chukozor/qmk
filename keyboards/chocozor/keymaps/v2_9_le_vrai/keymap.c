@@ -518,7 +518,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  MY_LCTL,  MO_WEBBR,   KC_P4,   KY_P5,   KC_P6, KC_PDOT,                                               KC_BSPC, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_DEL, MY_RCTL,
  KC_LSFT,  MY_ALT_T,   KY_P1,   KY_P2,   KY_P3,  KC_ENT,                                               XXXXXXX, KC_HOME, XXXXXXX,  KC_END, XXXXXXX, KC_RSFT,
                        KC_P0, MY_LCTL, KC_LSFT,                                                                 KC_RSFT, MY_RCTL,  KC_TAB,
-                                                _______, _______, _______,            XXXXXXX, KC_LCTL, KC_LALT
+                                                _______, _______, _______,            MOFKEYS, KC_LCTL, KC_LALT
 ),
 [_OPERATIONS] = LAYOUT_2_9_regular(
   MY_ESC,  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
