@@ -286,7 +286,7 @@
         {"matrix": [11, 5], "x": 6, "y": 5}
       ]
     },
-    "LAYOUT_2_7_regular": {
+    "LAYOUT_2_9_regular": {
       "layout": [
         {"matrix": [0, 0], "x": 0, "y": 0},
         {"matrix": [0, 1], "x": 1, "y": 0},
