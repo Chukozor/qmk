@@ -44,7 +44,7 @@
 #define SPLIT_WPM_ENABLE
 #define OLED_BRIGHTNESS 1
 #define SPLIT_MODS_ENABLE
-#define OLED_TIMEOUT 15000 //in ms
+#define OLED_TIMEOUT 5000 //in ms
 // ==============================
 
 // =========== CIRQUE TRACKPAD =============
