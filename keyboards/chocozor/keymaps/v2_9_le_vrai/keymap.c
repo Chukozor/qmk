@@ -14,15 +14,17 @@
 
 #include "custom_files/tap_dances/tap_dance.h"
 
+
+bool windows_pressed = false;
 // ------------- COMBO ---------------
 
 const uint16_t PROGMEM toggle_numpad_right[]      = {MOFKEYS, KC_LALT, COMBO_END};
 const uint16_t PROGMEM toggle_numpad_right2[]     = {MO(_OPERATIONS), KC_LALT,COMBO_END};
-const uint16_t PROGMEM temp_active_MULTIMEDIA[]   = {KC_LGUI, MY_NAV, HT_SPC,COMBO_END};
+const uint16_t PROGMEM temp_active_MULTIMEDIA[]   = {CSTM_WIN, MY_NAV, HT_SPC,COMBO_END};
 const uint16_t PROGMEM temp_active_SHIFT[]        = {CSTM_ENT, HT_SPC, COMBO_END};
 const uint16_t PROGMEM combo_capslock[]           = {KC_LSFT, KC_RSFT, COMBO_END};
-const uint16_t PROGMEM temp_active_boot[]         = {MY_NAV,  HT_SPC,   KC_LGUI,KC_LALT, CSTM_ENT, COMBO_END};
-const uint16_t PROGMEM temp_active_boot2[]        = {KC_LGUI, MY_NAV, HT_SPC, MOFKEYS, CSTM_ENT, KC_LALT, COMBO_END};
+const uint16_t PROGMEM temp_active_boot[]         = {MY_NAV,  HT_SPC,   CSTM_WIN,KC_LALT, CSTM_ENT, COMBO_END};
+const uint16_t PROGMEM temp_active_boot2[]        = {CSTM_WIN, MY_NAV, HT_SPC, MOFKEYS, CSTM_ENT, KC_LALT, COMBO_END};
 const uint16_t PROGMEM toggle_game[]              = {FR_A, KC_R, KC_S,KC_T, KC_D, COMBO_END};
 const uint16_t PROGMEM toggle_game_qwerty[]       = {FR_Q,FR_W,KC_F,KC_P,KC_G, COMBO_END};
 const uint16_t PROGMEM combo_clear_eeprom[]       = {RGB_TOG, _I__MOD, _I_COUL,__I_LUM, __I_SAT, COMBO_END};
@@ -382,6 +384,86 @@ case ACEL_ON:
     accel_off = false;
   }
   return false;
+
+case CSTM_WIN:
+  if (record->tap.count) { // Tap
+    if (record->event.pressed) {
+      register_code(KC_LGUI);
+      // logic when pressed
+    } else {
+      unregister_code(KC_LGUI);
+      // logic when released
+    }
+  } else { // Hold
+    if (record->event.pressed) {
+      windows_pressed = true;
+      register_code(KC_LGUI);
+      // // logic when pressed
+      // if (record->tap.interrupted) {
+      //   // logic when interrupted
+      // } else {
+      //   // logic when not interrupted
+      // }
+    } else {
+      // logic when released
+      unregister_code(KC_LGUI);
+      windows_pressed = false;
+    }
+  }
+  return false;
+
+case L_ENC:
+  if (record->event.pressed) {
+    if (IS_LAYER_ON(_ACCENTS)) {
+      register_code(KC_D);
+    } else if (IS_LAYER_ON(_NAV)) {
+      register_code(KC_VOLU);
+    } else if (windows_pressed == true) {
+      register_code(KC_LCTL);
+      register_code(KC_WH_U);
+    } else {
+      register_code(KC_WH_U);
+    }
+  } else {
+    if (IS_LAYER_ON(_ACCENTS)) {
+      unregister_code(KC_D);
+    } else if (IS_LAYER_ON(_NAV)) {
+      unregister_code(KC_VOLU);
+    } else if (windows_pressed == true) {
+      unregister_code(KC_WH_U);
+      unregister_code(KC_LCTL);
+    } else {
+      unregister_code(KC_WH_U);
+    }
+  }
+  return false;
+
+case L_ENC_BIS:
+  if (record->event.pressed) {
+    if (IS_LAYER_ON(_ACCENTS)) {
+      register_code(FR_W);
+    } else if (IS_LAYER_ON(_NAV)) {
+      register_code(KC_VOLD);
+    } else if (windows_pressed == true) {
+      register_code(KC_LCTL);
+      register_code(KC_WH_D);
+    } else {
+      register_code(KC_WH_D);
+    }
+  } else {
+    if (IS_LAYER_ON(_ACCENTS)) {
+      unregister_code(FR_W);
+    } else if (IS_LAYER_ON(_NAV)) {
+      unregister_code(KC_VOLD);
+    } else if (windows_pressed == true) {
+      unregister_code(KC_WH_D);
+      unregister_code(KC_LCTL);
+    } else {
+      unregister_code(KC_WH_D);
+    }
+  }
+  return false;
+
 //  case SOL_TOG:
 //    if(record->event.pressed){
 //      solenoid_actif = !solenoid_actif;
@@ -462,7 +544,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  MY_LCTL,    FR_A,    KC_R,    KC_S,    KC_T,    KC_D,                                               KC_H,    KC_N,    HT_E,    KC_I,    KC_O, MY_RCTL,
  KC_LSFT,    FR_Q,    KC_X,    KC_C,    KC_V,    KC_B,                                               KC_K,    FR_M, FR_COMM,  FR_DOT, FR_QUES, KC_RSFT,
                       FR_Z, MY_LCTL, KC_LSFT,                                                              KC_RSFT, MY_RCTL,  KC_TAB,
-                                              KC_LGUI,  MY_NAV,  HT_SPC,        MOFKEYS, CSTM_ENT, KC_LALT
+                                             CSTM_WIN,  MY_NAV,  HT_SPC,        MOFKEYS, CSTM_ENT, KC_LALT
 ),
 [_GAME] = LAYOUT_2_9_regular(
   MY_ESC,  MY_ESC,   KC_P1,   KC_P2,   KC_P3,   KC_P4,                                                  KC_P7,   KC_P8,   KC_P9,   KC_P0,   KC_P1,   KC_P2,
@@ -494,7 +576,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  MY_LCTL, S(FR_A), S(KC_R), S(KC_S), S(KC_T), S(KC_D),                                                 S(KC_H), S(KC_N), S(KC_E), S(KC_I), S(KC_O), MY_RCTL,
  KC_LSFT, S(FR_Q), S(KC_X), S(KC_C), S(KC_V), S(KC_B),                                                 S(KC_K), S(FR_M), FR_COMM,  FR_DOT, FR_QUES, KC_RSFT,
                    S(FR_Z), MY_LCTL, KC_LSFT,                                                                   KC_RSFT, MY_RCTL,  KC_TAB,
-                                              KC_LGUI,  MY_NAV,  HT_SPC,            XXXXXXX, CSTM_ENT, KC_LALT
+                                             CSTM_WIN,  MY_NAV,  HT_SPC,            XXXXXXX, CSTM_ENT, KC_LALT
 ),
 [_F_KEYS] = LAYOUT_2_9_regular(
   MY_ESC,  MY_ESC, XXXXXXX, XXXXXXX,XXXXXXX,  XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -534,7 +616,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  MY_LCTL,OPENBOOK,   WEB_G, FF_T_ST,   WEB_D, FF_FENE,                                                 FF_FENE,   WEB_G, FF_T_ST,   WEB_D, XXXXXXX, MY_RCTL,
  KC_LSFT, XXXXXXX, WEB_DUP, THEBOOK, BOOKMAR, XXXXXXX,                                                 XXXXXXX, BOOKMAR, THEBOOK, XXXXXXX, XXXXXXX, XXXXXXX,
                    XXXXXXX, MY_LCTL, KC_LSFT,                                                                   KC_RSFT, MY_RCTL,  KC_TAB,
-                                              KC_LGUI, MY_NAV,  HT_SPC,              KC_LALT, AUX_WEB, XXXXXXX
+                                             CSTM_WIN, MY_NAV,  HT_SPC,              KC_LALT, AUX_WEB, XXXXXXX
 ),
 [_MOUSE_LAYER] = LAYOUT_2_9_regular(
   MY_ESC,  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -542,7 +624,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  KC_LCTL, K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                                 XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
  KC_LSFT, K_SNIPE, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                                 XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN2, XXXXXXX, KC_RSFT,
                    XXXXXXX, MY_LCTL, KC_LSFT,                                                                   KC_RSFT, MY_RCTL, KC_BTN2,
-                                              KC_LSFT, KC_LCTL, MO(_ACCENTS),       KC_BTN1, KC_BTN3, TG_SCROL
+                                             CSTM_WIN, KC_LCTL, MO(_ACCENTS),       KC_BTN1, KC_BTN3, TG_SCROL
 ),
 [_ACCENTS] = LAYOUT_2_9_regular(
    MY_ESC,   MY_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -550,7 +632,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   MY_LCTL,     HT_A,  SEL_ALL, MY_SAVE, MY_COPY, MY_PRT_Z,                                             KC_BSPC, XXXXXXX, _______,    HT_I,MY_OCIRC, MY_RCTL,
   KC_LSFT,MY_COMENT,  XXXXXXX,MY_CEDIL,MY_PASTE, MY_PRT_S,                                             XXXXXXX, XXXXXXX, FR_COLN, FR_SCLN, FR_EXLM, KC_RSFT,
                       XXXXXXX, MY_LCTL, KC_LSFT,                                                                KC_RSFT, MY_RCTL,  KC_TAB,
-                                                  KC_LGUI, MY_NAV,  HT_SPC,           KC_LALT, CSTM_ENT, XXXXXXX
+                                                 CSTM_WIN, MY_NAV,  HT_SPC,           KC_LALT, CSTM_ENT, XXXXXXX
 ),
 [_REG_SPE] = LAYOUT_2_9_regular(
  MY_ESC,  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,
@@ -773,33 +855,35 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
 // ENCODERS :
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     // Mappings for 1st Encoder          // Mappings for 2nd Encoder
-    [_COLEMAK_FR] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    // [_COLEMAK_FR] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    //                  ENCODER_CCW_CW(KC_VOLD,KC_VOLU)}, // Mapping for Base layer
+    [_COLEMAK_FR] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                      ENCODER_CCW_CW(KC_VOLD,KC_VOLU)}, // Mapping for Base layer
-    [_GAME] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_GAME] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_GAME_QWERTY] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_GAME_QWERTY] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_AUX_GAME] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_AUX_GAME] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                    ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_CAPS_LOCK] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_CAPS_LOCK] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                     ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_F_KEYS] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_F_KEYS] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_NUMPAD_RIGHT] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_NUMPAD_RIGHT] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                        ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_NAV] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_NAV] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
               ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_OPERATIONS] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_OPERATIONS] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                      ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_WEB_BROWSER] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_WEB_BROWSER] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_MOUSE_LAYER]  = {ENCODER_CCW_CW(DPI_DEC, DPI_INC),
                        ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_ACCENTS] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_ACCENTS] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                   ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_REG_SPE] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_REG_SPE] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                   ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_MULTIMEDIA] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+    [_MULTIMEDIA] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
                      ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_RGB] = {ENCODER_CCW_CW(_D_RMOD, _I__MOD),
               ENCODER_CCW_CW(__D_LUM, __I_LUM)}};

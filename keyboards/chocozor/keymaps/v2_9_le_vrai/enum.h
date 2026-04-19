@@ -116,7 +116,6 @@ enum layers{
 #define PRIVATE RCS(KC_P)
 #define MO_OP MO(_OPERATIONS)
 
-
 #define _NUMPAD_RANGE \
  X(KY_P1)\
  X(KY_P2)\
@@ -158,6 +157,8 @@ enum custom_keycodes{
   MY_BQUOT2,
   MY_TILD,
   SOL_TOG,
+  L_ENC,
+  L_ENC_BIS,
   };
 #undef X
 #undef Y
@@ -186,6 +187,7 @@ enum combos {
 #define HT_SPC LT(_ACCENTS, KC_SPC)
 #define MY_ESC  TT(25)
 #define CSTM_ENT TT(26)
+#define CSTM_WIN TT(27)
 
 #define IMGLASS_CP LCTL(LSFT(KC_C))
 
