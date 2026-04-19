@@ -840,7 +840,7 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
     float accel_factor = 1.0f;
 
     // Check if _REG_SPE layer is active (for volume control)
-    if (IS_LAYER_ON(_REG_SPE)) {
+    if (IS_LAYER_ON(_REG_SPE) || IS_LAYER_ON(_NAV)) {
         volume_accumulated_v += (float)mouse_report.y / VOLUME_DIVISOR;
 
         if (volume_accumulated_v >= VOLUME_THRESHOLD) {
@@ -854,7 +854,7 @@ static report_mouse_t process_trackpad_report(report_mouse_t mouse_report) {
         mouse_report.x = 0;
         mouse_report.y = 0;
 
-    } else if (set_scrolling || IS_LAYER_ON(_F_KEYS)) {
+    } else if (set_scrolling || IS_LAYER_ON(_F_KEYS) || IS_LAYER_ON(_ACCENTS)) {
         scroll_accumulated_h += (float)mouse_report.x / scroll_divisor_h;
         scroll_accumulated_v += (float)mouse_report.y / scroll_divisor_v;
 
