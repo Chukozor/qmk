@@ -421,6 +421,8 @@ case L_ENC:
     } else if (windows_pressed == true) {
       register_code(KC_LCTL);
       register_code(KC_WH_U);
+    } else if (IS_LAYER_ON(_MULTIMEDIA)) {
+      register_code(KC_MNXT);
     } else {
       register_code(KC_WH_U);
     }
@@ -432,6 +434,8 @@ case L_ENC:
     } else if (windows_pressed == true) {
       unregister_code(KC_WH_U);
       unregister_code(KC_LCTL);
+    } else if (IS_LAYER_ON(_MULTIMEDIA)) {
+      unregister_code(KC_MNXT);
     } else {
       unregister_code(KC_WH_U);
     }
@@ -447,6 +451,8 @@ case L_ENC_BIS:
     } else if (windows_pressed == true) {
       register_code(KC_LCTL);
       register_code(KC_WH_D);
+    } else if (IS_LAYER_ON(_MULTIMEDIA)) {
+      register_code(KC_MPRV);
     } else {
       register_code(KC_WH_D);
     }
@@ -458,6 +464,8 @@ case L_ENC_BIS:
     } else if (windows_pressed == true) {
       unregister_code(KC_WH_D);
       unregister_code(KC_LCTL);
+    } else if (IS_LAYER_ON(_MULTIMEDIA)) {
+      unregister_code(KC_MPRV);
     } else {
       unregister_code(KC_WH_D);
     }
