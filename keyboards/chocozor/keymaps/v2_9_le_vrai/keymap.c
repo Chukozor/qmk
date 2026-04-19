@@ -14,6 +14,36 @@
 
 #include "custom_files/tap_dances/tap_dance.h"
 
+const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
+    // left half row 0  <-> right half row 6
+    { {0, 6},  {1, 6},  {2, 6},  {3, 6},  {4, 6},  {5, 6}  },
+    // left half row 1  <-> right half row 7
+    { {0, 7},  {1, 7},  {2, 7},  {3, 7},  {4, 7},  {5, 7}  },
+    // left half row 2  <-> right half row 8
+    { {0, 8},  {1, 8},  {2, 8},  {3, 8},  {4, 8},  {5, 8}  },
+    // left half row 3  <-> right half row 9
+    { {0, 9},  {1, 9},  {2, 9},  {3, 9},  {4, 9},  {5, 9}  },
+    // left half row 4  <-> right half row 10
+    { {0, 10}, {1, 10}, {2, 10}, {3, 10}, {4, 10}, {5, 10} },
+    // left half row 5  <-> right half row 11
+    { {0, 11}, {1, 11}, {2, 11}, {3, 11}, {4, 11}, {5, 11} },
+    // right half row 6  <-> left half row 0
+    { {0, 0},  {1, 0},  {2, 0},  {3, 0},  {4, 0},  {5, 0}  },
+    // right half row 7  <-> left half row 1
+    { {0, 1},  {1, 1},  {2, 1},  {3, 1},  {4, 1},  {5, 1}  },
+    // right half row 8  <-> left half row 2
+    { {0, 2},  {1, 2},  {2, 2},  {3, 2},  {4, 2},  {5, 2}  },
+    // right half row 9  <-> left half row 3
+    { {0, 3},  {1, 3},  {2, 3},  {3, 3},  {4, 3},  {5, 3}  },
+    // right half row 10 <-> left half row 4
+    { {0, 4},  {1, 4},  {2, 4},  {3, 4},  {4, 4},  {5, 4}  },
+    // right half row 11 <-> left half row 5
+    { {0, 5},  {1, 5},  {2, 5},  {3, 5},  {4, 5},  {5, 5}  }
+};
+
+#if defined(SWAP_HANDS_ENABLE) && defined(ENCODER_MAP_ENABLE)
+const uint8_t PROGMEM encoder_hand_swap_config[NUM_ENCODERS] = { 1, 0 };
+#endif
 
 bool windows_pressed = false;
 // ------------- COMBO ---------------
@@ -627,7 +657,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                              CSTM_WIN, MY_NAV,  HT_SPC,              KC_LALT, AUX_WEB, XXXXXXX
 ),
 [_MOUSE_LAYER] = LAYOUT_2_9_regular(
-  MY_ESC,  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  MY_ESC,  MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  MY_ESC,  MY_ESC,
   MY_ESC, XXXXXXX, XXXXXXX, XXXXXXX, ACEL_ON,ACEL_OFF,                                                 KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
  KC_LCTL, K_BLITZ, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                                 XXXXXXX, ZOOM_TR, XXXXXXX, XXXXXXX, XXXXXXX, KC_RCTL,
  KC_LSFT, K_SNIPE, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX,                                                 XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN2, XXXXXXX, KC_RSFT,
@@ -675,6 +705,31 @@ void pointing_device_init_user(void) {
     set_auto_mouse_layer(_MOUSE_LAYER); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
     pointing_device_set_cpi(TRACKPAD_DEFAULT_DPI);
+}
+
+// // ==============================================
+// SWAPHANDS on _MOUSE_LAYER
+static bool mouse_layer_mirrored = false;
+
+void keyboard_post_init_user(void) {
+    mouse_layer_mirrored = is_keyboard_master() && is_keyboard_left();
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    static bool mouse_layer_was_on = false;
+
+    bool mouse_layer_is_on = IS_LAYER_ON_STATE(state, _MOUSE_LAYER);
+
+    if (mouse_layer_is_on && !mouse_layer_was_on) {
+        if (mouse_layer_mirrored) {
+            swap_hands_on();
+        }
+    } else if (!mouse_layer_is_on && mouse_layer_was_on) {
+        swap_hands_off();
+    }
+
+    mouse_layer_was_on = mouse_layer_is_on;
+    return state;
 }
 
 // ===============================
