@@ -44,7 +44,7 @@
 #define SPLIT_WPM_ENABLE
 #define OLED_BRIGHTNESS 1
 #define SPLIT_MODS_ENABLE
-#define OLED_TIMEOUT 5000 //in ms
+#define OLED_TIMEOUT 2000 //in ms
 // ==============================
 
 // =========== CIRQUE TRACKPAD =============
@@ -135,7 +135,7 @@
 #    define RGB_MATRIX_VAL_STEP 8
 #    define RGB_MATRIX_SPD_STEP 10
 #undef RGB_MATRIX_DEFAULT_VAL
-#    define RGB_MATRIX_DEFAULT_VAL 20
+#    define RGB_MATRIX_DEFAULT_VAL 68
 #undef RGB_MATRIX_DEFAULT_SPD
 #define RGB_MATRIX_DEFAULT_SPD 70
 #undef RGB_MATRIX_DEFAULT_MODE
