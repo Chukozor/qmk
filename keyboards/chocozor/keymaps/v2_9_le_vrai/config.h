@@ -94,6 +94,9 @@
 // #define CIRQUE_PINNACLE_TAPPING_TERM 0.75 // default value is TAPPING_TERM/200
 // #define CIRQUE_PINNACLE_TOUCH_DEBOUNCE 0.75 // default value is TAPPING_TERM/200
 
+// Trackpad acceleration
+#define MAXIMUM_ACCELERATION_ZONE 250.0f // (integer from 0 to 2^16 - 1)
+#define DEADZONE 0.25
 
 
 // relative mode settings
