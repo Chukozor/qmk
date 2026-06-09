@@ -159,6 +159,8 @@ enum custom_keycodes{
   SOL_TOG,
   L_ENC,
   L_ENC_BIS,
+  R_ENC,
+  R_ENC_BIS,
   };
 #undef X
 #undef Y

@@ -502,6 +502,38 @@ case L_ENC_BIS:
   }
   return false;
 
+case R_ENC:
+  if (record->event.pressed) {
+    if (get_mods() & MOD_BIT(KC_LALT)) {
+      register_code(KC_MPRV);
+    } else {
+      register_code(KC_VOLD);
+    }
+  } else {
+    if (get_mods() & MOD_BIT(KC_LALT)) {
+      unregister_code(KC_MPRV);
+    } else {
+      unregister_code(KC_VOLD);
+    }
+  }
+  return false;
+
+case R_ENC_BIS:
+  if (record->event.pressed) {
+    if (get_mods() & MOD_BIT(KC_LALT)) {
+      register_code(KC_MNXT);
+    } else {
+      register_code(KC_VOLU);
+    }
+  } else {
+    if (get_mods() & MOD_BIT(KC_LALT)) {
+      unregister_code(KC_MNXT);
+    } else {
+      unregister_code(KC_VOLU);
+    }
+  }
+  return false;
+
 //  case SOL_TOG:
 //    if(record->event.pressed){
 //      solenoid_actif = !solenoid_actif;
@@ -919,35 +951,35 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     // Mappings for 1st Encoder          // Mappings for 2nd Encoder
     // [_COLEMAK_FR] = {ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
-    //                  ENCODER_CCW_CW(KC_VOLD,KC_VOLU)}, // Mapping for Base layer
+    //                  ENCODER_CCW_CW(R_ENC, R_ENC_BIS)}, // Mapping for Base layer
     [_COLEMAK_FR] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                     ENCODER_CCW_CW(KC_VOLD,KC_VOLU)}, // Mapping for Base layer
+                     ENCODER_CCW_CW(R_ENC, R_ENC_BIS)}, // Mapping for Base layer
     [_GAME] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-               ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+               ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_GAME_QWERTY] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                      ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                      ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_AUX_GAME] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                   ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                   ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_CAPS_LOCK] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                    ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                    ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_F_KEYS] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                 ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                 ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_NUMPAD_RIGHT] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                       ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_NAV] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-              ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+              ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_OPERATIONS] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                     ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                     ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_WEB_BROWSER] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                      ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                      ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_MOUSE_LAYER]  = {ENCODER_CCW_CW(DPI_DEC, DPI_INC),
-                       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                       ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_ACCENTS] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                  ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_REG_SPE] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                  ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                  ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_MULTIMEDIA] = {ENCODER_CCW_CW(L_ENC, L_ENC_BIS),
-                     ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+                     ENCODER_CCW_CW(R_ENC, R_ENC_BIS)},
     [_RGB] = {ENCODER_CCW_CW(_D_RMOD, _I__MOD),
               ENCODER_CCW_CW(__D_LUM, __I_LUM)}};
 
