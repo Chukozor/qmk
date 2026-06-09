@@ -449,8 +449,14 @@ case L_ENC:
     } else if (IS_LAYER_ON(_NAV)) {
       register_code(KC_VOLU);
     } else if (windows_pressed == true) {
+      unregister_code(KC_LGUI);
+      wait_ms(5);
+      tap_code(KC_ESC);
+      wait_ms(5);
       register_code(KC_LCTL);
+      wait_ms(5);
       register_code(KC_WH_U);
+      wait_ms(5);
     } else if (IS_LAYER_ON(_MULTIMEDIA)) {
       register_code(KC_MNXT);
     } else {
@@ -479,8 +485,14 @@ case L_ENC_BIS:
     } else if (IS_LAYER_ON(_NAV)) {
       register_code(KC_VOLD);
     } else if (windows_pressed == true) {
+      unregister_code(KC_LGUI);
+      wait_ms(5);
+      tap_code(KC_ESC);
+      wait_ms(5);
       register_code(KC_LCTL);
+      wait_ms(5);
       register_code(KC_WH_D);
+      wait_ms(5);
     } else if (IS_LAYER_ON(_MULTIMEDIA)) {
       register_code(KC_MPRV);
     } else {
