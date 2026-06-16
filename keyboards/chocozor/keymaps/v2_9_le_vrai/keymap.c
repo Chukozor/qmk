@@ -645,9 +645,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                               MO_OX_G,  KC_I,  KC_SPC,                XXXXXXX,  KC_ENT, KC_LALT
 ),
 [_AUX_GAME] = LAYOUT_2_9_regular(
-   MY_ESC,   KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-   MY_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+   MY_ESC,   KC_TAB,    KC_7,    KC_8,    KC_9,  KC_F12,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+   MY_ESC,  XXXXXXX,    KC_4,    KC_5,    KC_6,  KC_F11,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX,  XXXXXXX,    KC_1,    KC_2,    KC_3,  KC_F10,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                        KC_F4,   KC_F5,   KC_F6,                                                                  KC_RSFT, MY_RCTL,  KC_TAB,
                                                 XXXXXXX, XXXXXXX, XXXXXXX,            XXXXXXX, XXXXXXX, XXXXXXX
