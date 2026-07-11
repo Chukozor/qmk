@@ -142,8 +142,10 @@
 #    define RGB_MATRIX_DEFAULT_VAL 68
 #undef RGB_MATRIX_DEFAULT_SPD
 #define RGB_MATRIX_DEFAULT_SPD 70
+#    define RGB_MATRIX_STARTUP_HUE 21 // orange
 #undef RGB_MATRIX_DEFAULT_MODE
-#    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_PIXEL_RAIN
+// #    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_PIXEL_RAIN
+#    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_ALPHAS_MODS
 
 // /* Enable the animations you want/need.  You may need to enable only a small number of these because       *
 //  * they take up a lot of space.  Enable and confirm that you can still successfully compile your firmware. */
