@@ -70,6 +70,12 @@ bool rgb_matrix_indicators_user(void) {
         case _AUX_GAME:
             set_gaming_color(234,0); // rose saumon avec RSTC rouge
             break;
+        case _COLEMAK_FR:
+            set_gaming_color(0,0); // Rouge avec RSTC rouge
+            break;
+        default:
+            set_gaming_color(0,0); // Rouge avec RSTC rouge
+            break;
     }
     return true;
 }
