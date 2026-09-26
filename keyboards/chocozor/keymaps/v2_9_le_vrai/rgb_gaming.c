@@ -12,7 +12,7 @@ static const uint8_t rstc_leds[] = {2, 7, 8, 9};
 // rgb_matrix.layout table.
 // static const uint8_t wars_leds[] = {0, 11, 12, 13, 14, 15};
 
-// LEDs dont la luminosité doit être augmentée de 80%
+// LEDs dont la luminosité doit être augmentée de 75%
 static const uint8_t boosted_leds[] = {12, 13, 14, 15, 16, 17, 30, 31, 32, 33, 34, 35};
 static const uint8_t boosted_leds_count = sizeof(boosted_leds);
 
@@ -32,8 +32,8 @@ static void set_gaming_color(uint8_t hue, uint8_t rstc_hue) {
     HSV hsv = {hue, 255, base_val};
     RGB rgb = hsv_to_rgb(hsv);
 
-    // Couleur boostée (+80%, plafonnée à 255)
-    uint16_t boosted_val = (uint16_t)base_val * 180 / 100;
+    // Couleur boostée (+75%, plafonnée à 255)
+    uint16_t boosted_val = (uint16_t)base_val * 175 / 100;
     if (boosted_val > 255) boosted_val = 255;
     HSV hsv_boosted = {hue, 255, (uint8_t)boosted_val};
     RGB rgb_boosted = hsv_to_rgb(hsv_boosted);
