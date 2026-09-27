@@ -12,11 +12,15 @@ static const uint8_t rstc_leds[] = {2, 7, 8, 9};
 // rgb_matrix.layout table.
 // static const uint8_t wars_leds[] = {0, 11, 12, 13, 14, 15};
 
-// LEDs dont la luminosité doit être augmentée de 75%
-static const uint8_t boosted_leds[] = {12, 13, 14, 15, 16, 17, 30, 31, 32, 33, 34, 35};
-static const uint8_t boosted_leds_count = sizeof(boosted_leds);
+// LEDs dont la luminosité doit être augmentée de 75%, quel que soit l'effet
+// RGB Matrix actif. Déclaré non-static + exposé via rgb_gaming.h car
+// rgb_matrix_custom_driver.c a besoin de is_boosted_led() pour appliquer
+// ce boost au niveau du driver (donc AUSSI sur digital_rain, breathing, etc.
+// et pas seulement sur les couleurs fixes gérées ici).
+const uint8_t boosted_leds[] = {12, 13, 14, 15, 16, 17, 30, 31, 32, 33, 34, 35};
+const uint8_t boosted_leds_count = sizeof(boosted_leds);
 
-static bool is_boosted_led(uint8_t index) {
+bool is_boosted_led(uint8_t index) {
   for (uint8_t i = 0; i < boosted_leds_count; ++i) {
       if (boosted_leds[i] == index) {
           return true;
@@ -28,28 +32,18 @@ static bool is_boosted_led(uint8_t index) {
 static void set_gaming_color(uint8_t hue, uint8_t rstc_hue) {
     uint8_t base_val = rgb_matrix_get_val();
 
-    // Couleur normale
+    // Couleur normale. Le boost +75% des LEDs de boosted_leds est désormais
+    // appliqué automatiquement par le driver custom (rgb_matrix_custom_driver.c),
+    // donc plus besoin de le recalculer ici : ça évite un double-boost.
     HSV hsv = {hue, 255, base_val};
     RGB rgb = hsv_to_rgb(hsv);
-
-    // Couleur boostée (+75%, plafonnée à 255)
-    uint16_t boosted_val = (uint16_t)base_val * 175 / 100;
-    if (boosted_val > 255) boosted_val = 255;
-    HSV hsv_boosted = {hue, 255, (uint8_t)boosted_val};
-    RGB rgb_boosted = hsv_to_rgb(hsv_boosted);
 
     // Couleur RSTC
     HSV rstc_hsv = {rstc_hue, 255, base_val};
     RGB rstc_rgb = hsv_to_rgb(rstc_hsv);
 
   for (uint8_t i = 0; i < 36; ++i) {
-      // rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-      // rgb_matrix_set_color_all(rgb.r, rgb.g, rgb.b);
-    if (is_boosted_led(i)) {
-      rgb_matrix_set_color(i, rgb_boosted.r, rgb_boosted.g, rgb_boosted.b);
-    } else {
       rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-    }
   }
 
 #ifdef GAMING_RGB_RSTC
@@ -70,12 +64,12 @@ bool rgb_matrix_indicators_user(void) {
         case _AUX_GAME:
             set_gaming_color(234,0); // rose saumon avec RSTC rouge
             break;
-        case _COLEMAK_FR:
-            set_gaming_color(0,0); // Rouge avec RSTC rouge
-            break;
-        default:
-            set_gaming_color(0,0); // Rouge avec RSTC rouge
-            break;
+        // case _COLEMAK_FR:
+        //     set_gaming_color(0,0); // Rouge avec RSTC rouge
+        //     break;
+        // default:
+        //     set_gaming_color(0,0); // Rouge avec RSTC rouge
+        //     break;
     }
     return true;
 }

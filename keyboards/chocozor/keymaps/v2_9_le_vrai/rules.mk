@@ -42,6 +42,25 @@ RGBLIGHT_ENABLE = no
 RGB_MATRIX_ENABLE = yes
 TOUS_LES_EFFETS_RGB = yes
 
+# Driver RGB Matrix "custom" : permet d'intercepter la couleur finale de
+# chaque LED (rgb_matrix_custom_driver.c) pour appliquer un boost de
+# luminosité sur certaines LEDs, quel que soit l'effet actif (digital_rain,
+# breathing, etc.). Le vrai rendu bas niveau reste le driver WS2812 "vendor"
+# du RP2040 (celui déclaré dans keyboard.json) : on ne fait qu'ajouter un
+# wrapper autour, on ne réimplémente rien.
+RGB_MATRIX_DRIVER = custom
+WS2812_DRIVER_REQUIRED = yes
+WS2812_DRIVER = vendor
+
+# ws2812.h ne définit WS2812_LED_COUNT que si RGB_MATRIX_WS2812 est actif ;
+# avec RGB_MATRIX_DRIVER=custom, c'est RGB_MATRIX_CUSTOM qui est défini à la
+# place, donc ws2812.h ne fixe plus cette macro nulle part. Or le driver bas
+# niveau (platforms/.../ws2812_vendor.c) en a besoin dans SON PROPRE fichier
+# (un simple #define dans rgb_matrix_custom_driver.c ne suffit pas, il ne
+# vaudrait que pour ce fichier-là). On la fixe donc globalement ici, pour
+# toutes les unités de compilation.
+OPT_DEFS += -DWS2812_LED_COUNT=RGB_MATRIX_LED_COUNT
+
 ifeq ($(TOUS_LES_EFFETS_RGB), yes)
     EXTRAFLAGS += -DTOUS_LES_EFFETS_RGB
 endif
@@ -56,3 +75,4 @@ SRC += web.c
 SRC += globals.c
 SRC += oled.c
 SRC += rgb_gaming.c
+SRC += rgb_matrix_custom_driver.c
